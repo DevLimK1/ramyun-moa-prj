@@ -1,0 +1,219 @@
+<!-- 200524 reg.jsp -> html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="css/board/review/layout.css">
+<link rel="stylesheet" href="css/board/review/review-reg.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+	rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- ************** header ************** -->
+	<header class="rm-header">
+		<h1 class="d-none">라면모아 헤더</h1>
+		<ul class="rm-menu-top">
+			<li><a href="">라면 모아</a></li>
+			<li><a href="">로그인</a></li>
+			<li><a href="">회원가입</a></li>
+			<li><a href="">고객센터</a></li>
+		</ul>
+		<ul class="rm-menu-bottom">
+			<li><a href="">#공지사항</a></li>
+			<li><a href="">라면 소개</a></li>
+			<li><a href="">후기 게시판</a></li>
+			<li><a href="">레시피 공유</a></li>
+			<li><a href="">라면 토론장</a></li>
+		</ul>
+	</header>
+	<!-- ************** 게시판  main ************** -->
+	<main id="main">
+
+		<nav class="sub-header">
+			<h1 class="d-none">서브 헤더</h1>
+
+			<div class="sub-header-title">후기 등록하기</div>
+
+
+			<section class="reg-box">
+				<h1 class="d-none">서브링크</h1>
+
+
+				<form action="reg" method="POST" class="sub-link-search-form">
+
+					<fieldset class="perface-field">
+						<legend class="d-none">서브링크 검색필드</legend>
+						<label class="" for="">제조사-라면</label> <select name="item"
+							class="select">
+							<option value="오뚜기-진라면">오뚜기-진라면</option>
+							<option value="오뚜기-굴진짬뽕">오뚜기-굴진짬뽕</option>
+							<option value="삼양-간짬뽕">삼양-간짬뽕</option>
+						</select>
+
+
+					</fieldset>
+
+					<fieldset class="grade-field">
+						<legend class="d-none">평점필드</legend>
+						<label class="" for="">평점</label> <select name="star-grade"
+							class="select">
+							<option value="1">집에 있어도 안먹음 ★☆☆☆☆</option>
+							<option value="2">내 돈주고 먹지는 않음 ★★☆☆☆</option>
+							<option value="3" selected>내 돈주고 사먹을만 함 ★★★☆☆</option>
+							<option value="4">맛있어서 가끔 생각남 ★★★★☆</option>
+							<option value="5">집에 쌓아놓고 먹고싶음 ★★★★★</option>
+						</select>
+
+					</fieldset>
+
+
+					<div class="title-box">
+						<input class="title" name="title" type="text" placeholder="제목"
+							required>
+					</div>
+
+					<div class="content-box">
+						<textarea class="content" placeholder="내용을 입력하세요. " name="content"
+							required></textarea>
+					</div>
+
+					<div class="btn-box">
+						<div class="btn-box_box">
+							<input class="btn-text btn-default" type="submit" value="등록" />
+							<a class="btn-text btn-cancel" href="list">취소 </a>
+						</div>
+					</div>
+
+				</form>
+
+			</section>
+
+
+		</nav>
+
+		<!-- *************************************** -->
+
+
+
+
+	</main>
+
+</body>
+
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/add-review-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    ************** header **************
+    <header class="rm-header">
+        <h1 class="d-none">라면모아 헤더</h1>
+        <ul class="rm-menu-top">
+            <li><a href="">라면 모아</a></li>
+            <li><a href="">로그인</a></li>
+            <li><a href="">회원가입</a></li>
+            <li><a href="">고객센터</a></li>
+        </ul>
+        <ul class="rm-menu-bottom">
+            <li><a href="">#공지사항</a></li>
+            <li><a href="">라면 소개</a></li>
+            <li><a href="">후기 게시판</a></li>
+            <li><a href="">레시피 공유</a></li>
+            <li><a href="">라면 토론장</a></li>
+        </ul>
+    </header>
+    ************** 게시판  main **************
+    <main id="main">
+
+        <nav class="sub-header">
+            <h1 class="d-none">서브 헤더</h1>
+            
+            <div class="sub-header-title">후기 등록하기</div>
+         
+
+            <section class="sub-link">
+                <h1 class="d-none">서브링크</h1>
+            
+                <section class="sub-link-search">
+                    <h1 class="d-none">서브링크 검색폼</h1>
+                    <form action="reg" method="POST" class="sub-link-search-form">
+                        <fieldset>
+                            <legend class="d-none">서브링크 검색필드</legend>
+                            <label class="d-none" for="">검색분류</label>
+    
+                            <select name="perface" class="select">
+                                <option value="오뚜기-진라면">오뚜기-진라면</option>
+                                <option value="오뚜기-굴진짬뽕">오뚜기-굴진짬뽕</option>
+                                <option value="삼양-간짬뽕">삼양-간짬뽕</option>
+                            </select>
+                        </fieldset>
+
+                        <div class="margin-top text-align-center">
+                            <input class="btn-text btn-default" type="submit" value="등록" /> <a
+                                class="btn-text btn-cancel" href="list.html">취소</a>
+                        </div>
+                  
+                        <div class="margin-top first">
+                            <h3 class="d-none">공지사항 입력</h3>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>제목</th>
+                                        <td class="text-align-left text-indent text-strong text-orange"
+                                            colspan="3"><input type="text" name="title" /></td>
+                                    </tr>
+                                  
+                                    <tr class="content">
+                                        <td colspan="4"><textarea class="content" name="content"></textarea></td>
+                                    </tr>
+                                  
+                                </tbody>
+                            </table>
+                        </div>
+
+                       
+
+                    </form>
+                    
+    
+                </section>
+           
+               
+            </section>
+            <form action="reg" method="post" >
+               
+            </form>
+           
+        </nav>
+
+        ***************************************
+       
+
+
+        
+    </main>
+
+</body>
+
+</html> -->
