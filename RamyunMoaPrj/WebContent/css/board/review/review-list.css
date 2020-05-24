@@ -77,9 +77,10 @@
     /* height: 23px;  */
     /* background-size: 30px; */
   
-    background:  url("../images/img.png") no-repeat;
+    background:  url("../../../images/img.png") no-repeat;
     background-size: contain;
     text-indent: -9999px;
+    cursor: pointer;
   }
   
 
@@ -155,6 +156,40 @@
   
       .review-list-box-meta_author {
         display: inline-block;
-        background: url(../images/bg-title-sp.png) no-repeat left center;
+        background: url(../../../images/bg-title-sp.png) no-repeat left center;
         padding-left: 7px;
       }
+
+/* -------------pager(페이저)----------- */
+
+.pager-box{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.pager{
+  /* border: 1px solid black; */
+  text-align: center;
+  margin: 0px 10px;
+}
+
+.pager-item{
+  display: inline-block;
+
+  /* border: 1px solid blue; */
+}
+
+.pager-text{
+  color: black;
+}
+
+.pager-text:hover,.prev:hover,.next:hover{
+  text-decoration: none;
+  color: darkgray;
+  cursor: pointer;
+}
+
+.next,.prev{
+	color:black;
+}

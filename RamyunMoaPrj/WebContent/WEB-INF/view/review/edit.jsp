@@ -49,7 +49,7 @@
 			<h1 class="d-none">수정</h1>
 
 			<div class="mini-title-box">
-				<span class="mini-title">후기게시판 전체목록</span>
+				<a href="list" class="mini-title">후기게시판 전체목록</a>
 			</div>
 
 			<form action="edit" method="POST" class="sub-link-search-form">

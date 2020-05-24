@@ -130,9 +130,42 @@
 
 		
 		</section>
+ 
+		<div class="pager-box">
 
+			<c:set var="page" value="${(param.p==null) ? 1:param.p }"/>
+			<c:set var="startNum" value="${page-(page-1)%5 }"/>
+			<!--ex)page: 23 -> 23 - (23-1)%5 = 21~25 -->
+			<c:set var="lastNum" value="23" />
+			
+            <div class="prev-box">
+               <c:if test="${startNum-1>0 }">
+               		<a class="prev" href="?p=${startNum-1}&t=&q="><i class="fas fa-angle-left"></i></a> 
+               </c:if>
+               <c:if test="${startNum-1<=0 }">
+ 					<i class="fas fa-angle-left" onclick="alert('다음 페이지가 없습니다.')"></i>
+				</c:if>
+            </div>
 
+			
+		
 
+            <ul class="pager">
+            	<c:forEach var="i" begin="0" end="4">
+                	<li class="pager-item"><a class="pager-text" href="?p=${startNum+i}&t=&q=">${startNum+i}</a></li>
+                </c:forEach>
+            </ul>
+
+            <div class="next-box">
+               <c:if test="${startNum+5<lastNum }">
+               		<a class="next" href="?p=${startNum+5}&t=&q="><i class="fas fa-angle-right"></i></a> 
+               </c:if>
+               <c:if test="${startNum+5>=lastNum }">
+ 					<i class="fas fa-angle-right" onclick="alert('다음 페이지가 없습니다.')"></i>
+				</c:if>
+            </div>
+
+        </div>
 	</main>
 
 </body>
