@@ -5,6 +5,9 @@
 html {
   background-color: #EBEEF1;
 }
+body{
+	padding-bottom: 100px;
+}
 /* 
 div {
   border: 1px solid black;
@@ -13,6 +16,7 @@ div {
 .d-none {
   display: none;
 }
+
 
 .fnt_nanum-pen-script{
   font-family: 'Nanum Pen Script', cursive;
@@ -24,6 +28,7 @@ div {
 
 .fnt_sunflower{
   font-family: 'Sunflower', sans-serif;
+  font-weight:bold;
 }
 
 .fnt_jua{
@@ -157,7 +162,7 @@ font-family: 'Jua', sans-serif;
 
   background:  url("../images/img.png") no-repeat;
   background-size: contain;
-  text-indent: -999px;
+  text-indent: -9999px;
 }
 
 /* ******** review-board **************** */
@@ -186,39 +191,48 @@ font-family: 'Jua', sans-serif;
   .review-list-box {
     display: flex;
     border-bottom: 1px solid #979797;
+    padding: 8px 0px;
   }
 
     .review-list-box .review-list-box_group{
-      width: 200px; 
+      width: 220px; 
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size:1.2em;
     }
 
       .review-list-box_group a{
-        /* font-size: 0.8em; */
+        font-size: 0.8em;
         color: black;
       }
 
     .review-list-box .review-list-box_vote{
       margin-top: auto;
       margin-bottom: auto;
+/*       margin-left:10px; */
       text-align: center;
-      width: 50px;
+/*       width: 70px; */
     }
 
 .review-list-box_content{
-  flex-grow: 1;
+/*   flex-grow: 1; */
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
   .review-list-box_title{
-    width: 500px;
-    
+    width: 450px;
+    display: inline-block;
+    /*   	margin-left:30px;   */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }   
   
+ 
+
     .review-list-box-meta_regdate {
         display: inline-block;
     }

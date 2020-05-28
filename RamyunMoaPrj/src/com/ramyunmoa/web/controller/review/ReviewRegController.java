@@ -1,4 +1,4 @@
-package com.ramyunmoa.web.controller;
+package com.ramyunmoa.web.controller.review;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ramyunmoa.web.entity.Review;
 import com.ramyunmoa.web.service.ReviewService;
 
-@WebServlet("/reg")
+@WebServlet("/review/reg")
 public class ReviewRegController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -70,7 +70,7 @@ public class ReviewRegController extends HttpServlet {
 		review.setStarGrade(starGrade);
 		review.setTitle(title);
 		review.setContent(content);
-		review.setWriterName("나야나");
+		review.setWriterName("라면돌이");
 		review.setGradeTitle(gradeTitle);
 		
 		

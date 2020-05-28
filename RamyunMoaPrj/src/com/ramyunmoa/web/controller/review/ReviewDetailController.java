@@ -1,4 +1,4 @@
-package com.ramyunmoa.web.controller;
+package com.ramyunmoa.web.controller.review;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ import com.ramyunmoa.web.service.ReviewService;
 /**
  * Servlet implementation class ReviewDetailController
  */
-@WebServlet("/detail")
+@WebServlet("/review/detail")
 public class ReviewDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

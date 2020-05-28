@@ -10,9 +10,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/board/review/layout.css">
-<link rel="stylesheet" href="css/board/review/review-list.css">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/board/review/layout.css">
+<link rel="stylesheet" href="../css/board/review/review-list.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- <link
@@ -23,7 +23,29 @@
 <body>
 
 	<!-- ************** header ************** -->
-	<header class="rm-header">
+	  <header class="header">
+        <div class="box">
+            <nav class="navbar flex">
+                <div class="navbar-logo flex">
+                    <a href="/main">라면모아</a>
+                </div>
+                <ul class="navbar-menu flex">
+                    <li><a href="">라면 소개</a></li>
+                    <li><a href="list">후기 게시판</a></li>
+                    <li><a href="">라면 토론장</a></li>
+                    <li><a href="">레시피 공유</a></li>
+                </ul>
+                <ul class="navbar-member flex">
+                    <li><a class="member-first "href="">로그인</a></li>
+                    <li><a class="member-first "href="">회원가입</a></li>
+                    <li>
+                        <a class="member-second "href="">고객센터</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+	<!-- <header class="rm-header">
 		<h1 class="d-none">라면모아 헤더</h1>
 		<ul class="rm-menu-top">
 			<li><a href="">라면 모아</a></li>
@@ -38,7 +60,7 @@
 			<li><a href="">레시피 공유</a></li>
 			<li><a href="">라면 토론장</a></li>
 		</ul>
-	</header>
+	</header> -->
 	<!-- ************** 게시판  main ************** -->
 	<main id="main">
 
@@ -66,17 +88,18 @@
 					<form class="sub-link-search-form">
 						<fieldset>
 							<legend class="d-none">서브링크 검색필드</legend>
-							<label class="d-none" for="">검색분류</label> <select name=""
+							<label class="d-none" for="">검색분류</label> <select name="f"
 								class="select">
-								<option value="">제목</option>
-								<option value="">작성자</option>
-								<option value="">내용</option>
-							</select> <label class="d-none" for="">검색어</label> <input type="text">
+								<option ${param.f=="title" ? "selected" : "" } value="title">제목</option>
+								<option ${param.f=="writerName" ? "selected" : "" } value="writerName">작성자</option>
+								<option ${param.f=="content" ? "selected" : "" } value="content">내용</option>
+							</select> <label class="d-none" for="">검색어</label> 
+							<input type="text" name="q" value="${param.q }">
 							<input type="submit" value="검색">
 
 						</fieldset>
 					</form>
-
+	
 				</section>
 			</section>
 
@@ -140,10 +163,10 @@
 			
             <div class="prev-box">
                <c:if test="${startNum-1>0 }">
-               		<a class="prev" href="?p=${startNum-1}&t=&q="><i class="fas fa-angle-left"></i></a> 
+               		<a class="prev" href="?p=${startNum-1}&f=${param.f }&q=${param.q}"><i class="fas fa-angle-left"></i></a> 
                </c:if>
                <c:if test="${startNum-1<=0 }">
- 					<i class="fas fa-angle-left" onclick="alert('다음 페이지가 없습니다.')"></i>
+ 					<i class="fas fa-angle-left" onclick="alert('이전 페이지가 없습니다.')"></i>
 				</c:if>
             </div>
 
@@ -152,13 +175,13 @@
 
             <ul class="pager">
             	<c:forEach var="i" begin="0" end="4">
-                	<li class="pager-item"><a class="pager-text" href="?p=${startNum+i}&t=&q=">${startNum+i}</a></li>
+                	<li class="pager-item"><a class="pager-text" href="?p=${startNum+i}&f=${param.f }&q=${param.q}">${startNum+i}</a></li>
                 </c:forEach>
             </ul>
 
             <div class="next-box">
                <c:if test="${startNum+5<lastNum }">
-               		<a class="next" href="?p=${startNum+5}&t=&q="><i class="fas fa-angle-right"></i></a> 
+               		<a class="next" href="?p=${startNum+5}&f=${param.f }&q=${param.q}"><i class="fas fa-angle-right"></i></a> 
                </c:if>
                <c:if test="${startNum+5>=lastNum }">
  					<i class="fas fa-angle-right" onclick="alert('다음 페이지가 없습니다.')"></i>
@@ -168,6 +191,32 @@
         </div>
 	</main>
 
+	<!-- --------------footer--------------- -->
+	 <footer class="footer">
+	        <div class="box flex">
+	            <ul class="foot-list">
+	                <li><a class="privacy" href="">개인정보 처리방침</a></li>
+	                <li><a href="">라면모아 소개</a></li>
+	                <li><a href="">고객센터</a></li>
+	                <li><a href="">처음이세요?</a></li>
+	                <li><a href="">제휴</a></li>
+	            </ul>
+	            <div class="foot-info">
+	            <ul class="info-list">
+	                <li>라면모아</li>
+	                <li>라면모아 이메일 :</li>
+	                <li>라면모아 팀 :</li>
+	                <li>고객센터 전화번호</li>
+	            </ul>
+	            <p class="copy">Copyright 2020. RamyunMoa All rights reserved.</p>
+	            </div>
+	            <ul class="foot-sns">
+	                <i class="fab fa-facebook"></i>
+	                <i class="fab fa-instagram"></i>
+	                <i class="fab fa-youtube"></i>
+	            </ul>
+	        </div>
+	    </footer>
 </body>
 
 </html>

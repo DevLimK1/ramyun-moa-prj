@@ -1,22 +1,16 @@
 
-body{
-    position: relative;
-    padding-bottom: 300px;
-}
-
-.flex {
-    display: flex;
-}
 
 .d-none {
     display: none;
-    
 }
 
 /* html {
     background-color: #EBEEF1;
 }
 
+body {
+    padding-bottom: 100px;
+} */
 
 .btn-default{
     outline: 0px;

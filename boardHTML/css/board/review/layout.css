@@ -1,18 +1,15 @@
-
-/* @import url("../../reset.css"); */
+@import url("../../reset.css")
 @import url("review-board-style.css");
+@import url("../../font.css");
+@import url("../../global.css");
 /* @import url("review-detail.css"); */
 /* @import url("review-list.css"); */
 /* @import url("review-reg.css"); */
-@import url("../../font.css");
-@import url("../../global.css");
-@import url("../../header.css");
-@import url("../../footer.css");
 
 /* --------------리뷰게시판 layout ----------------------- */
 
-
-/* .rm-menu-top {
+/* **************header******************* */
+.rm-menu-top {
     display: flex;
     align-items: center;
     background: #8b0000;
@@ -54,14 +51,14 @@
     border-radius: 10px;
     background: #fe4e46;
 }
- */
+
 /* ******* review-list-main, review-detail-main ********* */
 html {
     background-color: #EBEEF1;
 }
 
 body {
-    
+    padding-bottom: 100px;
 }
 
 #main {
@@ -70,4 +67,3 @@ body {
     margin-right: auto;
 
 }
-

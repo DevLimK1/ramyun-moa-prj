@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/add-review-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ************** header ************** -->
+    <header class="rm-header">
+        <h1 class="d-none">라면모아 헤더</h1>
+        <ul class="rm-menu-top">
+            <li><a href="">라면 모아</a></li>
+            <li><a href="">로그인</a></li>
+            <li><a href="">회원가입</a></li>
+            <li><a href="">고객센터</a></li>
+        </ul>
+        <ul class="rm-menu-bottom">
+            <li><a href="">#공지사항</a></li>
+            <li><a href="">라면 소개</a></li>
+            <li><a href="">후기 게시판</a></li>
+            <li><a href="">레시피 공유</a></li>
+            <li><a href="">라면 토론장</a></li>
+        </ul>
+    </header>
+    <!-- ************** 게시판  main ************** -->
+    <main id="main">
+
+        <nav class="sub-header">
+            <h1 class="d-none">서브 헤더</h1>
+        	<form action="edit" method="post" >
+                <div class="margin-top first">
+                    <h3 class="d-none">공지사항 수정</h3>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>제목</th>
+                                <td class="text-align-left text-indent text-strong text-orange"
+                                    colspan="3"><input type="text" name="title"
+                                    value="${n.title}" /></td>
+                            </tr>
+                            <tr>
+                                <th>작성일</th>
+                                <td class="text-align-left text-indent" colspan="3">${n.regdate}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>작성자</th>
+                                <td>${n.writerId }</td>
+                                <th>조회수</th>
+                                <td>${n.hit}</td>
+                            </tr>
+                            <!-- <tr>
+                             <th>첨부파일</th>
+                             <td colspan="3"><input type="file" name="file" /> </td>
+                          </tr> -->
+                            <tr class="content">
+                                <td colspan="4"><textarea class="content" name="content">
+                                ${n.content }
+                                </textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        
+                <div class="margin-top text-align-center">
+                    <input type="hidden" name="id" value="${n.id }" /> <input
+                        class="btn-text btn-default" type="submit" value="저장" /> <a
+                        class="btn-text btn-cancel" href="../../notice/12">취소</a>
+                </div>
+            </form>
+           
+        </nav>
+
+        <!-- *************************************** -->
+       
+
+
+        
+    </main>
+
+</body>
+
+</html>
