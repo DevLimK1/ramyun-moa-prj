@@ -1,9 +1,8 @@
-
-/* @import url("../../reset.css"); */
+@import url("../../reset.css");
 @import url("review-board-style.css");
 /* @import url("review-detail.css"); */
-/* @import url("review-list.css"); */
-/* @import url("review-reg.css"); */
+@import url("review-list.css");
+@import url("review-reg.css");
 @import url("../../font.css");
 @import url("../../global.css");
 @import url("../../header.css");

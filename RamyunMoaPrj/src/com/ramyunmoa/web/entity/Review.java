@@ -1,40 +1,41 @@
 package com.ramyunmoa.web.entity;
 
+import java.util.Date;
+
+
 public class Review {
 	private int id;
 	private String brand;
-	private String perface; //지금은 쓰이지 않음
+	private String perface; // 지금은 쓰이지 않음
 	private int likes;
+//	private Timestamp regdate;
 	private String regdate;
 	private String writerName;
 	private String title;
 	private String content;
 	private int hit;
-	private String item; //말머리
-	private int starGrade; //평점 
-	private String star; //별
+	private String item; // 말머리
+	private int starGrade; // 평점
+	private String star; // 별
 	private String gradeTitle;
-	
-
 
 	private int comment;
-	
+
 	public Review() {
-		
+
 	}
 
-	public Review(int id, String item, String star, String regdate, 
-			String writerName, String title, int comment) {
-		this.id=id;
-		this.item=item;
-		this.star=star;
-		this.regdate=regdate;
-		this.writerName=writerName;
-		this.title=title;
-		this.comment=comment;
-	
+	public Review(int id, String item, String star, String regdate, String writerName, String title, int comment) {
+		this.id = id;
+		this.item = item;
+		this.star = star;
+		this.regdate = regdate;
+		this.writerName = writerName;
+		this.title = title;
+		this.comment = comment;
+
 	}
-	
+
 	public Review(int id, String brand, String perface, int likes, String regdate, String writerName, String title,
 			int comment, String content) {
 		this.id = id;
@@ -48,28 +49,24 @@ public class Review {
 		this.content = content;
 	}
 
+	// getReview(int id)
+	public Review(int id, String item, String title, String star, int starGrade, String regdate, String writerName,
+			int hit, String content, String gradeTitle, int comment, int likes) {
+		this.id = id;
+		this.item = item;
+		this.title = title;
+		this.star = star;
+		this.starGrade = starGrade;
+		this.regdate = regdate;
+		this.writerName = writerName;
+		this.hit = hit;
+		this.content = content;
+		this.gradeTitle = gradeTitle;
+		this.comment = comment;
+		this.likes = likes;
 
-
-	//getReview(int id)
-	public Review(int id,String item,String title,
-			String star,int starGrade,
-			String regdate, String writerName, 
-			int hit, String content,String gradeTitle,int comment,int likes) {
-		this.id=id;
-		this.item=item;
-		this.title=title;
-		this.star=star;
-		this.starGrade=starGrade;
-		this.regdate=regdate;
-		this.writerName=writerName;
-		this.hit=hit;
-		this.content=content;
-		this.gradeTitle=gradeTitle;
-		this.comment=comment;
-		this.likes=likes;
-		
 	}
-	
+
 	public String getStar() {
 		return star;
 	}
@@ -77,7 +74,6 @@ public class Review {
 	public void setStar(String star) {
 		this.star = star;
 	}
-	
 
 	public String getItem() {
 		return item;
@@ -107,11 +103,9 @@ public class Review {
 		return content;
 	}
 
-
 	public void setContent(String content) {
 		this.content = content;
 	}
-
 
 	public String getTitle() {
 		return title;
@@ -177,8 +171,6 @@ public class Review {
 		this.comment = comment;
 	}
 
-	
-	
 	public String getGradeTitle() {
 		return gradeTitle;
 	}
@@ -194,13 +186,5 @@ public class Review {
 				+ ", item=" + item + ", starGrade=" + starGrade + ", star=" + star + ", gradeTitle=" + gradeTitle
 				+ ", comment=" + comment + "]";
 	}
-
-	
-
-	
-
-
-
-	
 
 }
