@@ -45,9 +45,10 @@ public class ReviewListController extends HttpServlet {
 			page = Integer.parseInt(page_);
 
 		ReviewService service = new ReviewService();
-
+		int count =0 ;
 		try {
 			list = service.getReviewList(field, query, page);
+			count= service.getReviewCount(field, query);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,6 +58,8 @@ public class ReviewListController extends HttpServlet {
 		}
 
 		request.setAttribute("list", list);
+		request.setAttribute("count", count);
+	
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/review/list.jsp");
 		dispatcher.forward(request, response);

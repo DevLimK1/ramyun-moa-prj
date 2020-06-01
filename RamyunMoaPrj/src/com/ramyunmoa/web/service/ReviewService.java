@@ -196,5 +196,35 @@ public class ReviewService {
 
 		return list;
 	}
+	
+	public int getReviewCount(String field,String query) throws ClassNotFoundException, SQLException {
+		
+		int count=0;
+		
+		String sql = "SELECT COUNT(ID) COUNT FROM ReviewBoardTest " + 
+				" WHERE "+field+ " LIKE ? ORDER BY regdate DESC";
+		
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement st = con.prepareStatement(sql);
+
+		
+		st.setString(1, "%"+query+"%");
+		
+		ResultSet rs = st.executeQuery();		
+		if(rs.next())
+			count =rs.getInt("count");
+		
+		
+		
+		rs.close();
+		st.close();
+		con.close();
+		
+		
+		return count;
+		
+	}
 
 }

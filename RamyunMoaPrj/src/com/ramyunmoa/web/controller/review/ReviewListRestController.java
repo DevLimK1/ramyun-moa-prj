@@ -64,6 +64,7 @@ public class ReviewListRestController extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		System.out.println(page);
 		request.setAttribute("list", list);
 		System.out.println(list);
 

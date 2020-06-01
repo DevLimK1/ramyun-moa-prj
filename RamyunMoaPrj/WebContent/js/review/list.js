@@ -20,7 +20,7 @@ window.addEventListener("load", function() {
 	var pager = main.querySelector(".pager");
 	var regBtn = document.querySelector(".review-board .reg-btn");
 	var pagerNums=pager.querySelectorAll(".pager-num");
-	
+	var indexNum = main.querySelector(".index-num");
 	
 	var shield = new Shield(".review-board");
 
@@ -120,15 +120,17 @@ window.addEventListener("load", function() {
 		
 		if (e.target.nodeName != "A")
 			return;
-//		console.log(pagerNums);
-//		console.log(pager.length);
+		
 		for(var i=0;i<pagerNums.length;i++){
 				pagerNums[i].classList.remove("orange");
 		}
-		e.target.classList.add("orange");
+		
+		e.target.classList.add("orange"); 
 		
 		var page = e.target.innerText;
 		console.log(page);
+		
+		
 
 		// XmlHttpRequest : callback 개념의 라이브러리
 		var xhr = new XMLHttpRequest();
@@ -139,6 +141,7 @@ window.addEventListener("load", function() {
 			console.log(xhr.responseText);
 			reviews = JSON.parse(xhr.responseText);
 			bind();
+			indexNum.innerText=page; // (현재페이지 / 전체페이지) 현재페이지 변경하기
 			shield.hide();
 
 		};
@@ -191,6 +194,7 @@ window.addEventListener("load", function() {
 			// tbodyContent = tbodyContent.concat(template); //concat 쓰지말 것
 			// console.log(tbodyContent);
 		}
+		
 		reviewBoardBox.innerHTML = reviewContent;
 	}
 });

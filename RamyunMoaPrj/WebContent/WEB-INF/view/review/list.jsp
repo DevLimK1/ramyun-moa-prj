@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -160,13 +161,22 @@
 
 		</section>
 
+		<c:set var="page" value="${ (empty param.p) ? 1:param.p }" />
+		<c:set var="startNum" value="${page-(page-1)%5 }" />
+		<!--ex)page: 23 -> 23 - (23-1)%5 = 21~25 -->
+		<c:set var="lastNum"
+			value="${fn:substringBefore(Math.ceil(count/10),'.')}" />
+
+		<div class="indexer-box">
+			<h1 class="d-none">현재 페이지</h1>
+			<div>
+				<span class="index-num">${(empty param.p)? 1:param.p}</span>/${lastNum }
+				pages
+			</div>
+		</div>
+
+
 		<div class="pager-box">
-
-			<c:set var="page" value="${ (empty param.p) ? 1:param.p }" />
-			<c:set var="startNum" value="${page-(page-1)%5 }" />
-			<!--ex)page: 23 -> 23 - (23-1)%5 = 21~25 -->
-			<c:set var="lastNum" value="23" />
-
 			<div class="prev-box">
 				<c:if test="${startNum-1>0 }">
 					<a class="prev" href="?p=${startNum-1}&f=${param.f }&q=${param.q}"><i
@@ -180,18 +190,21 @@
 
 			<ul class="pager">
 				<c:forEach var="i" begin="0" end="4">
-					<li class="pager-item">
-					<a class="pager-num ${(page==(startNum+i)) ? 'orange' : ''  }" href="?p=${startNum+i}&f=${param.f }&q=${param.q}">${startNum+i}</a></li>
+					<c:if test="${(startNum+i) <= lastNum }">
+						<li class="pager-item"><a
+							class="pager-num ${(page==(startNum+i)) ? 'orange' : ''  }"
+							href="?p=${startNum+i}&f=${param.f }&q=${param.q}">${startNum+i}</a></li>
+					</c:if>
 				</c:forEach>
 			</ul>
 
 			<div class="next-box">
-				<c:if test="${startNum+5<lastNum }">
+				<c:if test="${startNum+5<=lastNum }">
 					<a class="next" href="?p=${startNum+5}&f=${param.f }&q=${param.q}"><i
 						class="fas fa-angle-right"></i></a>
 				</c:if>
 				<c:if test="${startNum+5>=lastNum }">
-					<i class="fas fa-angle-right" onclick="alert('다음 페이지가 없습니다.')"></i>	
+					<i class="fas fa-angle-right" onclick="alert('다음 페이지가 없습니다.')"></i>
 				</c:if>
 			</div>
 
