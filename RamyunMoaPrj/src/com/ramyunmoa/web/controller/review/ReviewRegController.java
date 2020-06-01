@@ -32,6 +32,7 @@ public class ReviewRegController extends HttpServlet {
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
 		String starGradeString=request.getParameter("star-grade");
+		
 		int starGrade=Integer.parseInt(starGradeString);
 		String gradeTitle="";
 		String star="";
@@ -66,12 +67,12 @@ public class ReviewRegController extends HttpServlet {
 		
 		Review review=new Review();
 		review.setItem(item);
-		review.setStar(star);
 		review.setStarGrade(starGrade);
 		review.setTitle(title);
 		review.setContent(content);
-		review.setWriterName("라면돌이");
+		review.setStar(star);
 		review.setGradeTitle(gradeTitle);
+		review.setWriterName("라면돌이");
 		
 		
 		ReviewService service=new ReviewService();
@@ -87,6 +88,8 @@ public class ReviewRegController extends HttpServlet {
 		}
 		
 		response.sendRedirect("list");
+		
+	
 		
 	}
 

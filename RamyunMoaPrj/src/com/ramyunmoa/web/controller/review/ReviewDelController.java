@@ -24,7 +24,6 @@ public class ReviewDelController extends HttpServlet {
 		// 2.데이터베이스에서 쿼리
 
 		ReviewService service = new ReviewService();
-		
 		try {
 			service.deleteReview(id);
 		} catch (ClassNotFoundException e) {

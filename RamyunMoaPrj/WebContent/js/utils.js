@@ -27,6 +27,7 @@ Shield.prototype = {
 		// 크기는 화면 크기로
 		// 배경색은 검은색 opacity는 0.5
 //		hostNode.style.position = "relative";
+		console.log(this.parent);
 		this.parent.style.position = "relative";
 		this.dom.style.backgroundColor = "black";
 		this.dom.style.opacity = 0.5;
@@ -49,15 +50,6 @@ Shield.prototype = {
 	},
 	hide : function() {
 		if(this.dom==null) return;
-//		var parentNode = document.querySelector(selector);
-//		var shield = parentNode.querySelector(".shield");
-		// 부모.appendChild < = > 부모.removeChild()
-		// 부모.append <=> 자신.remove()
-		// s.parentElementNode.removeChild(s);
-//		shield.remove();
-//		var shield=this.parent.querySelector(".shield");
-//		console.log("shield:"+shield);
-//		shield.remove();
 		this.dom.remove();
 	}
 };

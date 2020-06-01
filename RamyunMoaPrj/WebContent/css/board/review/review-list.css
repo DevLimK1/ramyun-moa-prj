@@ -180,11 +180,11 @@
   /* border: 1px solid blue; */
 }
 
-.pager-text{
+.pager-num{
   color: black;
 }
 
-.pager-text:hover,.prev:hover,.next:hover{
+.pager-num:hover,.prev:hover,.next:hover{
   text-decoration: none;
   color: darkgray;
   cursor: pointer;

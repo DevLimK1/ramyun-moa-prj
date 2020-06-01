@@ -64,8 +64,9 @@ public class ReviewListRestController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-//		request.setAttribute("list", list);
-//
+		request.setAttribute("list", list);
+		System.out.println(list);
+
 //		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/review/list.jsp");
 //		dispatcher.forward(request, response);
 		

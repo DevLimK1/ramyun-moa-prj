@@ -9,14 +9,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="../css/reset.css">
+<!-- <link rel="stylesheet" href="../css/reset.css"> -->
 <link rel="stylesheet" href="../css/board/review/layout.css">
-<link rel="stylesheet" href="../css/board/review/review-reg.css">
+<!-- <link rel="stylesheet" href="../css/board/review/review-reg.css"> -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <link
 	href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap"
 	rel="stylesheet">
+<script type="text/javascript" src="../js/utils.js"></script>
+<script type="text/javascript" src="../js/review/reg.js"></script>
 </head>
 
 <body>
@@ -60,7 +62,7 @@
 					<fieldset class="perface-field">
 						<legend class="d-none">서브링크 검색필드</legend>
 						<label class="" for="">제조사-라면</label> <select name="item"
-							class="select">
+							class="select item-select">
 							<option value="오뚜기-진라면">오뚜기-진라면</option>
 							<option value="오뚜기-굴진짬뽕">오뚜기-굴진짬뽕</option>
 							<option value="삼양-간짬뽕">삼양-간짬뽕</option>
@@ -72,7 +74,7 @@
 					<fieldset class="grade-field">
 						<legend class="d-none">평점필드</legend>
 						<label class="" for="">평점</label> <select name="star-grade"
-							class="select">
+							class="select star-grade-select">
 							<option value="1">집에 있어도 안먹음 ★☆☆☆☆</option>
 							<option value="2">내 돈주고 먹지는 않음 ★★☆☆☆</option>
 							<option value="3" selected>내 돈주고 사먹을만 함 ★★★☆☆</option>

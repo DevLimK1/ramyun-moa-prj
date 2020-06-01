@@ -114,7 +114,7 @@
 
 			<!-- 글쓰기 -->
 			<div class="write-btn">
-				<a href="reg" class="reg-button"><i class="fas fa-edit"></i></a>
+				<a href="reg" class="reg-btn"><i class="fas fa-edit"></i></a>
 			</div>
 
 			<div class="review-board-box">
@@ -162,7 +162,7 @@
 
 		<div class="pager-box">
 
-			<c:set var="page" value="${(param.p==null) ? 1:param.p }" />
+			<c:set var="page" value="${ (empty param.p) ? 1:param.p }" />
 			<c:set var="startNum" value="${page-(page-1)%5 }" />
 			<!--ex)page: 23 -> 23 - (23-1)%5 = 21~25 -->
 			<c:set var="lastNum" value="23" />
@@ -180,8 +180,8 @@
 
 			<ul class="pager">
 				<c:forEach var="i" begin="0" end="4">
-					<li class="pager-item"><a class="pager-text"
-						href="?p=${startNum+i}&f=${param.f }&q=${param.q}">${startNum+i}</a></li>
+					<li class="pager-item">
+					<a class="pager-num ${(page==(startNum+i)) ? 'orange' : ''  }" href="?p=${startNum+i}&f=${param.f }&q=${param.q}">${startNum+i}</a></li>
 				</c:forEach>
 			</ul>
 
@@ -191,7 +191,7 @@
 						class="fas fa-angle-right"></i></a>
 				</c:if>
 				<c:if test="${startNum+5>=lastNum }">
-					<i class="fas fa-angle-right" onclick="alert('다음 페이지가 없습니다.')"></i>
+					<i class="fas fa-angle-right" onclick="alert('다음 페이지가 없습니다.')"></i>	
 				</c:if>
 			</div>
 
