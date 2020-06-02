@@ -49,8 +49,50 @@ window.addEventListener("load", function() {
 		// 비동기옵션 true : 비동기요청 false:동기형
 		
 		xhr.onload = function() {
-			// alert(xhr.responseText.trim());
+//			 alert(xhr.responseText.trim());
 		
+//			var oldMain=document.querySelector("#main");
+	    	  
+	    	  var header=main.previousElementSibling;
+	    	  var div=document.createElement("div");
+	    	  div.innerHTML=xhr.responseText.trim(); //문자열을 dom으로 변경
+	    	  
+	    	  var newMain=div.firstElementChild;
+	    	  
+	    	  main.remove();
+	    	  header.insertAdjacentElement("afterend",newMain);
+//	    	  header.insertAdjacentHTML("afterend",xhr.responseText.trim());
+	    	  shield.hide();
+	    	  
+	    	  //reg.js 코드 불러오는 방법1)
+	    	  var xhr2=new XMLHttpRequest();
+	    	  xhr2.open('GET','../js/review/reg.js',true);
+
+	    	  xhr2.onload=function(){
+	    		  console.log(xhr2.responseText);
+	    		  eval(xhr2.responseText); 
+	    		  var regBox = document.querySelector(".reg-box");
+
+	    		  console.log(regBox);
+
+	    		  var btnCancel = regBox.querySelector(".btn-cancel");
+	    		  console.log(cancelBtnClick);
+	    		  btnCancel.onclick = cancelBtnClick;
+	    	  }
+
+	    	  xhr2.send(null);
+	    	  
+	    	  
+	    	  //방법2) onload되면 script 코드를 직접 추가
+//	    	  var head = document.getElementByTagName('head')[0],
+//	    	    script = document.createElement('script');
+//	    	script.src = 'myscript.js';
+//	    	head.appendChild(script);
+	    	  
+	    	
+			
+			
+			/*
 			var oldHTML = document.querySelector("html");
 			var oldHead=document.querySelector("head");
 			var oldBody=document.querySelector("body");
@@ -75,34 +117,37 @@ window.addEventListener("load", function() {
 			oldHeader.insertAdjacentElement("afterend",newMain);
 			
 			shield.hide();
+			*/
+			
 			
 			//-----------------------------------------------
 			// 취소버튼 클릭시 -> shield 부분 어떻게 해야할까?
 			
-			var regBox=document.querySelector(".reg-box");
-			
-			console.log(regBox);
-			
-			var btnCancel=regBox.querySelector(".btn-cancel");
-			
-			btnCancel.onclick=cancelBtnClick;
-			
-			// TODO : cancel button
-			function cancelBtnClick(e){
-				shield.show();
-				e.preventDefault();
-				 
-				if (e.target.nodeName != "A"){
-					 console.log(e.target.nodeName);
-						return;
-				}
-				newMain.remove();
-				// oldBody.insertAdjacentElement("beforebegin",newHead);
-				oldHeader.insertAdjacentElement("afterend",oldMain);
-
-				shield.hide();
-				
-			}
+//			var regBox=document.querySelector(".reg-box");
+//			
+//			console.log(regBox);
+//			
+//			var btnCancel=regBox.querySelector(".btn-cancel");
+//			
+//			btnCancel.onclick=cancelBtnClick;
+//			
+//			// TODO : cancel button
+//			function cancelBtnClick(e){
+//				shield.show();
+//				e.preventDefault();
+//				 
+//				if (e.target.nodeName != "A"){
+//					 console.log(e.target.nodeName);
+//						return;
+//				}
+//				newMain.remove();
+//				console.log(newMain);
+//				// oldBody.insertAdjacentElement("beforebegin",newHead);
+//				header.insertAdjacentElement("afterend",main);
+//
+//				shield.hide();
+//				
+//			}
 			
 			
 		};

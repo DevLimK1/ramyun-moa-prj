@@ -1,19 +1,15 @@
 package com.ramyunmoa.web.controller.main;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ramyunmoa.web.entity.Review;
-import com.ramyunmoa.web.service.ReviewService;
+import org.apache.tiles.TilesContainer;
+import org.apache.tiles.access.TilesAccess;
 
 /**
  * Servlet implementation class listController
@@ -26,10 +22,11 @@ public class MainController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/main.jsp");
-		dispatcher.forward(request, response);
-
+		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
+		container.render("main", request, response);
+		// RequestDispatcher dispatcher =
+		// request.getRequestDispatcher("/WEB-INF/view/main.jsp");
+//		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

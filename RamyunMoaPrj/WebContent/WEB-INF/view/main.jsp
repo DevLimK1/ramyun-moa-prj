@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
+<main class="main">
+	<img src="images/main/라면이미지1.jpg" alt="라면" class="main-img">
+</main>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -64,4 +69,4 @@
 	</footer>
 </body>
 
-</html>
+</html> -->

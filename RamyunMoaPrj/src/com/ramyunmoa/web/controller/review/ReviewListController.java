@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tiles.TilesContainer;
+import org.apache.tiles.access.TilesAccess;
+
 import com.ramyunmoa.web.entity.Review;
 import com.ramyunmoa.web.service.ReviewService;
 
@@ -61,8 +64,11 @@ public class ReviewListController extends HttpServlet {
 		request.setAttribute("count", count);
 	
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/review/list.jsp");
-		dispatcher.forward(request, response);
+		
+		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
+		container.render("review.list", request, response);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/review/list.jsp");
+//		dispatcher.forward(request, response);
 
 	}
 

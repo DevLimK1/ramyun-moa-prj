@@ -19,8 +19,10 @@ public class ReviewRegController extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/view/review/reg.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/view/board/review/reg.jsp");
 		dispatcher.forward(request, response);
+//		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
+//		container.render("review.reg", request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
