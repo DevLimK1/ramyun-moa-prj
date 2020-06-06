@@ -116,7 +116,7 @@
 					<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 				</div>
 	
-				<textarea class="comment-write-content" rows="" cols="" spellcheck="false"></textarea>
+				<textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"></textarea>
 				<div class="comment-container">
 					<ul class="comment-btn-list">
 						<li class="comment-reg-item">

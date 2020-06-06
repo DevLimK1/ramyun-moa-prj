@@ -19,8 +19,8 @@ window.addEventListener("load",function(){
 	
 	
 	commentSortWrite.onclick=function(e){
+		textarea.value="";//textarea에 값을 초기화시키기 위해 textarea.innerText="";가 아닌 value를 쓰자
 		commentForm.classList.remove("d-none");
-		
 	}
 	
 	commentCancelBtn.onclick=function(e){
@@ -83,7 +83,9 @@ window.addEventListener("load",function(){
 
 			</div>`
 			
-			commentSort.insertAdjacentHTML('afterend',template)
+			commentForm.insertAdjacentHTML('afterend',template);
+
+			commentForm.classList.add("d-none");
 		}
 		
 		var json={"writerName":writerName,
