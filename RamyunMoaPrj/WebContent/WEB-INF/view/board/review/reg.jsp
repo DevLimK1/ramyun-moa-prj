@@ -70,6 +70,6 @@
 	<!-- *************************************** -->
 	<!-- --------------js--------------- -->
 	<script type="text/javascript" src="../js/utils.js"></script>
-	<script type="text/javascript" src="../js/review/list.js"></script>
-	<script type="text/javascript" src="../js/review/reg.js"></script>
+	<script type="text/javascript" src="../js/board/review/list.js"></script>
+	<script type="text/javascript" src="../js/board/review/reg.js"></script>
 </main>

@@ -13,6 +13,12 @@ body{
     
 }
 
+.btn-reset{
+    border: none;
+    background: none;
+    outline: none;    
+}
+
 /* html {
     background-color: #EBEEF1;
 }

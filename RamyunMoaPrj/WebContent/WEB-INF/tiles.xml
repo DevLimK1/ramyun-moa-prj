@@ -14,6 +14,8 @@
 		<put-attribute name="header" value="/WEB-INF/view/board/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/board/review/{1}.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+		 <put-attribute name="css" value="/css/board/review/{1}.css" />
+		 <put-attribute name="js" value="/js/board/review/{1}.js" />
 	</definition>
 
 </tiles-definitions>

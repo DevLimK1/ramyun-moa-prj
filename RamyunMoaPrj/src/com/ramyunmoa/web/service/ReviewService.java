@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.ramyunmoa.web.entity.Review;
+import com.ramyunmoa.web.entity.ReviewCmt;
 
 public class ReviewService {
 
@@ -79,7 +80,7 @@ public class ReviewService {
 		return review;
 	}
 
-	// 삽입
+	// 리뷰게시판 글 등록
 	public int insertReview(Review review) throws ClassNotFoundException, SQLException {
 		int result = 0;
 
@@ -107,7 +108,7 @@ public class ReviewService {
 		return result;
 	}
 
-	// 수정
+	// 자세한 페이지 수정
 	public int updateReview(Review review) throws ClassNotFoundException, SQLException {
 		int result = 0;
 
@@ -135,7 +136,7 @@ public class ReviewService {
 		return result;
 	}
 
-	// 삭제
+	// 자세한페이지 삭제
 	public int deleteReview(int id) throws ClassNotFoundException, SQLException {
 
 		int result = 0;
@@ -158,13 +159,13 @@ public class ReviewService {
 		return result;
 	}
 
-	//검색
-	public List<Review> getReviewList(String field, String query, int page) throws ClassNotFoundException, SQLException {
+	// 리뷰 목록 검색
+	public List<Review> getReviewList(String field, String query, int page)
+			throws ClassNotFoundException, SQLException {
 		List<Review> list = new ArrayList<Review>();
 
-		String sql = "SELECT * FROM ReviewBoardTest " + 
-				" WHERE "+field+ " LIKE ? LIMIT 10 OFFSET ?";
-		
+		String sql = "SELECT * FROM ReviewBoardTest " + " WHERE " + field + " LIKE ? LIMIT 10 OFFSET ?";
+
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 //		System.out.println(field);
 //		System.out.println(query);
@@ -174,21 +175,18 @@ public class ReviewService {
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
 
-		
-		st.setString(1, "%"+query+"%");
-		st.setInt(2, (page-1)*10); //1->0,2->10,3->20,30,40...
-		//		st.setInt(2, (page-1)*10);
+		st.setString(1, "%" + query + "%");
+		st.setInt(2, (page - 1) * 10); // 1->0,2->10,3->20,30,40...
+		// st.setInt(2, (page-1)*10);
 //		st.setInt(2, page*10-1);
-		
-		ResultSet rs = st.executeQuery();		
-		
-		
+
+		ResultSet rs = st.executeQuery();
+
 		while (rs.next()) {
 			Review review = new Review(rs.getInt("id"), rs.getString("item"), rs.getString("star"),
 					rs.getString("regdate"), rs.getString("writerName"), rs.getString("title"), rs.getInt("comment"));
 			list.add(review);
 		}
-		
 
 		rs.close();
 		st.close();
@@ -196,35 +194,108 @@ public class ReviewService {
 
 		return list;
 	}
-	
-	public int getReviewCount(String field,String query) throws ClassNotFoundException, SQLException {
-		
-		int count=0;
-		
-		String sql = "SELECT COUNT(ID) COUNT FROM ReviewBoardTest " + 
-				" WHERE "+field+ " LIKE ? ORDER BY regdate DESC";
-		
+
+	public int getReviewCount(String field, String query) throws ClassNotFoundException, SQLException {
+
+		int count = 0;
+
+		String sql = "SELECT COUNT(ID) COUNT FROM ReviewBoardTest " + " WHERE " + field
+				+ " LIKE ? ORDER BY regdate DESC";
+
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
 
-		
-		st.setString(1, "%"+query+"%");
-		
-		ResultSet rs = st.executeQuery();		
-		if(rs.next())
-			count =rs.getInt("count");
-		
-		
-		
+		st.setString(1, "%" + query + "%");
+
+		ResultSet rs = st.executeQuery();
+		if (rs.next())
+			count = rs.getInt("count");
+
 		rs.close();
 		st.close();
 		con.close();
-		
-		
+
 		return count;
-		
+
+	}
+
+	// 자세한 페이지 댓글등록
+	public ReviewCmt insertCmt(ReviewCmt cmt) throws SQLException, ClassNotFoundException {
+
+		int result = 0;
+		ReviewCmt cmt2 = null;
+
+		String sql = "INSERT INTO ReviewCmt(writerName, content,reviewId) VALUES(?,?,?)";
+		String sql2 = "SELECT * FROM ReviewCmt WHERE writerName=? ORDER BY REGDATE DESC LIMIT 1"; // 최근 데이터 하나만 추출
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+
+		Connection con = null;
+		PreparedStatement st = null;
+		PreparedStatement st2 = null;
+		ResultSet rs2 = null;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection(url, "rmteam", "rm0322");
+			con.setAutoCommit(false);
+
+			st = con.prepareStatement(sql); // INSERT sql
+			st.setString(1, cmt.getWriterName());
+			st.setString(2, cmt.getContent());
+			st.setInt(3, 32);
+			
+			result = st.executeUpdate();
+
+			st2 = con.prepareStatement(sql2);
+			st2.setString(1, cmt.getWriterName());
+
+			rs2 = st2.executeQuery();
+
+			if (rs2.next()) {
+				cmt2 = new ReviewCmt();
+				cmt2.setWriterName(rs2.getString("writerName"));
+				cmt2.setRegdate(rs2.getString("regDate"));
+				cmt2.setContent(rs2.getString("content"));
+			}
+
+			con.commit(); // 수동적인(manual) commit
+
+			st.close();
+			rs2.close();
+			st2.close();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new ClassNotFoundException(); //UI가 처리하라는 예외메시지를 던진다.
+		} catch (SQLException e) {
+
+			try {
+				if (con != null)
+					con.rollback();
+
+				if (st != null)
+					st.close();
+
+				rs2.close(); // commit이 제대로 되지 않았을 때도 닫아줘야함
+				st2.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			throw new SQLException(); 
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return cmt2;
 	}
 
 }

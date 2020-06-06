@@ -2,6 +2,18 @@
  * 저작자 : 라면모아 생성이 : 라면모아 저작권 : 라면모아 설명: 참고 url:
  */
 
+
+function reviewImportCSS(url){
+	var head=document.querySelector("head");
+	var link=document.createElement("link");
+	link.rel="stylesheet";
+	link.type="text/css";
+	link.href="../css/board/review/"+url;
+	head.append(link);
+	console.log(link);
+}
+
+
 function Shield(selector) {
 	console.log("selector:"+selector);
 	this.parent=document.querySelector(selector);
@@ -29,7 +41,7 @@ Shield.prototype = {
 //		hostNode.style.position = "relative";
 		console.log(this.parent);
 		this.parent.style.position = "relative";
-		this.dom.style.backgroundColor = "black";
+		this.dom.style.backgroundColor = "none";
 		this.dom.style.opacity = 0.5;
 		this.dom.style.position = "absolute";
 		this.dom.style.left = "0px";

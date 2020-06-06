@@ -52,7 +52,7 @@ window.addEventListener("load", function() {
 //			 alert(xhr.responseText.trim());
 		
 //			var oldMain=document.querySelector("#main");
-	    	  
+			  reviewImportCSS("reg.css");
 	    	  var header=main.previousElementSibling;
 	    	  var div=document.createElement("div");
 	    	  div.innerHTML=xhr.responseText.trim(); //문자열을 dom으로 변경
@@ -218,10 +218,10 @@ window.addEventListener("load", function() {
 
 						<div class="review-list-box_title">
 							<div class="span-title">
-								<a class="title" href="detail?id=${list.id}">${list.title }</a>
+								<a class="review-title" href="detail?id=${list.id}">${list.title }</a>
 							</div>
 
-							<span class="comment">[${list.comment}]</span>
+							<span class="review-comment">[${list.comment}]</span>
 						</div>
 
 

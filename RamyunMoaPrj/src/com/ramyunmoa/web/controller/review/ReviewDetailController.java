@@ -1,16 +1,23 @@
 package com.ramyunmoa.web.controller.review;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Scanner;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tiles.TilesContainer;
+import org.apache.tiles.access.TilesAccess;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.ramyunmoa.web.entity.Review;
+import com.ramyunmoa.web.entity.ReviewCmt;
 import com.ramyunmoa.web.service.ReviewService;
 
 /**
@@ -37,14 +44,48 @@ public class ReviewDetailController extends HttpServlet {
 		
 		request.setAttribute("r", review);
 		
-		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/view/review/detail.jsp");
-		dispatcher.forward(request, response);
+		
+		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
+		container.render("review.detail", request, response);
+//		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/view/review/detail.jsp");
+//		dispatcher.forward(request, response);
 	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		InputStream iStream =request.getInputStream(); //byte계열
+		Scanner scan=new Scanner(iStream,"UTF-8"); //한글처리 해줘야함
+		String lineString =scan.nextLine();
+		System.out.println(lineString);
+		
+//		Gson gson = new GsonBuilder()
+//                .setDateFormat("yyyy-MM-dd")
+//                .create();
+		Gson gson = new Gson();
+		ReviewCmt cmt =gson.fromJson(lineString, ReviewCmt.class);
+		
+		System.out.println(cmt);
+		ReviewService service=new ReviewService();
+		ReviewCmt result=null;
+		
+		try {
+			result=service.insertCmt(cmt);
+			System.out.println(result);
+		} catch (ClassNotFoundException | SQLException e) {
+			response.sendRedirect("/error?n=404"); //에러 controller
+		}
+		
+		String resultJson =gson.toJson(result);
+
+		response.getWriter().write(resultJson);
+//		response.getWriter().write(result+"");
+		
+		System.out.println(resultJson);
+		
 	}
 
 }

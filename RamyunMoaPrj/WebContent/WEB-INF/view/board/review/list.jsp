@@ -78,10 +78,10 @@
 
 						<div class="review-list-box_title">
 							<div class="span-title">
-								<a class="title" href="detail?id=${list.id}">${list.title }</a>
+								<a class="review-title" href="detail?id=${list.id}">${list.title }</a>
 							</div>
 
-							<span class="comment">[${list.comment}]</span>
+							<span class="review-comment">[${list.comment}]</span>
 						</div>
 
 
@@ -154,6 +154,6 @@
 	</div>
 	<!-- --------------js--------------- -->
 	<script type="text/javascript" src="../js/utils.js"></script>
-	<script type="text/javascript" src="../js/review/list.js"></script>
+	<script type="text/javascript" src="../js/board/review/list.js"></script>
 </main>
 
