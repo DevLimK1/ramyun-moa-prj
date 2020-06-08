@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ramyunmoa.web.entity.Review;
+import com.ramyunmoa.web.entity.review.Review;
 import com.ramyunmoa.web.service.ReviewService;
 
 @WebServlet("/review/edit")

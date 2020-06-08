@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
-import com.ramyunmoa.web.entity.Review;
 import com.ramyunmoa.web.service.ReviewService;
+import com.ramyunmoa.web.view.review.ReviewListView;
 
 /**
  * Servlet implementation class listController
@@ -29,7 +28,7 @@ public class ReviewListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<Review> list = new ArrayList();
+		List<ReviewListView> list = new ArrayList();
 
 		String field_ = request.getParameter("f");
 		String query_ = request.getParameter("q");
@@ -48,9 +47,11 @@ public class ReviewListController extends HttpServlet {
 			page = Integer.parseInt(page_);
 
 		ReviewService service = new ReviewService();
+		
 		int count =0 ;
+		
 		try {
-			list = service.getReviewList(field, query, page);
+			list = service.getReviewListView(field, query, page);
 			count= service.getReviewCount(field, query);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

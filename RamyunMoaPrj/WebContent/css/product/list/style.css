@@ -1,0 +1,12 @@
+/* prod/list/style */
+
+@import url(./layout.css);
+
+@import url(../../header.css);
+
+@import url(./component-body.css);
+
+@import url(../../footer.css);
+
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Righteous&display=swap');
+

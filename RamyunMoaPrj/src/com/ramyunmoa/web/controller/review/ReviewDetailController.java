@@ -1,9 +1,9 @@
 package com.ramyunmoa.web.controller.review;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.ramyunmoa.web.entity.Review;
-import com.ramyunmoa.web.entity.ReviewCmt;
+import com.ramyunmoa.web.entity.review.ReviewCmt;
 import com.ramyunmoa.web.service.ReviewService;
+import com.ramyunmoa.web.view.review.ReviewDetailView;
 
 /**
  * Servlet implementation class ReviewDetailController
@@ -29,11 +27,15 @@ public class ReviewDetailController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id=Integer.parseInt(request.getParameter("id"));
-		
+		System.out.println("id:"+id);
 		ReviewService service=new ReviewService();
-		Review review=null;
+		ReviewDetailView rdv=null;
+		
+		List<ReviewCmt> cmt= null;
+		
 		try {
-			review=service.getReview(id);
+			rdv=service.getReviewDetailView(id);
+			cmt=service.getReviewCmt(id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,16 +44,20 @@ public class ReviewDetailController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("r", review);
+		System.out.println("rdv:"+rdv);
+		
+		request.setAttribute("cmt", cmt);
+		request.setAttribute("r", rdv);
 		
 		
 		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
 		container.render("review.detail", request, response);
-//		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/view/review/detail.jsp");
+//		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/view/board/review/detail.jsp");
 //		dispatcher.forward(request, response);
 	
 	}
 
+	/*
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setCharacterEncoding("UTF-8");
@@ -87,5 +93,5 @@ public class ReviewDetailController extends HttpServlet {
 		System.out.println(resultJson);
 		
 	}
-
+*/
 }

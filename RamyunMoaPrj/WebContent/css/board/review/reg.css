@@ -152,7 +152,7 @@ input::placeholder{
   color: #EBEEF1;
   margin-top: 20px;
   border-radius: 10%;
-  /* border: 1px solid ; */
+  border: none;
 }
 
 .btn-text:hover{
@@ -172,6 +172,18 @@ input::placeholder{
   /* border: 1px solid black; */
   display: flex;
   justify-content: space-between;
+}
+
+.reg-writerName{
+	margin-top:20px;
+}
+
+.reg-writerName .writerName-txt{
+	font-weight: bold;
+}
+
+.perface-field{
+	margin-top:20px;
 }
 
 /* .btn-cancel{

@@ -17,27 +17,45 @@
 
 			<form action="reg" method="POST" class="sub-link-search-form">
 
+				<input type="hidden" name="writerId" value="${member.id}">
+				<div class="reg-writerName">
+					작성자: <span class="writerName-txt">${member.nickname}</span>
+				</div>
+
 				<fieldset class="perface-field">
 					<legend class="d-none">서브링크 검색필드</legend>
-					<label class="" for="">제조사-라면</label> <select name="item"
-						class="select item-select">
-						<option value="오뚜기-진라면">오뚜기-진라면</option>
-						<option value="오뚜기-굴진짬뽕">오뚜기-굴진짬뽕</option>
-						<option value="삼양-간짬뽕">삼양-간짬뽕</option>
-					</select>
-
-
+					<label class="" for="">제조사-라면:</label> 
+					<input style="width: 350px;"
+						placeholder="입력하시면 더 빨리 찾을 수 있어요 :)" type="text"
+						name="mfc-product" list="product" required="required">
+					<datalist id="product">
+						<c:forEach var="mpv" items="${mpv}">
+							<option value="${mpv.mfcProduct}"></option>
+							<%-- <input type="hidden" name="mpvId" value="${mpv.id}"> --%>
+						</c:forEach>
+					</datalist>
 				</fieldset>
 
 				<fieldset class="grade-field">
 					<legend class="d-none">평점필드</legend>
-					<label class="" for="">평점</label> <select name="star-grade"
+					<label class="" for="">평점:</label> <select name="grade"
 						class="select star-grade-select">
-						<option value="1">집에 있어도 안먹음 ★☆☆☆☆</option>
+						<c:forEach var="grade" items="${grade}">
+							<option value="${grade.id}">${grade.content}
+								<c:choose>
+									<c:when test="${grade.value==1}">★☆☆☆☆</c:when>
+									<c:when test="${grade.value==2}">★★☆☆☆</c:when>
+									<c:when test="${grade.value==3}">★★★☆☆</c:when>
+									<c:when test="${grade.value==4}">★★★★☆</c:when>
+									<c:when test="${grade.value==5}">★★★★★</c:when>
+								</c:choose>
+							</option>
+						</c:forEach>
+						<!-- <option value="1">집에 있어도 안먹음 ★☆☆☆☆</option>
 						<option value="2">내 돈주고 먹지는 않음 ★★☆☆☆</option>
 						<option value="3" selected>내 돈주고 사먹을만 함 ★★★☆☆</option>
 						<option value="4">맛있어서 가끔 생각남 ★★★★☆</option>
-						<option value="5">집에 쌓아놓고 먹고싶음 ★★★★★</option>
+						<option value="5">집에 쌓아놓고 먹고싶음 ★★★★★</option> -->
 					</select>
 
 				</fieldset>
@@ -49,7 +67,7 @@
 				</div>
 
 				<div class="content-box">
-					<textarea class="content" placeholder="내용을 입력하세요. " name="content"
+					<textarea class="content" placeholder="내용을 입력하세요." name="content"
 						required></textarea>
 				</div>
 

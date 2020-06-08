@@ -66,34 +66,42 @@
 				<div class="review-list-box">
 
 					<div class="review-list-box_group">
-						<a class="fnt_sunflower" href="#">${list.item}</a>
+						<a class="fnt_sunflower" href="#">${list.mfcProduct}</a>
 					</div>
 
 					<div class="review-list-box_vote">
 						<!-- <i class="far fa-thumbs-up"></i> -->
-						<div class="star">${list.star }</div>
+						<div class="star">
+							<c:choose>
+								<c:when test="${list.gradeId==1}">★☆☆☆☆</c:when>
+								<c:when test="${list.gradeId==2}">★★☆☆☆</c:when>
+								<c:when test="${list.gradeId==3}">★★★☆☆</c:when>
+								<c:when test="${list.gradeId==4}">★★★★☆</c:when>
+								<c:when test="${list.gradeId==5}">★★★★★</c:when>
+							</c:choose>
+						</div>
 					</div>
 
 					<div class="review-list-box_content">
 
 						<div class="review-list-box_title">
 							<div class="span-title">
-								<a class="review-title" href="detail?id=${list.id}">${list.title }</a>
+								<a class="review-title" href="detail?id=${list.id}">${list.title}</a>
 							</div>
 
-							<span class="review-comment">[${list.comment}]</span>
+							<span class="review-comment">[${list.cmtCount}]</span>
 						</div>
 
 
 						<div class="review-list-box-meta">
 							<div class="review-list-box-meta_regdate">
-								${list.regdate }
+								${list.regdate}
 								<%-- 	<fmt:parseDate var="date" value="${list.regdate}"
 										pattern="yyyy-MM-dd HH:mm" />
 									<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm" /> --%>
 								<%-- <fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd HH:mm" /> --%>
 							</div>
-							<div class="review-list-box-meta_author">${list.writerName }</div>
+							<div class="review-list-box-meta_author">${list.nickname }</div>
 						</div>
 					</div>
 

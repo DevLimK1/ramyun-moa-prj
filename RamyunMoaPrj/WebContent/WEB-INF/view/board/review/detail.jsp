@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -21,33 +20,42 @@
 
 		</div>
 
-		<div class="perface-box detail-margin-top">제조사-품명 : ${r.item }</div>
+		<div class="perface-box detail-margin-top">제조사-품명 :
+			${r.mfcProduct}</div>
 
 		<div class="star-grade detail-margin-top">
-			평점 : ${r.gradeTitle } <span class="star">${r.star }</span>
-			[${r.starGrade }점]
+			평점 : ${r.gdContent }
+			 <span class="star"><c:choose>
+					<c:when test="${r.gradeId==1}">★☆☆☆☆</c:when>
+					<c:when test="${r.gradeId==2}">★★☆☆☆</c:when>
+					<c:when test="${r.gradeId==3}">★★★☆☆</c:when>
+					<c:when test="${r.gradeId==4}">★★★★☆</c:when>
+					<c:when test="${r.gradeId==5}">★★★★★</c:when>
+				</c:choose>
+			</span>
+			[${r.gradeId}점]
 		</div>
 
 		<div class="meta-box detail-margin-top">
 			<div class="meta-info">
 				<div class="detail-regdate">
-					<fmt:parseDate var="date" value="${r.regdate}"
-						pattern="yyyy-MM-dd HH:mm" />
-					<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm" />
+					<%-- <fmt:parseDate var="date" value="${r.regdate}"
+						pattern="yyyy-MM-dd HH:mm" /> --%>
+					<fmt:formatDate value="${r.regdate}" pattern="yyyy-MM-dd HH:mm" />
 				</div>
-				<div class="writer-name">${r.writerName }</div>
+				<div class="writer-name">${r.nickname }</div>
 			</div>
 			<div class="meta-info">
 				<div class="hit">조회수 ${r.hit }</div>
-				<div class="comment">댓글 ${r.comment }</div>
+				<div class="comment">댓글 ${r.cmtCount}</div>
 				<div class="love">
-					<span class="love-img">♥</span> ${r.likes }
+					<span class="love-img">♥</span> ${r.likes}
 				</div>
 			</div>
 		</div>
 
 		<div class="content-box detail-margin-top">
-			<div class="content">${r.content }</div>
+			<div class="content">${r.content}</div>
 		</div>
 
 		<form action="" method="POST">
@@ -82,7 +90,7 @@
 	<header class="comment-header">
 		<div class="comment-header-info">
 			<span class="comment-header-title">댓글</span> <span
-				class="comment-header-cnt">총 150개</span>
+				class="comment-header-cnt">총 ${r.cmtCount}개</span>
 		</div>
 		<div class="comment-header-refresh">
 			<i class="fas fa-sync"></i> <span class="refresh-txt">새로고침</span>
@@ -95,12 +103,12 @@
 			<li class="comment-sort-item">최신순</li>
 		</ul>
 		<div class="comment-sort-write">
-			<i class="far fa-plus-square comment-sort-write-btn"></i>
-			<span class="comment-write-txt comment-sort-write-btn">댓글쓰기</span>
+			<i class="far fa-plus-square comment-sort-write-btn"></i> <span
+				class="comment-write-txt comment-sort-write-btn">댓글쓰기</span>
 		</div>
 	</div>
-	
-	<form class="comment-form d-none" action="" method="post">
+
+	<form class="comment-form d-none" action="reg" method="post">
 		<div class="comment-write-box">
 			<div class="comment-likes">
 				<button type="button" class="likes-btn">
@@ -109,60 +117,58 @@
 				</button>
 				<div class="likes-cnt">0</div>
 			</div>
-	
+
 			<div class="comment-box_box">
 				<div class="comment-meta-info">
 					<a href="" class="comment-writer-name">id랍니다</a>
 					<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 				</div>
-	
-				<textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"></textarea>
+
+				<textarea class="comment-write-content" name="contents"
+					placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"></textarea>
 				<div class="comment-container">
 					<ul class="comment-btn-list">
-						<li class="comment-reg-item">
-							<input type="submit" value="등록" class="comment-reg-btn btn-reset"/>
-						</li>
-						<li class="comment-reg-item margin-left">
-							<a class="comment-cancel-btn">
-								취소
-							</a>
-						</li>
+						<li class="comment-reg-item"><input type="submit" value="등록"
+							class="comment-reg-btn btn-reset" /></li>
+						<li class="comment-reg-item margin-left"><a
+							class="comment-cancel-btn"> 취소 </a></li>
 					</ul>
-					
+
 					<div class="comment-write-count">
 						<span class="comment-write-num">0</span>/<span>300</span>
 					</div>
 				</div>
 			</div>
-	
+
 		</div>
 	</form>
 
+	<c:forEach var="cmt" items="${cmt}">
 	<div class="comment-box">
 		<div class="comment-likes">
 			<button type="button" class="likes-btn">
 				<i class="likes far fa-heart"></i>
 				<!--<i class="likes fas fa-heart"></i>-->
 			</button>
-			<div class="likes-cnt">250</div>
+			<div class="likes-cnt">${cmt.likes}</div>
 		</div>
 
 		<div class="comment-box_box">
 			<div class="comment-meta-info">
-				<a href="" class="user-id">id랍니다</a>
-				<div class="regdate">2020-06-03 15:23:43</div>
+				<a href="" class="user-id">${cmt.writerName }</a>
+				<div class="regdate">${cmt.regdate}</div>
+				<div class="update">
+                        <div class="dots-box">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+                        <div class="update-box d-none">
+                            <div class="update-edit"><span>수정</span></div>
+                            <div class="update-delete"><span>삭제</span></div>
+                        </div>
+                    </div>
 			</div>
 
-			<p class="comment-content">너구리라면이 원래 최애였는데,,
-                진라면도 진짜 맛있죠,,
-                공감됩니다!!
-                너구리라면이 원래 최애였는데,,
-                진라면도 진짜 맛있죠,,
-                공감됩니다!!
-                너구리라면이 원래 최애였는데,,
-                진라면도 진짜 맛있죠,,
-                공감됩니다!!
-            </p>
+			<p class="comment-content">${cmt.content}</p>
 
 			<ul class="comment-btn-list">
 				<li class="comment-item">
@@ -180,12 +186,47 @@
 		</div>
 
 	</div>
+	
+	 <form class="comment-form" action="" method="post">
+	        <div class="comment-write-box second">
+	            <div class="img-box">
+	                <img src="../images/right-arrow-64x64.png" alt="">
+	            </div>
+	
+	            <div class="comment-box_box">
+	                <div class="comment-meta-info">
+	                    <a href="" class="comment-writer-name">id랍니다</a>
+	                    <!-- <div class="regdate">2020-06-03 15:23:43</div> -->
+	                </div>
+	
+	                <textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols=""
+	                    spellcheck="false"></textarea>
+	                <div class="comment-container">
+	                    <ul class="comment-btn-list">
+	                        <li class="comment-reg-item"><input type="submit" value="등록"
+	                                class="comment-reg-btn btn-reset" /></li>
+	                        <li class="comment-reg-item margin-left"><a class="comment-cancel-btn"> 취소 </a></li>
+	                    </ul>
+	
+	                    <div class="comment-write-count">
+	                        <span class="comment-write-num">0</span>/<span>300</span>
+	                    </div>
+	                </div>
+	            </div>
+	
+	        </div>
+       </form>
+	</c:forEach>
+	
+	
+</section>
 
-	<div class="comment-box">
+<%-- 
+	<!-- <div class="comment-box">
 		<div class="comment-likes">
 			<button type="button" class="likes-btn">
 				<i class="likes far fa-heart"></i>
-				<!--<i class="likes fas fa-heart"></i>-->
+				<i class="likes fas fa-heart"></i>
 			</button>
 			<div class="likes-cnt">250</div>
 		</div>
@@ -196,10 +237,8 @@
 				<div class="regdate">2020-06-03 15:23:43</div>
 			</div>
 
-			<p class="comment-content">넘나 맛있는 너구리한마리!!
-			잡고가세요!!
-			너구리라면이 원래 최애였는데,, 진라면도 진짜 맛있죠,,
-				공감됩니다!!</p>
+			<p class="comment-content">넘나 맛있는 너구리한마리!! 잡고가세요!! 너구리라면이 원래
+				최애였는데,, 진라면도 진짜 맛있죠,, 공감됩니다!!</p>
 
 			<ul class="comment-btn-list">
 				<li class="comment-item">
@@ -209,7 +248,7 @@
 					</button>
 				</li>
 				<li class="comment-item">
-					<button class="comment-item-btn  comment-write-btn btn-reset">
+					<button class="comment-item-btn comment-write-btn btn-reset">
 						<i class="fas fa-comment-medical"></i>댓글 쓰기
 					</button>
 				</li>
@@ -222,7 +261,7 @@
 		<div class="comment-likes">
 			<button type="button" class="likes-btn">
 				<i class="likes far fa-heart"></i>
-				<!--<i class="likes fas fa-heart"></i>-->
+				<i class="likes fas fa-heart"></i>
 			</button>
 			<div class="likes-cnt">250</div>
 		</div>
@@ -251,13 +290,13 @@
 			</ul>
 		</div>
 
-	</div>
-
-</section>
+	</div> --> --%>
 
 
 
 
+
+<%-- 
 <!-- ************** 게시판  main ************** -->
 <!-- <main id="main">
 
@@ -325,189 +364,4 @@
 </main> -->
 
 <!-- ------------------------------------ -->
-
-
-<%-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/detail-review-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
-</head>
-
-<body>
-
-    <!-- ************** header ************** -->
-    <header class="rm-header">
-        <h1 class="d-none">라면모아 헤더</h1>
-        <ul class="rm-menu-top">
-            <li><a href="">라면 모아</a></li>
-            <li><a href="">로그인</a></li>
-            <li><a href="">회원가입</a></li>
-            <li><a href="">고객센터</a></li>
-        </ul>
-        <ul class="rm-menu-bottom">
-            <li><a href="">#공지사항</a></li>
-            <li><a href="">라면 소개</a></li>
-            <li><a href="">후기 게시판</a></li>
-            <li><a href="">레시피 공유</a></li>
-            <li><a href="">라면 토론장</a></li>
-        </ul>
-    </header>
-    <!-- ************** 게시판  main ************** -->
-    <main id="main">
-
-        <section class="detail">
-            <h1 class="d-none">디테일</h1>
-
-            <div class="detail-title fnt_jua">${r.title }</div>
-
-            <div class="perface detail-margin-top">
-                제조사-품명 : ${r.item }
-            </div>
-
-            <div class="star-grade detail-margin-top">
-                 평점 : <c:choose>
-         <c:when test = "${r.starGrade==1}">
-            집에 있어도 안먹음  
-         </c:when>
-         <c:when test = "${r.starGrade== 2}">
-            내 돈주고 먹지는 않음
-         </c:when>
-          <c:when test = "${r.starGrade==3}">
-            내 돈주고 사먹을만 함
-         </c:when>
-          <c:when test = "${r.starGrade== 4}">
-            맛있어서 가끔 생각남
-         </c:when>
-           <c:otherwise>
-            집에 쌓아놓고 먹고싶음 
-         </c:otherwise>
-       
-      </c:choose>
-       ${r.star }
-            </div>
-
-            <div class="title-box detail-margin-top">
-                <input class="title-text" type="text" placeholder="제목" value="${r.title }" readonly required>
-            </div>
-
-            <div class="content-box detail-margin-top">
-                <div class="content">${r.content }
-                </div>
-            </div>
-
-
-            <div class="btn-box">
-                <div class="btn-box_box">
-                    <a class="btn-text btn-cancel" href="list">목록</a>
-                    <a class="btn-text btn-default" href="edit?id=${r.id }">수정</a>
-                    <a class="btn-text btn-default" href="del">삭제</a>
-                </div>
-            </div>
-
-        </section>
-
-
-
-        <!-- *************************************** -->
-
-    </main>
-
-</body>
-
-</html> --%>
-
-
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/add-review-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
-    <!-- ************** header ************** -->
-    <header class="rm-header">
-        <h1 class="d-none">라면모아 헤더</h1>
-        <ul class="rm-menu-top">
-            <li><a href="">라면 모아</a></li>
-            <li><a href="">로그인</a></li>
-            <li><a href="">회원가입</a></li>
-            <li><a href="">고객센터</a></li>
-        </ul>
-        <ul class="rm-menu-bottom">
-            <li><a href="">#공지사항</a></li>
-            <li><a href="">라면 소개</a></li>
-            <li><a href="">후기 게시판</a></li>
-            <li><a href="">레시피 공유</a></li>
-            <li><a href="">라면 토론장</a></li>
-        </ul>
-    </header>
-    <!-- ************** 게시판  main ************** -->
-    <main id="main">
-
-        <nav class="sub-header">
-            <h1 class="d-none">서브 헤더</h1>
-            
-            <div class="sub-header-title">${r.title }</div>
-         
-
-            <div class="margin-top first">
-                <h3 class="d-none">공지사항 내용</h3>
-                <table class="table">
-                    <tbody>
-                      
-                        <tr>
-                            <th>작성일</th>
-                            <td class="text-align-left text-indent" colspan="3">${r.regdate} </td>
-                        </tr>
-                        <tr>
-                            <th>작성자</th>
-                            <td>${r.writerName }</td>
-                            <th>조회수</th>
-                            <td>${r.hit }</td>
-                        </tr>
-                
-                        <tr class="content">
-                            <td colspan="4">
-                         	${r.content }
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="margin-top text-align-center">
-                <a class="btn-text btn-cancel" href="list">목록</a>
-                <a class="btn-text btn-default" href="edit?id=${r.id}">수정</a>
-                <a class="btn-text btn-default" href="del?id=${r.id }">삭제</a>
-            </div>
-               
-        </nav>
-
-        <!-- *************************************** -->
-       
-
-
-        
-    </main>
-
-</body>
-
-</html> --%>
+--%>

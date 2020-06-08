@@ -4,12 +4,21 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
+
+	
+
 	<definition name="main" template="/WEB-INF/view/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/main.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
 	</definition>
 
+	<definition name="prod.*" template="/WEB-INF/view/product/inc/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/view/product/inc/header.jsp" />
+		<put-attribute name="main" value="/WEB-INF/view/product/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/product/inc/footer.jsp" />
+	</definition>
+	
 	<definition name="review.*" template="/WEB-INF/view/board/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/board/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/board/review/{1}.jsp" />
@@ -17,5 +26,11 @@
 		 <put-attribute name="css" value="/css/board/review/{1}.css" />
 		 <put-attribute name="js" value="/js/board/review/{1}.js" />
 	</definition>
+	
+	
 
 </tiles-definitions>
+
+
+	
+	

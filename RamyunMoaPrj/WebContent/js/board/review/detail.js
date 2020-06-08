@@ -17,16 +17,19 @@ window.addEventListener("load",function(){
 	
 	
 	
-	
+	//댓글쓰기 버튼 클릭시
 	commentSortWrite.onclick=function(e){
 		textarea.value="";//textarea에 값을 초기화시키기 위해 textarea.innerText="";가 아닌 value를 쓰자
 		commentForm.classList.remove("d-none");
 	}
 	
+	
+	//댓글 취소 버튼 클릭시
 	commentCancelBtn.onclick=function(e){
 		commentForm.classList.add("d-none");
 	}
 	
+	//댓글 등록 버튼 클릭시
 	commentRegBtn.onclick=function(e){ //댓글 등록버튼 클릭시
 		e.preventDefault();
 		console.log(textarea.value);
@@ -85,7 +88,7 @@ window.addEventListener("load",function(){
 			
 			commentForm.insertAdjacentHTML('afterend',template);
 
-			commentForm.classList.add("d-none");
+			commentForm.classList.add("d-none"); //댓글 등록 후 댓글 폼 지우기
 		}
 		
 		var json={"writerName":writerName,

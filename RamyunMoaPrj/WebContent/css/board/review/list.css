@@ -143,11 +143,14 @@
       width: 450px;
       display: inline-block;
       /*   	margin-left:30px;   */
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      
     }   
     
+   	.review-list-box_title .span-title{
+   	white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+   	}
    
   
       .review-list-box-meta_regdate {

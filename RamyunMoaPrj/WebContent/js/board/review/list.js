@@ -66,7 +66,7 @@ window.addEventListener("load", function() {
 	    	  
 	    	  //reg.js 코드 불러오는 방법1)
 	    	  var xhr2=new XMLHttpRequest();
-	    	  xhr2.open('GET','../js/review/reg.js',true);
+	    	  xhr2.open('GET','../js/board/review/reg.js',true);
 
 	    	  xhr2.onload=function(){
 	    		  console.log(xhr2.responseText);
@@ -198,30 +198,50 @@ window.addEventListener("load", function() {
 
 	function bind() {
 		var reviewContent = "";
+		var star="";
 		var reviewBoardBox = document.querySelector("#main .review-board-box");
 		for ( var i in reviews) {
 			var list = reviews[i];
 			
-			console.log(list);
+			switch (parseInt(`${list.gradeId}`)) {
+			case 1:
+				star='★☆☆☆☆';
+				break;
+			case 2:
+				star='★★☆☆☆';
+				break;
+			case 3:
+				star='★★★☆☆';
+				break;
+			case 4:
+				star='★★★★☆';
+				break;
+			case 5:
+				star='★★★★★';
+				break;
+			}
+			
 			var template = `<div class="review-list-box">
 
 					<div class="review-list-box_group">
-						<a class="fnt_sunflower" href="#">${list.item}</a>
+						<a class="fnt_sunflower" href="#">${list.mfcProduct}</a>
 					</div>
 
 					<div class="review-list-box_vote">
 						<!-- <i class="far fa-thumbs-up"></i> -->
-						<div class="star">${list.star }</div>
+						<div class="star">
+							`+star+`
+						</div>
 					</div>
 
 					<div class="review-list-box_content">
 
 						<div class="review-list-box_title">
 							<div class="span-title">
-								<a class="review-title" href="detail?id=${list.id}">${list.title }</a>
+								<a class="review-title" href="detail?id=${list.id}">${list.title}</a>
 							</div>
 
-							<span class="review-comment">[${list.comment}]</span>
+							<span class="review-comment">[${list.cmtCount}]</span>
 						</div>
 
 
@@ -229,7 +249,7 @@ window.addEventListener("load", function() {
 							<div class="review-list-box-meta_regdate">
 								${list.regdate}
 							</div>
-							<div class="review-list-box-meta_author">${list.writerName }</div>
+							<div class="review-list-box-meta_author">${list.nickname }</div>
 						</div>
 					</div>
 				</div>`;

@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.ramyunmoa.web.entity.Review;
 import com.ramyunmoa.web.service.ReviewService;
+import com.ramyunmoa.web.view.review.ReviewListView;
 
 /**
  * Servlet implementation class listController
@@ -50,12 +49,12 @@ public class ReviewListRestController extends HttpServlet {
 		if (page_ != null && !page_.equals(""))
 			page = Integer.parseInt(page_);
 
-		List<Review> list = new ArrayList();
+		List<ReviewListView> list = new ArrayList();
 		ReviewService service = new ReviewService();
 		
 
 		try {
-			list = service.getReviewList(field,query,page);
+			list = service.getReviewListView(field,query,page);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

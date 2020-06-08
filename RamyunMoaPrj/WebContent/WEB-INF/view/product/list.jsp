@@ -1,0 +1,132 @@
+<!-- prod/list -->
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<main id="body">
+
+	<h1 class="hidden">Body</h1>
+
+	<div id="container">
+
+		<section class="noodle-list">
+			<h1 class="hidden">noodle-list</h1>
+
+			<nav class="noodle-list-category">
+				<h1 class="hidden">notice-list-category</h1>
+				<ul>
+					<li class="${empty param.m?'hover-color':''}"><a href="list?m=&p=1&s=${param.s}">전체</a></li>
+					<li class="${param.m=='농심'?'hover-color':''}"><a href="list?m=농심&p=1&s=${param.s}">농심</a></li>
+					<li class="${param.m=='삼양'?'hover-color':''}"><a href="list?m=삼양&p=1&s=${param.s}">삼양</a></li>
+					<li class="${param.m=='오뚜기'?'hover-color':''}"><a href="list?m=오뚜기&p=1&s=${param.s}">오뚜기</a></li>
+					<li class="${param.m=='팔도'?'hover-color':''}"><a href="list?m=팔도&p=1&s=${param.s}">팔도</a></li>
+					<li class="${param.m=='PB'?'hover-color':''}"><a href="list?m=PB&p=1&s=${param.s}">PB</a></li>
+					<div class="search">
+						<form action="list" method="get">
+							<input type="text" name="s" placeholder="라면이름 검색" value="${param.s}">
+							<input type="image" src="/prod-img/btn-search.png">
+						</form>
+					</div>
+				</ul>
+			</nav>
+
+			<c:set var="page" value="${(empty param.p)?1:param.p}" />
+			<c:set var="lastNum" value="${fn: substringBefore(count/25+1,'.')}" />
+
+			<section class="noodle-img">
+				<h1 class="hidden">noodle-image</h1>
+				<div class="noodle-list-img">
+
+					<c:forEach var="l" items="${list}">
+
+						<div class="item">
+							<div class="item-img">
+								<img class="rm-img" src="${l.img}" value="${l.id}">
+							</div>
+							<div class="item-name">
+								<span>${l.name}</span>
+							</div>
+							<div class="review-link">
+								<div>
+									<a href="">
+										<i class="far fa-comment-dots"></i>
+										<span>9999</span>
+									</a>
+								</div>
+								<div>
+									<a href="">
+										<i class="far fa-heart"></i>
+										<span>9999</span>
+									</a>
+								</div>
+							</div>
+						</div>
+
+					</c:forEach>
+				</div>
+			</section>
+
+			<section class="pager">
+				<h1 class="hidden">pager</h1>
+				<ul>
+
+					<li><a href="list?m=${param.m}&p=${page-1>=1?page-1:1}&s=${param.s}">
+							<i class="fas fa-arrow-circle-left"></i>
+						</a>
+					</li>
+
+					<c:forEach begin="1" end="${lastNum}" var="i">
+						<li><a href="list?m=${param.m}&p=${i}&s=${param.s}"
+								style="${page==i?'color:#c4001d; font-weight: bold':''}">${i}</a>
+						</li>
+					</c:forEach>
+
+					<li><a href="list?m=${param.m}&p=${(page+1<=lastNum)?page+1:lastNum}&s=${param.s}">
+							<i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</li>
+
+				</ul>
+			</section>
+		</section>
+
+		<section class="noodle-ranking">
+			<h1 class="hidden">noodle-ranking</h1>
+
+			<span class="table-title">Ranking</span>
+			<div class="table-sub-left">
+				<span>(2019년 3분기 매출액 - 단위:백만원)</span>
+			</div>
+			<table class="noodle-ranking-table">
+
+				<c:forEach var="r" items="${rankingList}" varStatus="rankingList">
+					<tr>
+						<td class="cell-rank">${rankingList.index+1}</td>
+						<td class="cell-rank">(-)</td>
+						<td class="cell-img"><img class="rm-img" src="${r.img}" value="${r.id}">
+						</td>
+						<td>
+							<fmt:formatNumber value="${r.sales}" type="number" />
+						</td>
+						<td class="value"><a href="">★★★☆☆</td>
+						<td><a href=""><i class="fas fa-heart" style="color:#ff3575"></i><br /></a>???</a></td>
+						<td><img class="logo-img" src="${r.logo}" alt=""></td>
+					</tr>
+				</c:forEach>
+
+			</table>
+
+			<div class="table-sub-right">
+
+				
+				<span>(판매량 출처: FIS 식품산업통계정보)</span>
+
+			</div>
+		</section>
+
+	</div>
+
+</main>
