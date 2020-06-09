@@ -1,9 +1,10 @@
 package com.ramyunmoa.web.controller.review;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.ramyunmoa.web.entity.review.ReviewCmt;
 import com.ramyunmoa.web.service.ReviewService;
 import com.ramyunmoa.web.view.review.ReviewDetailView;
@@ -57,21 +60,26 @@ public class ReviewDetailController extends HttpServlet {
 	
 	}
 
-	/*
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+//		int id=Integer.parseInt(request.getParameter("id"));
 		
+//		System.out.println("detail-dopost-id:"+id);
+		
+		System.out.println("hel");
 		InputStream iStream =request.getInputStream(); //byte계열
 		Scanner scan=new Scanner(iStream,"UTF-8"); //한글처리 해줘야함
 		String lineString =scan.nextLine();
 		System.out.println(lineString);
 		
-//		Gson gson = new GsonBuilder()
-//                .setDateFormat("yyyy-MM-dd")
-//                .create();
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd")
+                .create();
+//		Gson gson = new Gson();
 		ReviewCmt cmt =gson.fromJson(lineString, ReviewCmt.class);
 		
 		System.out.println(cmt);
@@ -80,7 +88,7 @@ public class ReviewDetailController extends HttpServlet {
 		
 		try {
 			result=service.insertCmt(cmt);
-			System.out.println(result);
+			System.out.println("result"+result);
 		} catch (ClassNotFoundException | SQLException e) {
 			response.sendRedirect("/error?n=404"); //에러 controller
 		}
@@ -93,5 +101,5 @@ public class ReviewDetailController extends HttpServlet {
 		System.out.println(resultJson);
 		
 	}
-*/
+
 }

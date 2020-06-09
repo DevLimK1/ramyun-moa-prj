@@ -235,6 +235,10 @@ input::placeholder {
 	cursor: pointer;
 }
 
+.comment-form{
+	background-color:#F8F9FA;
+}
+
 .comment-form .comment-btn-list {
 	display: flex;
 }
@@ -445,6 +449,8 @@ input::placeholder {
 	/* border: 1px solid black; */
 }
 
+
+
 .comment-item i {
 	/* border: 1px solid black; */
 	margin-right: 5px;
@@ -454,6 +460,7 @@ input::placeholder {
 .comment-item i:hover {
 	font-weight: bold;
 }
+
 
 /* *********** 대댓글 ****************** */
 .comment-write-box.second {

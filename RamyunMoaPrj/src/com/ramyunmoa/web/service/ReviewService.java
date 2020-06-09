@@ -251,7 +251,7 @@ public class ReviewService {
 			st = con.prepareStatement(sql); // INSERT sql
 			st.setString(1, cmt.getWriterName());
 			st.setString(2, cmt.getContent());
-			st.setInt(3, 1);
+			st.setInt(3, cmt.getReviewId());
 			
 			result = st.executeUpdate();
 

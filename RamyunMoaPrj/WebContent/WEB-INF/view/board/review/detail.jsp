@@ -103,12 +103,14 @@
 			<li class="comment-sort-item">최신순</li>
 		</ul>
 		<div class="comment-sort-write">
-			<i class="far fa-plus-square comment-sort-write-btn"></i> <span
+			<i class="far fa-plus-square comment-sort-write-btn"></i> 
+			<span
 				class="comment-write-txt comment-sort-write-btn">댓글쓰기</span>
 		</div>
 	</div>
 
-	<form class="comment-form d-none" action="reg" method="post">
+	<form class="comment-form comment-first-form d-none" action="detail" method="post">
+		<input class="review-detail-id" type="hidden" value="${param.id}">
 		<div class="comment-write-box">
 			<div class="comment-likes">
 				<button type="button" class="likes-btn">
@@ -124,12 +126,13 @@
 					<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 				</div>
 
-				<textarea class="comment-write-content" name="contents"
-					placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"></textarea>
+				<textarea class="comment-write-content" name="content"
+					placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false" required="required"></textarea>
 				<div class="comment-container">
 					<ul class="comment-btn-list">
-						<li class="comment-reg-item"><input type="submit" value="등록"
-							class="comment-reg-btn btn-reset" /></li>
+						<li class="comment-reg-item">
+						<input type="submit" value="등록"
+							class="comment-reg-btn comment-first btn-reset" /></li>
 						<li class="comment-reg-item margin-left"><a
 							class="comment-cancel-btn"> 취소 </a></li>
 					</ul>
@@ -187,7 +190,7 @@
 
 	</div>
 	
-	 <form class="comment-form" action="" method="post">
+	 <form class="comment-form d-none" action="detail" method="post">
 	        <div class="comment-write-box second">
 	            <div class="img-box">
 	                <img src="../images/right-arrow-64x64.png" alt="">
@@ -200,7 +203,7 @@
 	                </div>
 	
 	                <textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols=""
-	                    spellcheck="false"></textarea>
+	                    spellcheck="false" required="required"></textarea>
 	                <div class="comment-container">
 	                    <ul class="comment-btn-list">
 	                        <li class="comment-reg-item"><input type="submit" value="등록"
