@@ -1,22 +1,31 @@
 @charset "UTF-8";
 
-/* ***************footer*******************  */
 
+.footer a {
+    color: black;
+    text-decoration: none;
+    font-family: 'MapoPeacefull', SpeedeeK, Malgun Gothic,'맑은 고딕', 
+    Dotum,'돋움', Arial, sans-serif;
+}
+
+/* ***************footer*******************  */
+/* ---------footer 영역----------- */
 .footer {
     background: #292929;
-    display: flex;
-    position: absolute;
-    bottom: 0px;
+    display: block;
+    height: 200px;
     width: 100%;
-    /* margin-top: 500px; */
-    /* position: fixed; */
-    /* border: 3px solid blue; */
+    position: absolute;
+    bottom:0px;
 }
 
 .footer .box {
     background: #292929;
     padding: 45px 0px 55px 0px;
     font-size: 15px;
+    display: flex;
+    width: 1080px;
+    margin: 0px auto;
 }
 
 .foot-list {
@@ -42,4 +51,24 @@
     color: white;
     font-size: 40px;
     margin-left: auto;
+}
+
+/* ---------탑 버튼----------- */
+
+.gotop-btn {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    cursor: pointer;
+    right: 30px;
+    bottom: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    color: #1b1b1b;
+}
+
+.gotop-btn i {
+    font-size: 25px;
+    cursor: pointer;
 }

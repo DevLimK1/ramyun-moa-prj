@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import com.ramyunmoa.web.service.ProdService;
 import com.ramyunmoa.web.view.product.NutritionView;
 
-@WebServlet("/prod/detail")
+@WebServlet("/product/detail")
 public class ProductDetailController extends HttpServlet {
 
 	@Override

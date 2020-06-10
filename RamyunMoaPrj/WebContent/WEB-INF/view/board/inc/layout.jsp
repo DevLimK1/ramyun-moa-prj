@@ -15,18 +15,20 @@
 <script type="text/javascript" src="<tiles:getAsString name='js'/>"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<script src="/js/main.js"></script>
+<script type="text/javascript" src="/js/member/member.js"></script>
 </head>
 
 <body>
 	<!-- -------------- header-----------------  -->
-	<tiles:insertAttribute name="header"/>
+	<tiles:insertAttribute name="header" />
 
 
 	<!-- -------------- main-----------------  -->
-	<tiles:insertAttribute name="main"/>
+	<tiles:insertAttribute name="main" />
 
 	<!-- -------------- footer-----------------  -->
-	<tiles:insertAttribute name="footer"/>
+	<tiles:insertAttribute name="footer" />
 
 </body>
 

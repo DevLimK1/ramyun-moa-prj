@@ -4,7 +4,7 @@
 	<div class="box flex">
 		<ul class="foot-list">
 			<li><a class="privacy" href="">개인정보 처리방침</a></li>
-			<li><a href="">라면모아 소개</a></li>
+			<li><a href="intro/rm-intro.html">라면모아 소개</a></li>
 			<li><a href="">고객센터</a></li>
 			<li><a href="">처음이세요?</a></li>
 			<li><a href="">제휴</a></li>
@@ -24,4 +24,6 @@
 			<i class="fab fa-youtube"></i>
 		</ul>
 	</div>
+	<a class="gotop-btn" href="#"> <i class="fas fa-arrow-up"></i>
+	</a>
 </footer>

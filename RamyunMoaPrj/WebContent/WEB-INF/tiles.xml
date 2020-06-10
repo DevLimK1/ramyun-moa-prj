@@ -5,20 +5,59 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-	
 
+
+<!-- admin -->
+<definition name="admin.*.*" template="/WEB-INF/view/admin/inc/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/view/admin/inc/header.jsp" />
+		<put-attribute name="main" value="/WEB-INF/view/admin/{1}/{2}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/admin/inc/footer.jsp" />
+		 <put-attribute name="css" value="/css/admin/{1}/{2}.css" />
+	</definition>
+	
+<!-- 메인 -->
 	<definition name="main" template="/WEB-INF/view/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/main.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
 	</definition>
 
-	<definition name="prod.*" template="/WEB-INF/view/product/inc/layout.jsp">
+<!-- 상품  -->
+	<definition name="product.*" template="/WEB-INF/view/product/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/product/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/product/{1}.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/product/inc/footer.jsp" />
-	</definition>
+	</definition>	
 	
+	  <!-- 멤버  로그인 전,후 / 회원가입 화면-->
+    <definition name="member.*" template="/WEB-INF/view/member/inc/layout.jsp"> 
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+     <put-attribute name="aside" value="" />
+    <put-attribute name="main" value="/WEB-INF/view/member/{1}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+  
+  <!-- 마이페이지 화면 -->
+   <definition name="mypage.*" template="/WEB-INF/view/member/inc/layout.jsp">    
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/view/member/inc/aside.jsp" />
+  <put-attribute name="main" value="/WEB-INF/view/member/{1}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+  
+  <!--  회원가입 팝업화면  -->
+     <definition name="popup.*" template="/WEB-INF/view/member/inc/layout.jsp">    
+    <put-attribute name="header" value="" />
+     <put-attribute name="aside" value="" />
+    <put-attribute name="main" value="/WEB-INF/view/member/{1}.jsp" />
+    <put-attribute name="footer" value="" />
+  </definition>
+	
+	
+	
+
+	
+	<!-- 후기게시판 -->
 	<definition name="review.*" template="/WEB-INF/view/board/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/board/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/board/review/{1}.jsp" />

@@ -18,18 +18,19 @@
 			<nav class="noodle-list-category">
 				<h1 class="hidden">notice-list-category</h1>
 				<ul>
-					<li class="${empty param.m?'hover-color':''}"><a href="list?m=&p=1&s=${param.s}">전체</a></li>
-					<li class="${param.m=='농심'?'hover-color':''}"><a href="list?m=농심&p=1&s=${param.s}">농심</a></li>
-					<li class="${param.m=='삼양'?'hover-color':''}"><a href="list?m=삼양&p=1&s=${param.s}">삼양</a></li>
-					<li class="${param.m=='오뚜기'?'hover-color':''}"><a href="list?m=오뚜기&p=1&s=${param.s}">오뚜기</a></li>
-					<li class="${param.m=='팔도'?'hover-color':''}"><a href="list?m=팔도&p=1&s=${param.s}">팔도</a></li>
-					<li class="${param.m=='PB'?'hover-color':''}"><a href="list?m=PB&p=1&s=${param.s}">PB</a></li>
-					<div class="search">
+					<li><a href="list-data?m=&p=1&s=${param.s}">전체</a></li>
+					<li><a href="list-data?m=농심&p=1&s=${param.s}">농심</a></li>
+					<li><a href="list-data?m=삼양&p=1&s=${param.s}">삼양</a></li>
+					<li><a href="list-data?m=오뚜기&p=1&s=${param.s}">오뚜기</a></li>
+					<li><a href="list-data?m=팔도&p=1&s=${param.s}">팔도</a></li>
+					<li><a href="list-data?m=PB&p=1&s=${param.s}">PB</a></li>
+					<li>
 						<form action="list" method="get">
-							<input type="text" name="s" placeholder="라면이름 검색" value="${param.s}">
-							<input type="image" src="/prod-img/btn-search.png">
+							<input class="search" type="text" name="s" value="${param.s}"
+								placeholder="라면이름 검색"> <input type="submit"
+								value="&#xf002">
 						</form>
-					</div>
+					</li>
 				</ul>
 			</nav>
 
@@ -44,22 +45,18 @@
 
 						<div class="item">
 							<div class="item-img">
-								<img class="rm-img" src="${l.img}" value="${l.id}">
+								<img class="rm-img list" src="${l.img}" value="${l.id}">
 							</div>
 							<div class="item-name">
 								<span>${l.name}</span>
 							</div>
 							<div class="review-link">
 								<div>
-									<a href="">
-										<i class="far fa-comment-dots"></i>
-										<span>9999</span>
+									<a href=""> <i class="far fa-comment-dots"></i> <span>${999}</span>
 									</a>
 								</div>
 								<div>
-									<a href="">
-										<i class="far fa-heart"></i>
-										<span>9999</span>
+									<a href=""> <i class="far fa-heart"></i> <span>${999}</span>
 									</a>
 								</div>
 							</div>
@@ -71,25 +68,24 @@
 
 			<section class="pager">
 				<h1 class="hidden">pager</h1>
+
+				<a
+					href="list-data?m=${param.m}&p=${page-1>=1?page-1:1}&s=${param.s}">
+					<i class="fas fa-arrow-circle-left"></i>
+				</a>
+
 				<ul>
-
-					<li><a href="list?m=${param.m}&p=${page-1>=1?page-1:1}&s=${param.s}">
-							<i class="fas fa-arrow-circle-left"></i>
-						</a>
-					</li>
-
 					<c:forEach begin="1" end="${lastNum}" var="i">
-						<li><a href="list?m=${param.m}&p=${i}&s=${param.s}"
-								style="${page==i?'color:#c4001d; font-weight: bold':''}">${i}</a>
+						<li><a href="list-data?m=${param.m}&p=${i}&s=${param.s}">${i}</a>
 						</li>
 					</c:forEach>
-
-					<li><a href="list?m=${param.m}&p=${(page+1<=lastNum)?page+1:lastNum}&s=${param.s}">
-							<i class="fas fa-arrow-circle-right"></i>
-						</a>
-					</li>
-
 				</ul>
+
+				<a
+					href="list-data?m=${param.m}&p=${(page+1<=lastNum)?page+1:lastNum}&s=${param.s}">
+					<i class="fas fa-arrow-circle-right"></i>
+				</a>
+
 			</section>
 		</section>
 
@@ -106,13 +102,12 @@
 					<tr>
 						<td class="cell-rank">${rankingList.index+1}</td>
 						<td class="cell-rank">(-)</td>
-						<td class="cell-img"><img class="rm-img" src="${r.img}" value="${r.id}">
-						</td>
-						<td>
-							<fmt:formatNumber value="${r.sales}" type="number" />
-						</td>
+						<td class="cell-img"><img class="rm-img ranking"
+							src="${r.img}" value="${r.id}"></td>
+						<td><fmt:formatNumber value="${r.sales}" type="number" /></td>
 						<td class="value"><a href="">★★★☆☆</td>
-						<td><a href=""><i class="fas fa-heart" style="color:#ff3575"></i><br /></a>???</a></td>
+						<td><a href=""><i class="fas fa-heart"
+								style="color: #ff3575"></i><br /></a>${999}</a></td>
 						<td><img class="logo-img" src="${r.logo}" alt=""></td>
 					</tr>
 				</c:forEach>
@@ -121,7 +116,6 @@
 
 			<div class="table-sub-right">
 
-				
 				<span>(판매량 출처: FIS 식품산업통계정보)</span>
 
 			</div>

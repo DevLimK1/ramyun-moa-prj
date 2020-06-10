@@ -1,0 +1,20 @@
+#mypage-main{
+	
+	height:100%;
+}
+
+.main-section{
+	display: flex;
+}
+
+
+.mypage-context{
+	width:300px;
+	height:100%;
+	background: gray;
+}
+.mypage-menu{
+	width:300px;
+	height:100%;
+	background: green;
+}

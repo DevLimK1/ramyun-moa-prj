@@ -246,9 +246,11 @@ public class ReviewService {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, "rmteam", "rm0322");
+			
 			con.setAutoCommit(false);
 
 			st = con.prepareStatement(sql); // INSERT sql
+			
 			st.setString(1, cmt.getWriterName());
 			st.setString(2, cmt.getContent());
 			st.setInt(3, cmt.getReviewId());

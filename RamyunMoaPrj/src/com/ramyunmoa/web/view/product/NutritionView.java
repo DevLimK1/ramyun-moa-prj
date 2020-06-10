@@ -11,25 +11,25 @@ public class NutritionView {
 	private int carbohydrate;
 	private int sugars;
 	private int fat;
-	private int transFat;
+	private int transfat;
 	private int saturatedFat;
 	private int cholesterol;
 	private int protein;
 
-	public NutritionView(int natrium, int carbohydrate, int sugars, int fat, int transFat, int saturatedFat,
+	public NutritionView(int natrium, int carbohydrate, int sugars, int fat, int transfat, int saturatedFat,
 			int cholesterol, int protein) {
 		this.natrium = natrium;
 		this.carbohydrate = carbohydrate;
 		this.sugars = sugars;
 		this.fat = fat;
-		this.transFat = transFat;
+		this.transfat = transfat;
 		this.saturatedFat = saturatedFat;
 		this.cholesterol = cholesterol;
 		this.protein = protein;
 	}
 
 	public NutritionView(int id, String name, String img, int kcal, int capacity, int natrium, int carbohydrate,
-			int sugars, int fat, int transFat, int saturatedFat, int cholesterol, int protein) {
+			int sugars, int fat, int transfat, int saturatedFat, int cholesterol, int protein) {
 		this.id = id;
 		this.name = name;
 		this.img = img;
@@ -39,7 +39,7 @@ public class NutritionView {
 		this.carbohydrate = carbohydrate;
 		this.sugars = sugars;
 		this.fat = fat;
-		this.transFat = transFat;
+		this.transfat = transfat;
 		this.saturatedFat = saturatedFat;
 		this.cholesterol = cholesterol;
 		this.protein = protein;
@@ -117,12 +117,12 @@ public class NutritionView {
 		this.fat = fat;
 	}
 
-	public int getTransFat() {
-		return transFat;
+	public int getTransfat() {
+		return transfat;
 	}
 
-	public void setTransFat(int transFat) {
-		this.transFat = transFat;
+	public void setTransfat(int transfat) {
+		this.transfat = transfat;
 	}
 
 	public int getSaturatedFat() {
@@ -153,7 +153,7 @@ public class NutritionView {
 	public String toString() {
 		return "NutritionView [id=" + id + ", name=" + name + ", img=" + img + ", kcal=" + kcal + ", capacity="
 				+ capacity + ", natrium=" + natrium + ", carbohydrate=" + carbohydrate + ", sugars=" + sugars + ", fat="
-				+ fat + ", transFat=" + transFat + ", saturatedFat=" + saturatedFat + ", cholesterol=" + cholesterol
+				+ fat + ", transfat=" + transfat + ", saturatedFat=" + saturatedFat + ", cholesterol=" + cholesterol
 				+ ", protein=" + protein + "]";
 	}
 

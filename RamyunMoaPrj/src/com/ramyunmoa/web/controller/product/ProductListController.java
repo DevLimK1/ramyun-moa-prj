@@ -17,7 +17,7 @@ import com.ramyunmoa.web.service.ProdService;
 import com.ramyunmoa.web.view.product.ProductView;
 import com.ramyunmoa.web.view.product.RankingView;
 
-@WebServlet("/prod/list")
+@WebServlet("/product/list")
 public class ProductListController extends HttpServlet {
 
 	@Override
@@ -64,11 +64,10 @@ public class ProductListController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		System.out.println(count);
+		
 
 		TilesContainer container = TilesAccess.getContainer(req.getSession().getServletContext());
-		container.render("prod.list", req, resp);
+		container.render("product.list", req, resp);
 
 	}
 

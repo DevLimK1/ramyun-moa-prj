@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ramyunmoa.web.view.product.AdminProdView;
 import com.ramyunmoa.web.view.product.NutritionView;
 import com.ramyunmoa.web.view.product.ProductView;
 import com.ramyunmoa.web.view.product.RankingView;
@@ -101,6 +102,32 @@ public class ProdService {
 		return nutrition;
 	}
 
+	public List<AdminProdView> getAdminList(String mfr, String searchName, int page)
+			throws SQLException, ClassNotFoundException {
+
+		List<AdminProdView> adminProdList = new ArrayList<AdminProdView>();
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String sql = "SELECT * FROM AdminProdView WHERE mfr LIKE ? AND name LIKE ? ORDER BY id LIMIT ?, 5";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, '%' + mfr + '%');
+		ps.setString(2, '%' + searchName + '%');
+		ps.setInt(3, (page - 1) * 5);
+		ResultSet rs = ps.executeQuery();
+
+		while (rs.next()) {
+			AdminProdView temp = new AdminProdView(rs.getInt("id"), rs.getString("name"), rs.getInt("capacity"),
+					rs.getInt("kcal"), rs.getInt("natrium"), rs.getInt("carbohydrate"), rs.getInt("sugars"),
+					rs.getInt("fat"), rs.getInt("transfat"), rs.getInt("saturatedFat"), rs.getInt("cholesterol"),
+					rs.getInt("protein"), rs.getString("mfr"), rs.getInt("amount"), rs.getInt("year"),
+					rs.getInt("quarter"), rs.getString("img"));
+			adminProdList.add(temp);
+		}
+		return adminProdList;
+	}
+	
 	public NutritionView getNutriStd() throws SQLException, ClassNotFoundException {
 
 		NutritionView nutriStd = null;
@@ -119,5 +146,5 @@ public class ProdService {
 		}
 		return nutriStd;
 	}
-	
+
 }

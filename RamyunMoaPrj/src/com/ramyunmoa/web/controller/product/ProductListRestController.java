@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.ramyunmoa.web.service.ProdService;
 import com.ramyunmoa.web.view.product.ProductView;
 
-@WebServlet("/prod/list-data")
+@WebServlet("/product/list-data")
 public class ProductListRestController extends HttpServlet {
 
 	@Override

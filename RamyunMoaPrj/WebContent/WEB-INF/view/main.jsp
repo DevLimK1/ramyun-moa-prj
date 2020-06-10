@@ -2,71 +2,107 @@
 	pageEncoding="UTF-8"%>
 
 <main class="main">
-	<img src="images/main/라면이미지1.jpg" alt="라면" class="main-img">
-</main>
+	<section class="first">
+		<div class="first-rm">라면모아가 처음이신가요?</div>
+		<a href=""><p class="click">클릭!</p></a> <span id="cancel"><i
+			class="far fa-window-close"></i></span>
+	</section>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>라면모아 - 국내 최대 라면 커뮤니티</title>
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/main/main.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-</head>
-
-<body>
-	<header class="header">
-		<div class="box">
-			<nav class="navbar flex">
-				<div class="navbar-logo flex">
-					<a href="main">라면모아</a>
-				</div>
-				<ul class="navbar-menu flex">
-					<li><a href="">라면 소개</a></li>
-					<li><a href="review/list">후기 게시판</a></li>
-					<li><a href="">라면 토론장</a></li>
-					<li><a href="">레시피 공유</a></li>
-				</ul>
-				<ul class="navbar-member flex">
-					<li><a class="member-first " href="">로그인</a></li>
-					<li><a class="member-first " href="">회원가입</a></li>
-					<li><a class="member-second " href="">고객센터</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<main class="main">
-		<img src="images/main/라면이미지1.jpg" alt="라면" class="main-img">
-	</main>
-	<footer class="footer">
-		<div class="box flex">
-			<ul class="foot-list">
-				<li><a class="privacy" href="">개인정보 처리방침</a></li>
-				<li><a href="">라면모아 소개</a></li>
-				<li><a href="">고객센터</a></li>
-				<li><a href="">처음이세요?</a></li>
-				<li><a href="">제휴</a></li>
-			</ul>
-			<div class="foot-info">
-				<ul class="info-list">
-					<li>라면모아</li>
-					<li>라면모아 이메일 :</li>
-					<li>라면모아 팀 :</li>
-					<li>고객센터 전화번호</li>
-				</ul>
-				<p class="copy">Copyright 2020. RamyunMoa All rights reserved.</p>
+	<div class="slider-area">
+		<div class="slides slide-size">
+			<input type="radio" name="i" id="i1" checked> <input
+				type="radio" name="i" id="i2"> <input type="radio" name="i"
+				id="i3">
+			<div class="slide s1">
+				<img src="/images/main/메인라면1.jpg" alt="라면" class="img-size">
 			</div>
-			<ul class="foot-sns">
-				<i class="fab fa-facebook"></i>
-				<i class="fab fa-instagram"></i>
-				<i class="fab fa-youtube"></i>
-			</ul>
+			<div class="slide">
+				<img src="/images/main/메인라면2.jpg" alt="라면" class="img-size">
+			</div>
+			<div class="slide">
+				<img src="/images/main/메인라면3.jpg" alt="라면" class="img-size">
+			</div>
 		</div>
-	</footer>
-</body>
-
-</html> -->
+		<div class="slide-nav">
+			<label for="i1" class="bar"></label> <label for="i2" class="bar"></label>
+			<label for="i3" class="bar"></label>
+		</div>
+	</div>
+	<div class="cal-calc">
+		<div>라면 칼로리를 계산해보세요 🍜</div>
+		<div class="finger">
+			<i class="far fa-hand-point-right"></i>
+		</div>
+		<a href="" class="cal-calc-go">
+			<button class="cal-calc-btn">go! go!</button>
+		</a>
+	</div>
+	<div class="main-area">
+		<div class="inner">
+			<h2 class="tit-main">RamyunMoa's LIVE</h2>
+			<div class="whats-new">
+				<div class="whats-tit">
+					<p>인기글</p>
+					<ul class="whats-list">
+						<li><span>미안하다 이거 보여주려고 어그로 끌었다. 정말 대박이지않냐? 이건 세기의
+								대결이다</span></li>
+						<li><span>글 내용2</span></li>
+						<li><span>글 내용3</span></li>
+						<li><span>글 내용4</span></li>
+						<li><span>글 내용5</span></li>
+						<li><span>글 내용6</span></li>
+						<li><span>글 내용7</span></li>
+						<li><span>글 내용8</span></li>
+						<li><span>글 내용9</span></li>
+						<li><span>글 내용10</span></li>
+					</ul>
+				</div>
+				<div class="whats-tit">
+					<p>후기 게시판</p>
+					<ul class="whats-list">
+						<li><span>글 내용1</span></li>
+						<li><span>글 내용2</span></li>
+						<li><span>글 내용3</span></li>
+						<li><span>글 내용4</span></li>
+						<li><span>글 내용5</span></li>
+						<li><span>글 내용6</span></li>
+						<li><span>글 내용7</span></li>
+						<li><span>글 내용8</span></li>
+						<li><span>글 내용9</span></li>
+						<li><span>글 내용10</span></li>
+					</ul>
+				</div>
+				<div class="whats-tit">
+					<p>라면 토론장</p>
+					<ul class="whats-list">
+						<li><span>글 내용1</span></li>
+						<li><span>글 내용2</span></li>
+						<li><span>글 내용3</span></li>
+						<li><span>글 내용4</span></li>
+						<li><span>글 내용5</span></li>
+						<li><span>글 내용6</span></li>
+						<li><span>글 내용7</span></li>
+						<li><span>글 내용8</span></li>
+						<li><span>글 내용9</span></li>
+						<li><span>글 내용10</span></li>
+					</ul>
+				</div>
+				<div class="whats-tit">
+					<p>레시피 공유</p>
+					<ul class="whats-list">
+						<li><span>글 내용1</span></li>
+						<li><span>글 내용2</span></li>
+						<li><span>글 내용3</span></li>
+						<li><span>글 내용4</span></li>
+						<li><span>글 내용5</span></li>
+						<li><span>글 내용6</span></li>
+						<li><span>글 내용7</span></li>
+						<li><span>글 내용8</span></li>
+						<li><span>글 내용9</span></li>
+						<li><span>글 내용10</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

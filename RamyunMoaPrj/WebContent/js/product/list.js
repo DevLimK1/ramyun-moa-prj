@@ -3,8 +3,13 @@ addEventListener("load", function () {
 
 	var container = document.querySelector("#container");
 
+	var categoryUl = container.querySelector(".noodle-list-category ul");
+	var categoryA = categoryUl.querySelectorAll("a");
 	var pagerUl = container.querySelector(".pager ul");
+	var pagerA = pagerUl.querySelectorAll("a");
 
+	var search = categoryUl.querySelector(".search")
+	var submit = categoryUl.querySelector("input[type='submit']")
 	var imgSec = container.querySelector(".noodle-img");
 	var listImgDiv = imgSec.querySelector(".noodle-list-img");
 	var itemName = listImgDiv.querySelectorAll(".item-name");
@@ -20,6 +25,127 @@ addEventListener("load", function () {
 			var temp = itemName[i].innerText.split(" ");
 			itemName[i].innerHTML = `${temp[0]}<br/>${temp[1]}`;
 		}
+	}
+
+	categoryUl.firstElementChild.style.color = "#c4001d";
+	pagerUl.firstElementChild.style.color = "#c4001d";
+
+
+	submit.onclick = function (e) {
+
+		e.preventDefault();
+		var s = search.value;
+
+		var xhr = new XMLHttpRequest();
+		xhr.open('get', "list-data?s=" + s, true);
+		xhr.send();
+		xhr.onload = function () {
+			var list = JSON.parse(xhr.responseText);
+			listImgDiv.innerHTML = "";
+
+			for (var i in list) {
+
+				if (list[i].name.includes("(")) {
+					var index = list[i].name.indexOf("(");
+					list[i].name = list[i].name.substring(0, index);
+				}
+
+				if (list[i].name.includes(" ")) {
+					var temp = list[i].name.split(" ");
+					list[i].name = `${temp[0]}<br/>${temp[1]}`;
+				}
+
+				var itemDiv = document.createElement("div");
+				listImgDiv.append(itemDiv);
+				itemDiv.classList.add("item");
+				itemDiv.innerHTML = `<div class="item-img">
+										<img class="rm-img" src="${list[i].img}" value="${list[i].id}">
+										</div>
+										<div class="item-name">
+											<span>${list[i].name}</span>
+										</div>
+										<div class="review-link">
+											<div>
+												<a href="">
+													<i class="far fa-comment-dots"></i>
+													<span>9999</span>
+												</a>
+											</div>
+											<div>
+												<a href="">
+													<i class="far fa-heart"></i>
+													<span>9999</span>
+												</a>
+											</div>
+										</div>`;
+			}
+
+		}
+
+	}
+
+
+	categoryUl.onclick = function (e) {
+
+		e.preventDefault();
+		if (e.target.nodeName != "A") return;
+
+		for (var i = 0; i < categoryA.length; i++) {
+			categoryA[i].style.color = "#666666";
+		}
+		e.target.style.color = "#c4001d";
+
+		for (var i = 0; i < pagerA.length; i++) {
+			pagerA[i].style.color = "#666666";
+		}
+		pagerA[0].style.color = "#c4001d";
+
+		var link = e.target.getAttribute("href");
+		var xhr = new XMLHttpRequest();
+		xhr.open('get', link, true);
+		xhr.send();
+		xhr.onload = function () {
+			var list = JSON.parse(xhr.responseText);
+			listImgDiv.innerHTML = "";
+
+			for (var i in list) {
+
+				if (list[i].name.includes("(")) {
+					var index = list[i].name.indexOf("(");
+					list[i].name = list[i].name.substring(0, index);
+				}
+
+				if (list[i].name.includes(" ")) {
+					var temp = list[i].name.split(" ");
+					list[i].name = `${temp[0]}<br/>${temp[1]}`;
+				}
+
+				var itemDiv = document.createElement("div");
+				listImgDiv.append(itemDiv);
+				itemDiv.classList.add("item");
+				itemDiv.innerHTML = `<div class="item-img">
+										<img class="rm-img" src="${list[i].img}" value="${list[i].id}">
+										</div>
+										<div class="item-name">
+											<span>${list[i].name}</span>
+										</div>
+										<div class="review-link">
+											<div>
+												<a href="">
+													<i class="far fa-comment-dots"></i>
+													<span>9999</span>
+												</a>
+											</div>
+											<div>
+												<a href="">
+													<i class="far fa-heart"></i>
+													<span>9999</span>
+												</a>
+											</div>
+										</div>`;
+			}
+
+		}
 
 	}
 
@@ -28,20 +154,32 @@ addEventListener("load", function () {
 		e.preventDefault();
 		if (e.target.nodeName != "A") return;
 
-		var page = e.target.innerText;
+		var link = e.target.getAttribute("href");
+
+
+		for (var i = 0; i < pagerA.length; i++) {
+			pagerA[i].style.color = "#000000";
+		}
+		e.target.style.color = "#c4001d";
 
 		var xhr = new XMLHttpRequest();
-		xhr.open('get', 'list-data?p=' + page, true);
+		xhr.open('get', link, true);
 		xhr.send();
 		xhr.onload = function () {
-			list = JSON.parse(xhr.responseText);
+			var list = JSON.parse(xhr.responseText);
 			listImgDiv.innerHTML = "";
-			bind();
-		}
-
-		function bind() {
 
 			for (var i in list) {
+
+				if (list[i].name.includes("(")) {
+					var index = list[i].name.indexOf("(");
+					list[i].name = list[i].name.substring(0, index);
+				}
+
+				if (list[i].name.includes(" ")) {
+					var temp = list[i].name.split(" ");
+					list[i].name = `${temp[0]}<br/>${temp[1]}`;
+				}
 
 				var itemDiv = document.createElement("div");
 				listImgDiv.append(itemDiv);
@@ -81,14 +219,21 @@ addEventListener("load", function () {
 		listImgDiv.append(detailContainer);
 
 		detailContainer.style.position = "absolute";
-		detailContainer.style.left = `${e.clientX} px`;
-		detailContainer.style.top = `${e.clientY} px`;
+
+		if (600 < e.pageX) {
+			detailContainer.style.left = `${e.pageX - 300}px`;
+		}
+		else {
+			detailContainer.style.left = `${e.pageX}px`;
+		}
+		detailContainer.style.top = `${e.pageY - 200}px`;
 
 		var xhr = new XMLHttpRequest();
 		xhr.open('get', 'detail?id=' + detailsId, true);
 		xhr.send();
 
 		xhr.onload = function () {
+
 			var result = JSON.parse(xhr.responseText);
 
 			var natrium_ = `${result.natrium / 2000 * 100}`;
@@ -111,6 +256,16 @@ addEventListener("load", function () {
 
 			var protein_ = `${result.protein / 55 * 100}`;
 			var protein = protein_.substr(0, 3);
+
+			if (result.name.includes("(")) {
+				var index = result.name.indexOf("(");
+				result.name = result.name.substring(0, index);
+			}
+
+			if (result.name.includes(" ")) {
+				var temp = result.name.split(" ");
+				result.name = `${temp[0]}<br/>${temp[1]}`;
+			}
 
 			detailContainer.innerHTML =
 				`<div class="detail">
@@ -135,13 +290,13 @@ addEventListener("load", function () {
 							<div>
 								<a href="">
 									<i class="far fa-comment-dots fa-2x"></i>
-									<span>999</span>
+									<span>${999}</span>
 								</a>
 							</div>
 							<div>
 								<a href="">
 									<i class="far fa-heart fa-2x"></i>
-									<span>999</span>
+									<span>${999}</span>
 								</a>
 							</div>
 						</div>
@@ -192,6 +347,20 @@ addEventListener("load", function () {
 
 		detailContainer.onclick = function () {
 			detailContainer.remove();
+		}
+
+	}
+
+	function editName(object) {
+
+		if (object.includes("(")) {
+			var index = object.indexOf("(");
+			object = object.substring(0, index);
+		}
+
+		if (object.includes(" ")) {
+			var temp = object.split(" ");
+			object = `${temp[0]}<br/>${temp[1]}`;
 		}
 
 	}
