@@ -25,11 +25,12 @@
 		<ul class="admin-menu">
 			<li><a href=""> <i class="fas fa-th"></i>기본설정
 			</a></li>
-			<li><a href=""> <i class="fas fa-boxes"></i>제품관리
+			<li><a href="/admin/product/main"> <i class="fas fa-boxes"></i>제품관리
 			</a></li>
 			<li><a href=""> <i class="fas fa-users"></i>회원관리
 			</a></li>
-			<li><a href=""> <i class="fas fa-clipboard-list"></i>게시판관리
+			<li><a href="/admin/board/main"> <i
+					class="fas fa-clipboard-list"></i>게시판관리
 			</a></li>
 			<li><a href=""> <i class="fas fa-headset"></i>고객센터
 			</a></li>

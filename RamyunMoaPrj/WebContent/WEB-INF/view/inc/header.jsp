@@ -17,14 +17,14 @@
 				<c:if test="${sessionScope.uid==null}">
 					<li class="member"><a href="/member/login" onclick="login()">로그인</a></li><span>|</span>
 					<li class="member"><a href="/member/member-term" onclick="regist()">회원가입</a></li>
-					<li class="member"><a href="">고객센터</a></li>
+					<li class="member"><a href="/notice/list">고객센터</a></li>
 				</c:if>
 
 				<!-- 로그인 됐을경우  내정보 / 로그아웃 표시 -->
 				<c:if test="${sessionScope.uid!=null}">
 					<li class="member"><a href="/member/mypage" >내정보</a></li><span>|</span>
 					<li class="member"><a href="/member/logout" onclick="logout()">로그아웃</a></li>
-					<li class="member"><a href="">고객센터</a></li>
+					<li class="member"><a href="/notice/list">고객센터</a></li>
 				</c:if>
 				<!-- 관리자 로그인   로그아웃 -->
 				<c:if test="${sessionScope.uid=='admin'}">

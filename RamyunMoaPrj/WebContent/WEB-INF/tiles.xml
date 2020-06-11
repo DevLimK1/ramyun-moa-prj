@@ -6,14 +6,59 @@
 <tiles-definitions>
 
 
+<!-- 공지사항, 피드백  -->
+	
+	<definition name="admin.board.notice.*" template="/WEB-INF/view/notice/inc/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+		<put-attribute name="aside" value="/WEB-INF/view/admin/board/inc/aside.jsp" />
+		<put-attribute name="main" value="/WEB-INF/view/admin/board/notice/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+	</definition>
+	
+	<definition name="admin.board.feedback.*" template="/WEB-INF/view/notice/inc/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+		<put-attribute name="aside" value="/WEB-INF/view/admin/board/inc/aside.jsp" />
+		<put-attribute name="main" value="/WEB-INF/view/admin/board/feedback/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+	</definition>
 
 <!-- admin -->
-<definition name="admin.*.*" template="/WEB-INF/view/admin/inc/layout.jsp">
+<definition name="admin.*.*.*" template="/WEB-INF/view/admin/inc/layout.jsp">
+		<put-attribute name="css" value="/css/admin/{1}/{2}/{3}.css" />
+		<put-attribute name="header" value="/WEB-INF/view/admin/inc/header.jsp" />
+		<put-attribute name="aside" value="/WEB-INF/view/admin/{1}/aside.jsp" />
+		<put-attribute name="main" value="/WEB-INF/view/admin/{1}/{2}/{3}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/admin/inc/footer.jsp" />
+	</definition>
+	
+	<definition name="admin.*.*" template="/WEB-INF/view/admin/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/admin/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/admin/{1}/{2}.jsp" />
+		<put-attribute name="aside" value="/WEB-INF/view/admin/{1}/aside.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/admin/inc/footer.jsp" />
 		 <put-attribute name="css" value="/css/admin/{1}/{2}.css" />
 	</definition>
+
+
+
+	
+
+	
+	<definition name="notice.*" template="/WEB-INF/view/notice/inc/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+		<put-attribute name="aside" value="/WEB-INF/view/notice/inc/aside.jsp" />
+		<put-attribute name="main" value="/WEB-INF/view/notice/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+	</definition>
+
+	<definition name="feedback.*" template="/WEB-INF/view/notice/inc/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+		<put-attribute name="aside" value="/WEB-INF/view/notice/inc/aside.jsp" />
+		<put-attribute name="main" value="/WEB-INF/view/notice/feedback/{1}.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+	</definition>
+
+
 	
 <!-- 메인 -->
 	<definition name="main" template="/WEB-INF/view/inc/layout.jsp">
@@ -24,7 +69,7 @@
 
 <!-- 상품  -->
 	<definition name="product.*" template="/WEB-INF/view/product/inc/layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/view/product/inc/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/product/{1}.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/product/inc/footer.jsp" />
 	</definition>	
@@ -59,7 +104,7 @@
 	
 	<!-- 후기게시판 -->
 	<definition name="review.*" template="/WEB-INF/view/board/inc/layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/view/board/inc/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/board/review/{1}.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
 		 <put-attribute name="css" value="/css/board/review/{1}.css" />

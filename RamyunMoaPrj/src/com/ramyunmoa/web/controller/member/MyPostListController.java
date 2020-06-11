@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
-import com.ramyunmoa.web.entity.PostView;
 import com.ramyunmoa.web.service.PostService;
+import com.ramyunmoa.web.view.member.PostView;
 
-@WebServlet("/notice/list")
+//notice/list와 url이 겹침 -> /post/list로 변경함
+@WebServlet("/post/list")
 public class MyPostListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

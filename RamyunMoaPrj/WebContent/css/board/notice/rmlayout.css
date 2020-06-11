@@ -1,0 +1,484 @@
+@font-face { 
+    font-family: 'S-CoreDream-3Light'; 
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'맑은 고딕', 
+                    Dotum,'돋움', Arial, sans-serif;
+}   
+
+.text-highlight{
+    color: #c4001d;
+}
+
+.text-indent{
+    text-indent: 15px;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.font-weight-bold{
+    font-weight: bold;
+}
+
+.h30{
+    height: 30px;
+}
+
+.w60{
+    width: 60px;
+}
+
+.w100{
+    width: 100px;
+}
+
+.w120{
+    width: 120px;
+}
+
+.w140{
+    width: 140px;
+}
+
+.w160{
+    width: 160px;
+}
+
+.w180{
+    width: 180px;
+}
+
+.w600{
+	width: 600px;
+}
+
+.margin-top-21{
+    margin-top: 21px;
+}
+
+.padding-right-10{
+    padding-right: 10px;
+}
+
+.border-bottom{
+    border-bottom: 1.5px solid black;
+}
+
+.border-bottom-1px-solid-gray{
+    border-bottom: 1px solid gray;
+}
+
+.flex {
+    display: flex;
+}
+
+.font-size-30{
+    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'맑은 고딕', 
+                    Dotum,'돋움', Arial, sans-serif;
+    font-size: 30px;
+}
+
+
+
+/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ <list> ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+#body{
+    display: flex;
+    min-height: 500px;
+    --justify-content: center;
+}
+
+.content-container{
+    display: flex;
+    width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.aside{
+    width: 300px;
+    display: flex;
+    justify-self: left;
+    margin-top: 3px;
+    border-right: 1px solid #f8c137;
+    margin-right: 3px;
+}
+    .aside .customer-center>h1{
+        font-size: 25px;
+        font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'맑은 고딕', 
+                        Dotum,'돋움', Arial, sans-serif;
+        padding-bottom: 10px;
+    }
+
+    .aside .customer-center>ul{
+        font-size: 20px;
+        text-indent: 10px;
+    }
+
+.main{
+    display: block;
+    max-width: 780px;
+    width: 100%;
+    flex-grow: 1;
+}
+
+
+.search{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0px 10px 0px; 
+}
+
+    .search .search-form select{
+        width: 65px;
+        height: 30px;
+    }
+
+    .search .search-form .search-text{
+        width: 200px;
+        height: 26px;
+        text-indent: 5px;
+    }
+
+    .search .search-form .search-button{
+        width: 40px;
+        height: 30px;
+    }
+    
+
+.list {
+    width: 780px;
+    height: inherit;
+    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'맑은 고딕', 
+                    Dotum,'돋움', Arial, sans-serif;
+}
+
+    .list .table{
+        table-layout: fixed;
+        width: 100%;
+        font-size: 16px;
+    }
+
+        .list .table thead td{
+            background: #FFE400;
+            border-bottom: 1.5px solid black;
+        }
+
+        .list .table .col-num{
+            width: 60px;
+            height : 20px
+        }
+
+        .list .table .col-text{
+            width: 100px;
+        }
+
+        .list .table td{
+            text-align: center;
+            border-bottom: 1px solid #BDBDBD;
+        }
+
+        .list .table .title{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: left;
+            text-indent: 15px;
+            height: 25px;
+        }
+        
+	        .list .table .title>a{
+				margin-right: 5px;
+	        }
+	        
+        	.list .table .title>span{
+	        	color: #A4A4A4;
+        	}
+        .list .table .files{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+.write{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+}
+
+    .page ul{
+        display: flex;
+    }
+
+        .page ul li{
+            text-align: center;
+            width: 15px;
+            height: 15px;
+        }
+/*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ <list> ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
+
+/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ <reg> ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+.post{
+    display: flex;
+    width: 780px;
+    height: 500px;
+    margin-top: 3px;
+}
+
+    .post .post-table{
+        table-layout: fixed;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+    
+	    .post .post-table .title{
+	    	width: 120px;
+	    	height: 30px;
+	    	background: #FFE400;
+	    }
+	    
+	    .post .post-table .title-input{
+	    	width: 480px; /* 380px - 4px */
+	    	border: none;
+	    	height: 30px;
+	    	text-indent: 5px;
+	    }
+	    
+	    .post .post-table .writer{
+	    	width: 120px;
+	    	height: 30px;
+	    	background: #FFE400;
+	    }
+	    
+	    .post .post-table .regdate{
+	    	width: 120px;
+	    	height: 30px;
+	    	background: #FFE400;
+	    }
+
+.content-input{
+    width: 598px; /* 600px - 2px */
+    height: 434px; /* 500px - 66px */
+    margin-top: 3px;
+    resize: none;
+}
+
+.post-btn{
+	margin-top: 5px;
+    margin-left: 635px;
+}
+
+/*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ <reg> ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
+
+/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ <detail> <edit> ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+
+.detail{
+	margin-top: 20px;
+}
+
+.detail-table{
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+}
+	
+	.border-bottom-bdbdbd{
+		border-bottom: 1px solid #BDBDBD;
+	}
+	
+	.border-bottom-black{
+		border-bottom: 1.5px solid black;
+	}
+
+	.detail-table .title{
+		width: 100px;
+		height: 30px;
+		background: #FFE400; 
+		border-radius: 5px;
+	}
+	
+	.detail-table .edit-input{
+		width: 500px;
+		border: none;
+		height: 30px;
+		text-indent: 5px;
+	}
+	
+	.detail-table .writer{
+		width: 100px;
+		height: 30px;
+		background: #FFE400;
+		border-radius: 5px; 
+	}
+	
+	.detail-table .regdate{
+		width: 100px;
+		height: 30px;
+		background: #FFE400; 
+		border-radius: 5px;
+	}
+	
+	.detail-table .hit{
+		width: 100px;
+		height: 30px;
+		background: #FFE400; 
+		border-radius: 5px;
+	}
+	
+	.detail-table .hit-w80{
+		width: 80px;
+		height: 30px;
+		background: #FFE400; 
+		border-radius: 5px;
+	}
+
+	.detail-table .content{
+	    height: 350px;
+	    vertical-align: text-top;
+	    white-space:pre;
+	}
+	
+	.padding-top-5px{
+		padding-top: 5px;
+	}
+
+.go-list{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.detail-sub-table{
+    table-layout: fixed;
+    width: 520px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+	.detail-sub-table .prev{
+		width: 100px;
+		height: 30px;
+		background: #ffd700;
+		border-radius: 5px;
+		text-align: center;
+	}
+	
+	.detail-sub-table .next{
+		width: 100px;
+		height: 30px;
+		background: #ffd700;
+		border-radius: 5px;
+		text-align: center;
+	}
+
+    .detail-sub-table tr>td:last-child{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    
+.background-FFE400{
+	background: #FFE400;
+}
+
+.comment-box{
+	display: block;
+	margin-top: 15px;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-bottom: 40px;
+	width: 700px;
+}
+	.comment-box .comment{
+		--display: flex;
+		height: 100px;
+		border: 1px solid purple;
+		margin-bottom: 5px;
+		padding: 5px;
+		--flex-direction: column;
+		
+	}
+	
+		.comment-box .comment>div:first-child{
+			display: flex;
+			height: 25px;
+			align-items: center;
+		}
+		
+	
+		.comment-box .comment .icon{
+			display: inline-block;
+			width: 25px;
+			height: 25px;
+			--border: 1px solid red;
+		}
+		
+		.comment-box .comment .writer{
+			display: inline-block;
+			--border: 1px solid orange;
+			height: 16px;
+			
+		}
+		
+		.comment-box .comment .content{
+			display: block;
+			width: 100%;
+			height: 60px;
+		}
+		
+		.comment-box .comment>div:last-child{
+			display: flex;
+			justify-content: space-between;
+		}
+		
+		.comment-box .comment .delete{
+			height: 15px;
+			font-size: 10px;
+		}
+		
+		.comment-box .comment .regdate{
+			display: block;
+			height: 15px;
+			font-size: 10px;
+			text-indent: 5px;
+			--border: 1px solid blue;
+		}
+	
+	.comment-box .comment-post{
+		--display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 700px;
+		text-align: right;
+	}
+	
+		.comment-box .comment-post .comment-textarea{
+			width: 700px;
+			height: 80px;
+			vertical-align: text-top;
+			resize: none;
+			white-space:pre;
+		}
+		
+		.comment-box .comment-post .comment-button{
+			margin-top: 3px;
+		}
+
+/******************************************************************************************************************************/
+/*feedback*****************************************************************************************************************************/
+
