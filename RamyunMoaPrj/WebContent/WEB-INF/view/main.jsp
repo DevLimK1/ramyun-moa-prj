@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <main class="main">
 	<section class="first">
 		<div class="first-rm">라면모아가 처음이신가요?</div>
@@ -44,8 +45,7 @@
 				<div class="whats-tit">
 					<p>인기글</p>
 					<ul class="whats-list">
-						<li><span>미안하다 이거 보여주려고 어그로 끌었다. 정말 대박이지않냐? 이건 세기의
-								대결이다</span></li>
+						<li><span>글 내용1</span></li>
 						<li><span>글 내용2</span></li>
 						<li><span>글 내용3</span></li>
 						<li><span>글 내용4</span></li>
@@ -57,19 +57,12 @@
 						<li><span>글 내용10</span></li>
 					</ul>
 				</div>
-				<div class="whats-tit">
+				<div class="whats-tit"> <!-- 수정부분 06.10 -->
 					<p>후기 게시판</p>
 					<ul class="whats-list">
-						<li><span>글 내용1</span></li>
-						<li><span>글 내용2</span></li>
-						<li><span>글 내용3</span></li>
-						<li><span>글 내용4</span></li>
-						<li><span>글 내용5</span></li>
-						<li><span>글 내용6</span></li>
-						<li><span>글 내용7</span></li>
-						<li><span>글 내용8</span></li>
-						<li><span>글 내용9</span></li>
-						<li><span>글 내용10</span></li>
+						<c:forEach var="l" items="${reviewList}">
+							<li><span>${l.title}</span></li>
+						</c:forEach>
 					</ul>
 				</div>
 				<div class="whats-tit">

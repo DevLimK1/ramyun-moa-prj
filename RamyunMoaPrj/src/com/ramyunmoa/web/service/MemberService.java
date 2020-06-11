@@ -297,4 +297,9 @@ public class MemberService {
 		return flag;
 	}
 
+	public String getRoleByUserId(String uid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

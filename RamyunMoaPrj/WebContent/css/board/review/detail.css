@@ -472,3 +472,18 @@ input::placeholder {
 	width: 1.5em;
 	height: 1.5em;
 }
+
+.comment-write-box .comment-meta-info{
+	display:flex;
+	position:relative;
+}
+
+.comment-write-box .comment-content{
+	    margin-top: 10px;
+    line-height: 20px;
+    white-space: pre-line;
+}
+
+.comment-write-box .comment-meta-info i{
+	color:darkgray;
+}

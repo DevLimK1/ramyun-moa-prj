@@ -126,7 +126,7 @@
 					<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 				</div>
 
-				<textarea class="comment-write-content" name="content"
+				<textarea class="comment-write-content " name="content"
 					placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false" required="required"></textarea>
 				<div class="comment-container">
 					<ul class="comment-btn-list">
@@ -189,7 +189,7 @@
 		</div>
 
 	</div>
-	
+	        
 	 <form class="comment-form d-none" action="detail" method="post">
 	        <div class="comment-write-box second">
 	            <div class="img-box">
@@ -202,12 +202,12 @@
 	                    <!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 	                </div>
 	
-	                <textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols=""
+	                <textarea class="comment-write-content" name="content" placeholder="댓글을 입력해주세요." rows="" cols=""
 	                    spellcheck="false" required="required"></textarea>
 	                <div class="comment-container">
 	                    <ul class="comment-btn-list">
 	                        <li class="comment-reg-item"><input type="submit" value="등록"
-	                                class="comment-reg-btn btn-reset" /></li>
+	                                class="comment-reg-btn comment-second btn-reset" /></li>
 	                        <li class="comment-reg-item margin-left"><a class="comment-cancel-btn"> 취소 </a></li>
 	                    </ul>
 	

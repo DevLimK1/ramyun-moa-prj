@@ -1,6 +1,8 @@
 package com.ramyunmoa.web.controller.main;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
+
+import com.ramyunmoa.web.entity.review.Review;
+import com.ramyunmoa.web.service.MainService;
 
 /**
  * Servlet implementation class listController
@@ -22,11 +27,20 @@ public class MainController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		MainService service = new MainService();
+		try {
+			List<Review> reviewList = service.getReviewList();
+			request.setAttribute("reviewList", reviewList);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
 		container.render("main", request, response);
-		// RequestDispatcher dispatcher =
-		// request.getRequestDispatcher("/WEB-INF/view/main.jsp");
-//		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -60,7 +60,12 @@ window.addEventListener("load",function(){
 	
 	// 댓글 취소 버튼 클릭시
 	function commentCancelBtnClick(e){
-		e.target.classList.add("d-none");
+		
+		var elem=e.target;
+		while(!elem.classList.contains("comment-form"))
+			elem=elem.parentElement;
+		
+		elem.classList.add("d-none");
 	}
 	
 	// 대댓글 등록 버튼 클릭시
@@ -84,9 +89,12 @@ window.addEventListener("load",function(){
 		console.log(current.previousElementSibling.value); // 작성한 contents
 		console.log(current.previousElementSibling.previousElementSibling.firstElementChild.innerText);// 작성자이름
 
-	    var content=textarea.value;
+// var content=textarea.value;
+		var content=current.previousElementSibling.value // 작성한 content
 		var writerName=current.previousElementSibling.previousElementSibling.firstElementChild.innerText;
 		var reviewDetailId=reviewDetailId_.value;
+		
+	
 		
 // if (content == "") {
 // alert("댓글을 작성하지 않았습니다.");
@@ -99,85 +107,187 @@ window.addEventListener("load",function(){
 		xhr.onload=function(){
 			console.log(xhr.responseText);
 			var result=JSON.parse(xhr.responseText);
-			
-			var commentSort=comment.querySelector(".comment-sort");
-			
-			var template=`<div class="comment-box">
-				<div class="comment-likes">
-					<button type="button" class="likes-btn">
-						<i class="likes far fa-heart"></i>
-						<!--<i class="likes fas fa-heart"></i>-->
-					</button>
-					<div class="likes-cnt">${result.likes}</div>
-				</div>
+			if(e.target.classList.contains('comment-first')){// 첫 댓글
+				var template=`<div class="comment-box">
+					<div class="comment-likes">
+						<button type="button" class="likes-btn">
+							<i class="likes far fa-heart"></i>
+							<!--<i class="likes fas fa-heart"></i>-->
+						</button>
+						<div class="likes-cnt">${result.likes}</div>
+					</div>
 
-				<div class="comment-box_box">
-					<div class="comment-meta-info">
-				<a href="" class="user-id">${result.writerName }</a>
-				<div class="regdate">${result.regdate}</div>
-				<div class="update">
-                        <div class="dots-box">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </div>
-                        <div class="update-box d-none">
-                            <div class="update-edit"><span>수정</span></div>
-                            <div class="update-delete"><span>삭제</span></div>
-                        </div>
-                    </div>
-			</div>
-
-					<p class="comment-content">${result.content}</p>
-
-					<ul class="comment-btn-list">
-						<li class="comment-item">
-							<button class="comment-item-btn btn-reset comment-report-btn">
-								<img src="../../../../images/board/siren-2859791_640.png"
-									width="16px" height="16px" alt="">신고
-							</button>
-						</li>
-						<li class="comment-item">
-							<button class="comment-item-btn btn-reset comment-write-btn">
-								<i class="fas fa-comment-medical"></i>댓글 쓰기
-							</button>
-						</li>
-					</ul>
-				</div>
-
-			</div>
-			<form class="comment-form d-none" action="detail" method="post">
-	        <div class="comment-write-box second">
-	            <div class="img-box">
-	                <img src="../images/right-arrow-64x64.png" alt="">
-	            </div>
-	
-	            <div class="comment-box_box">
-	                <div class="comment-meta-info">
-	                    <a href="" class="comment-writer-name">id랍니다</a>
-	                    <!-- <div class="regdate">2020-06-03 15:23:43</div> -->
-	                </div>
-	
-	                <textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols=""
-	                    spellcheck="false" required="required"></textarea>
-	                <div class="comment-container">
-	                    <ul class="comment-btn-list">
-	                        <li class="comment-reg-item"><input type="submit" value="등록"
-	                                class="comment-reg-btn btn-reset" /></li>
-	                        <li class="comment-reg-item margin-left"><a class="comment-cancel-btn"> 취소 </a></li>
-	                    </ul>
-	
-	                    <div class="comment-write-count">
-	                        <span class="comment-write-num">0</span>/<span>300</span>
+					<div class="comment-box_box">
+						<div class="comment-meta-info">
+					<a href="" class="user-id">${result.writerName }</a>
+					<div class="regdate">${result.regdate}</div>
+					<div class="update">
+	                        <div class="dots-box">
+	                            <i class="fas fa-ellipsis-v"></i>
+	                        </div>
+	                        <div class="update-box d-none">
+	                            <div class="update-edit"><span>수정</span></div>
+	                            <div class="update-delete"><span>삭제</span></div>
+	                        </div>
 	                    </div>
-	                </div>
-	            </div>
-	
-	        </div>
-       </form>
-			`
-			
-			commentForm.insertAdjacentHTML('afterend',template);
+				</div>
 
-			commentForm.classList.add("d-none"); // 댓글 등록 후 댓글 폼 지우기
+						<p class="comment-content">${result.content}</p>
+
+						<ul class="comment-btn-list">
+							<li class="comment-item">
+								<button class="comment-item-btn btn-reset comment-report-btn">
+									<img src="../../../../images/board/siren-2859791_640.png"
+										width="16px" height="16px" alt="">신고
+								</button>
+							</li>
+							<li class="comment-item">
+								<button class="comment-item-btn btn-reset comment-write-btn">
+									<i class="fas fa-comment-medical"></i>댓글 쓰기
+								</button>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<form class="comment-form d-none" action="detail" method="post">
+		        <div class="comment-write-box second">
+		            <div class="img-box">
+		                <img src="../images/right-arrow-64x64.png" alt="">
+		            </div>
+		
+		            <div class="comment-box_box">
+		                <div class="comment-meta-info">
+		                    <a href="" class="comment-writer-name">id랍니다</a>
+		                    <!-- <div class="regdate">2020-06-03 15:23:43</div> -->
+		                </div>
+		
+		                <textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols=""
+		                    spellcheck="false" required="required"></textarea>
+		                <div class="comment-container">
+		                    <ul class="comment-btn-list">
+		                        <li class="comment-reg-item"><input type="submit" value="등록"
+		                                class="comment-reg-btn btn-reset" /></li>
+		                        <li class="comment-reg-item margin-left"><a class="comment-cancel-btn"> 취소 </a></li>
+		                    </ul>
+		
+		                    <div class="comment-write-count">
+		                        <span class="comment-write-num">0</span>/<span>300</span>
+		                    </div>
+		                </div>
+		            </div>
+		
+		        </div>
+	       </form>
+				`
+				commentForm.insertAdjacentHTML('afterend',template);
+				commentForm.classList.add("d-none"); // 댓글 등록 후 댓글 폼 지우기
+			}else if(e.target.classList.contains('comment-second')){ // 대댓글
+				var elem=e.target;
+				while(!elem.classList.contains("comment-form"))
+					elem=elem.parentElement;
+				commentForm=elem;
+				var template=`<form class="comment-form d-none" action="detail" method="post">
+		        <div class="comment-write-box second">
+		            <div class="img-box">
+		                <img src="../images/right-arrow-64x64.png" alt="">
+		            </div>
+		
+		            <div class="comment-box_box">
+		                <div class="comment-meta-info">
+		                    <a href="" class="comment-writer-name">id랍니다</a>
+		                    <!-- <div class="regdate">2020-06-03 15:23:43</div> -->
+		                </div>
+		
+		                <textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols=""
+		                    spellcheck="false" required="required"></textarea>
+		                <div class="comment-container">
+		                    <ul class="comment-btn-list">
+		                        <li class="comment-reg-item"><input type="submit" value="등록"
+		                                class="comment-reg-btn btn-reset" /></li>
+		                        <li class="comment-reg-item margin-left"><a class="comment-cancel-btn"> 취소 </a></li>
+		                    </ul>
+		
+		                    <div class="comment-write-count">
+		                        <span class="comment-write-num">0</span>/<span>300</span>
+		                    </div>
+		                </div>
+		            </div>
+		
+		        </div>
+	       </form>
+				<div class="comment-write-box second">
+					<div class="img-box">
+		                <img src="../images/right-arrow-64x64.png" alt="">
+		            </div>
+
+					<div class="comment-box_box">
+						<div class="comment-meta-info">
+					<a href="" class="user-id">${result.writerName }</a>
+					<div class="regdate">${result.regdate}</div>
+					<div class="update">
+	                        <div class="dots-box">
+	                            <i class="fas fa-ellipsis-v"></i>
+	                        </div>
+	                        <div class="update-box d-none">
+	                            <div class="update-edit"><span>수정</span></div>
+	                            <div class="update-delete"><span>삭제</span></div>
+	                        </div>
+	                    </div>
+				</div>
+
+						<p class="comment-content">${result.content}</p>
+
+						<ul class="comment-btn-list">
+							<li class="comment-item">
+								<button class="comment-item-btn btn-reset comment-report-btn">
+									<img src="../../../../images/board/siren-2859791_640.png"
+										width="16px" height="16px" alt="">신고
+								</button>
+							</li>
+							<li class="comment-item">
+								<button class="comment-item-btn btn-reset comment-write-btn">
+									<i class="fas fa-comment-medical"></i>댓글 쓰기
+								</button>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<form class="comment-form d-none" action="detail" method="post">
+		        <div class="comment-write-box second">
+		            <div class="img-box">
+		                <img src="../images/right-arrow-64x64.png" alt="">
+		            </div>
+		
+		            <div class="comment-box_box">
+		                <div class="comment-meta-info">
+		                    <a href="" class="comment-writer-name">id랍니다</a>
+		                    <!-- <div class="regdate">2020-06-03 15:23:43</div> -->
+		                </div>
+		
+		                <textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols=""
+		                    spellcheck="false" required="required"></textarea>
+		                <div class="comment-container">
+		                    <ul class="comment-btn-list">
+		                        <li class="comment-reg-item"><input type="submit" value="등록"
+		                                class="comment-reg-btn btn-reset" /></li>
+		                        <li class="comment-reg-item margin-left"><a class="comment-cancel-btn"> 취소 </a></li>
+		                    </ul>
+		
+		                    <div class="comment-write-count">
+		                        <span class="comment-write-num">0</span>/<span>300</span>
+		                    </div>
+		                </div>
+		            </div>
+		
+		        </div>
+	       </form>`
+					commentForm.previousElementSibling.insertAdjacentHTML('afterend',template);
+				
+				commentForm.classList.add("d-none");
+			}
+			
 		}
 		
 		var json={"reviewId":reviewDetailId,"writerName":writerName,

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <main id="login-main">
 	<div>
-		<form class="form-row login-form" name="loginFrm" method="post"	action="login">
+		<form class="form-row login-form" name="loginFrm" method="post"	action="login?returnURL=${param.returnURL}">
 			<table>
 				<tr>
 					<td>아이디</td>
