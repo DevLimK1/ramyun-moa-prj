@@ -147,11 +147,13 @@
 	</form>
 
 	<c:forEach var="cmt" items="${cmt}">
+	
 	<div class="comment-box">
+	<input type="hidden" value="${cmt.id}">
 		<div class="comment-likes">
 			<button type="button" class="likes-btn">
 				<i class="likes far fa-heart"></i>
-				<!--<i class="likes fas fa-heart"></i>-->
+				<i class="likes d-none fas fa-heart"></i>
 			</button>
 			<div class="likes-cnt">${cmt.likes}</div>
 		</div>
@@ -162,7 +164,7 @@
 				<div class="regdate">${cmt.regdate}</div>
 				<div class="update">
                         <div class="dots-box">
-                            <i class="fas fa-ellipsis-v"></i>
+                            <i class="dots fas fa-ellipsis-v"></i>
                         </div>
                         <div class="update-box d-none">
                             <div class="update-edit"><span>수정</span></div>
@@ -191,6 +193,7 @@
 	</div>
 	        
 	 <form class="comment-form d-none" action="detail" method="post">
+	 		<input type="hidden" value="${cmt.id}">
 	        <div class="comment-write-box second">
 	            <div class="img-box">
 	                <img src="../images/right-arrow-64x64.png" alt="">
@@ -219,6 +222,9 @@
 	
 	        </div>
        </form>
+       
+       
+       
 	</c:forEach>
 	
 	

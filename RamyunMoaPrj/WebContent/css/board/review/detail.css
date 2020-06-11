@@ -208,7 +208,11 @@ input::placeholder {
 .comment-write-box {
 	display: flex;
 	padding: 10px 0px;
-	border-bottom: 1px solid #46CFA7;
+	border-bottom: 1px solid lightgray;
+}
+
+.comment-write-box.second{
+	background-color:#F8F9FA;
 }
 
 .comment-write-box .comment-likes {
@@ -356,6 +360,10 @@ input::placeholder {
 	text-align: center;
 }
 
+.likes.d-none{
+	display:none;
+}
+
 .comment-box_box {
 	flex-grow: 1;
 	/* border: 1px solid black; */
@@ -381,12 +389,18 @@ input::placeholder {
 	color: darkgray;
 }
 
+
 .update .dots-box {
 	text-align: end;
 }
 
+.update .dots{
+	cursor:pointer;
+}
+
 .update .update-box {
 	border: 1px solid darkgray;
+	
 }
 
 .update-box .update-edit {
@@ -394,12 +408,14 @@ input::placeholder {
 	padding: 7px 0px;
 	box-sizing: border-box;
 	font-size: 12px;
+	
 }
 
 .update-box .update-delete {
 	padding: 7px 0px;
 	font-size: 12px;
 	box-sizing: border-box;
+		
 }
 
 .comment-meta-info .update {

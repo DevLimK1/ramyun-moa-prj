@@ -36,9 +36,12 @@ public class ReviewDetailController extends HttpServlet {
 		
 		List<ReviewCmt> cmt= null;
 		
+//		List<ReviewCmt> children=null;
+		
 		try {
 			rdv=service.getReviewDetailView(id);
 			cmt=service.getReviewCmt(id);
+//			children=service.getChildren(id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

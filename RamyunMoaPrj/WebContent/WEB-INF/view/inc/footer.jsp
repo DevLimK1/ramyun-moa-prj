@@ -24,6 +24,6 @@
 			<i class="fab fa-youtube"></i>
 		</ul>
 	</div>
-	<a class="gotop-btn" href="#"> <i class="fas fa-arrow-up"></i>
-	</a>
 </footer>
+<a class="gotop-btn" href="#"> <i class="fas fa-arrow-up"></i>
+	</a>
