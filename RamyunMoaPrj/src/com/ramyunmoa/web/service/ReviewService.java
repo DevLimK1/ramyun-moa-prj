@@ -428,12 +428,12 @@ public class ReviewService {
 		return id;
 
 	}
-
-	// 자세한페이지 댓글 목록
-	public List<ReviewCmt> getReviewCmt(int id) throws SQLException, ClassNotFoundException {
+	
+	//부모id를 참조하는 자식 정보들
+	public List<ReviewCmt> getCmtByParent(int id) throws ClassNotFoundException, SQLException{
 		List<ReviewCmt> list = new ArrayList<ReviewCmt>();
 
-		String sql = "SELECT * FROM ReviewCmt WHERE reviewId=?";
+		String sql = "SELECT * FROM ReviewCmt WHERE bossId=?";
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -447,12 +447,49 @@ public class ReviewService {
 		while (rs.next()) {
 			ReviewCmt view = new ReviewCmt(rs.getInt("id"), rs.getString("content"), rs.getString("writerName"),
 					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("reviewId"),rs.getInt("bossId"));
+			
 			list.add(view);
 		}
 
 		rs.close();
 		st.close();
 		con.close();
+		
+		return list;
+		
+	}
+
+	// 자세한페이지 댓글 목록
+	public List<ReviewCmt> getReviewCmt(int id) throws SQLException, ClassNotFoundException {
+		List<ReviewCmt> list = new ArrayList<ReviewCmt>();
+
+		String sql = "SELECT * FROM ReviewCmt WHERE reviewId=? and bossId IS NULL";
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, id);
+
+		ResultSet rs = st.executeQuery();
+
+		// 쿼리 실행 된 결과값 가져오기
+		while (rs.next()) {
+			ReviewCmt view = new ReviewCmt(rs.getInt("id"), rs.getString("content"), rs.getString("writerName"),
+					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("reviewId"),rs.getInt("bossId"));
+			
+			list.add(view);
+		}
+
+		rs.close();
+		st.close();
+		con.close();
+		
+		
+		for(int i=0;i<list.size();i++) {
+			ReviewCmt cmt=list.get(i);
+			cmt.setChildren(getCmtByParent(cmt.getId()));;
+		}
 
 		return list;
 

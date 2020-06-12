@@ -24,16 +24,13 @@
 			${r.mfcProduct}</div>
 
 		<div class="star-grade detail-margin-top">
-			평점 : ${r.gdContent }
-			 <span class="star"><c:choose>
+			평점 : ${r.gdContent } <span class="star"><c:choose>
 					<c:when test="${r.gradeId==1}">★☆☆☆☆</c:when>
 					<c:when test="${r.gradeId==2}">★★☆☆☆</c:when>
 					<c:when test="${r.gradeId==3}">★★★☆☆</c:when>
 					<c:when test="${r.gradeId==4}">★★★★☆</c:when>
 					<c:when test="${r.gradeId==5}">★★★★★</c:when>
-				</c:choose>
-			</span>
-			[${r.gradeId}점]
+				</c:choose> </span> [${r.gradeId}점]
 		</div>
 
 		<div class="meta-box detail-margin-top">
@@ -103,13 +100,13 @@
 			<li class="comment-sort-item">최신순</li>
 		</ul>
 		<div class="comment-sort-write">
-			<i class="far fa-plus-square comment-sort-write-btn"></i> 
-			<span
+			<i class="far fa-plus-square comment-sort-write-btn"></i> <span
 				class="comment-write-txt comment-sort-write-btn">댓글쓰기</span>
 		</div>
 	</div>
 
-	<form class="comment-form comment-first-form d-none" action="detail" method="post">
+	<form class="comment-form comment-first-form d-none" action="detail"
+		method="post">
 		<input class="review-detail-id" type="hidden" value="${param.id}">
 		<div class="comment-write-box">
 			<div class="comment-likes">
@@ -127,11 +124,11 @@
 				</div>
 
 				<textarea class="comment-write-content " name="content"
-					placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false" required="required"></textarea>
+					placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"
+					required="required"></textarea>
 				<div class="comment-container">
 					<ul class="comment-btn-list">
-						<li class="comment-reg-item">
-						<input type="submit" value="등록"
+						<li class="comment-reg-item"><input type="submit" value="등록"
 							class="comment-reg-btn comment-first btn-reset" /></li>
 						<li class="comment-reg-item margin-left"><a
 							class="comment-cancel-btn"> 취소 </a></li>
@@ -147,87 +144,172 @@
 	</form>
 
 	<c:forEach var="cmt" items="${cmt}">
-	
-	<div class="comment-box">
-	<input type="hidden" value="${cmt.id}">
-		<div class="comment-likes">
-			<button type="button" class="likes-btn">
-				<i class="likes far fa-heart"></i>
-				<i class="likes d-none fas fa-heart"></i>
-			</button>
-			<div class="likes-cnt">${cmt.likes}</div>
-		</div>
 
-		<div class="comment-box_box">
-			<div class="comment-meta-info">
-				<a href="" class="user-id">${cmt.writerName }</a>
-				<div class="regdate">${cmt.regdate}</div>
-				<div class="update">
-                        <div class="dots-box">
-                            <i class="dots fas fa-ellipsis-v"></i>
-                        </div>
-                        <div class="update-box d-none">
-                            <div class="update-edit"><span>수정</span></div>
-                            <div class="update-delete"><span>삭제</span></div>
-                        </div>
-                    </div>
+		<div class="comment-box">
+			<input type="hidden" value="${cmt.id}">
+			<div class="comment-likes">
+				<button type="button" class="likes-btn">
+					<i class="likes far fa-heart"></i> <i
+						class="likes d-none fas fa-heart"></i>
+				</button>
+				<div class="likes-cnt">${cmt.likes}</div>
 			</div>
 
-			<p class="comment-content">${cmt.content}</p>
+			<div class="comment-box_box">
+				<div class="comment-meta-info">
+					<a href="" class="user-id">${cmt.writerName }</a>
+					<div class="regdate">${cmt.regdate}</div>
+					<div class="update">
+						<div class="dots-box">
+							<i class="dots fas fa-ellipsis-v"></i>
+						</div>
+						<div class="update-box d-none">
+							<div class="update-edit">
+								<span>수정</span>
+							</div>
+							<div class="update-delete">
+								<span>삭제</span>
+							</div>
+						</div>
+					</div>
+				</div>
 
-			<ul class="comment-btn-list">
-				<li class="comment-item">
-					<button class="comment-item-btn btn-reset comment-report-btn">
-						<img src="../../../../images/board/siren-2859791_640.png"
-							width="16px" height="16px" alt="">신고
-					</button>
-				</li>
-				<li class="comment-item">
-					<button class="comment-item-btn btn-reset comment-write-btn">
-						<i class="fas fa-comment-medical"></i>댓글 쓰기
-					</button>
-				</li>
-			</ul>
+				<p class="comment-content">${cmt.content}</p>
+
+				<ul class="comment-btn-list">
+					<li class="comment-item">
+						<button class="comment-item-btn btn-reset comment-report-btn">
+							<img src="../../../../images/board/siren-2859791_640.png"
+								width="16px" height="16px" alt="">신고
+						</button>
+					</li>
+					<li class="comment-item">
+						<button class="comment-item-btn btn-reset comment-write-btn">
+							<i class="fas fa-comment-medical"></i>댓글 쓰기
+						</button>
+					</li>
+				</ul>
+			</div>
+
 		</div>
 
-	</div>
-	        
-	 <form class="comment-form d-none" action="detail" method="post">
-	 		<input type="hidden" value="${cmt.id}">
-	        <div class="comment-write-box second">
-	            <div class="img-box">
-	                <img src="../images/right-arrow-64x64.png" alt="">
-	            </div>
-	
-	            <div class="comment-box_box">
-	                <div class="comment-meta-info">
-	                    <a href="" class="comment-writer-name">id랍니다</a>
-	                    <!-- <div class="regdate">2020-06-03 15:23:43</div> -->
-	                </div>
-	
-	                <textarea class="comment-write-content" name="content" placeholder="댓글을 입력해주세요." rows="" cols=""
-	                    spellcheck="false" required="required"></textarea>
-	                <div class="comment-container">
-	                    <ul class="comment-btn-list">
-	                        <li class="comment-reg-item"><input type="submit" value="등록"
-	                                class="comment-reg-btn comment-second btn-reset" /></li>
-	                        <li class="comment-reg-item margin-left"><a class="comment-cancel-btn"> 취소 </a></li>
-	                    </ul>
-	
-	                    <div class="comment-write-count">
-	                        <span class="comment-write-num">0</span>/<span>300</span>
-	                    </div>
-	                </div>
-	            </div>
-	
-	        </div>
-       </form>
-       
-       
-       
+		<form class="comment-form d-none" action="detail" method="post">
+			<input type="hidden" value="${cmt.id}">
+			<div class="comment-write-box second">
+				<div class="img-box">
+					<img src="../images/right-arrow-64x64.png" alt="">
+				</div>
+
+				<div class="comment-box_box">
+					<div class="comment-meta-info">
+						<a href="" class="comment-writer-name">id랍니다</a>
+						<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
+					</div>
+
+					<textarea class="comment-write-content" name="content"
+						placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"
+						required="required"></textarea>
+					<div class="comment-container">
+						<ul class="comment-btn-list">
+							<li class="comment-reg-item"><input type="submit" value="등록"
+								class="comment-reg-btn comment-second btn-reset" /></li>
+							<li class="comment-reg-item margin-left"><a
+								class="comment-cancel-btn"> 취소 </a></li>
+						</ul>
+
+						<div class="comment-write-count">
+							<span class="comment-write-num">0</span>/<span>300</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</form>
+		
+		<!-- 대댓글 -->
+		<c:forEach var="child" items="${cmt.children}">
+			<div class="comment-write-box second">
+				<input type="hidden" value="${child.bossId}">
+				<div class="img-box">
+					<img src="../images/right-arrow-64x64.png" alt="">
+				</div>
+
+				<div class="comment-box_box">
+					<div class="comment-meta-info">
+						<a href="" class="user-id">${child.writerName }</a>
+						<div class="regdate">${child.regdate}</div>
+						<div class="update">
+							<div class="dots-box">
+								<i class="dots fas fa-ellipsis-v"></i>
+							</div>
+							<div class="update-box d-none">
+								<div class="update-edit">
+									<span>수정</span>
+								</div>
+								<div class="update-delete">
+									<span>삭제</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<p class="comment-content">${child.content}</p>
+
+					<ul class="comment-btn-list">
+						<li class="comment-item">
+							<button class="comment-item-btn btn-reset comment-report-btn">
+								<img src="../../../../images/board/siren-2859791_640.png"
+									width="16px" height="16px" alt="">신고
+							</button>
+						</li>
+						<li class="comment-item">
+							<button class="comment-item-btn btn-reset comment-write-btn">
+								<i class="fas fa-comment-medical"></i>댓글 쓰기
+							</button>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+			<form class="comment-form d-none" action="detail" method="post">
+				<input type="hidden" value="${child.bossId}">
+				<div class="comment-write-box second">
+					<div class="img-box">
+						<img src="../images/right-arrow-64x64.png" alt="">
+					</div>
+
+					<div class="comment-box_box">
+						<div class="comment-meta-info">
+							<a href="" class="comment-writer-name">id랍니다</a>
+							<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
+						</div>
+
+						<textarea class="comment-write-content" name="contents"
+							placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"
+							required="required"></textarea>
+						<div class="comment-container">
+							<ul class="comment-btn-list">
+								<li class="comment-reg-item"><input type="submit"
+									value="등록" class="comment-reg-btn comment-second btn-reset" /></li>
+								<li class="comment-reg-item margin-left"><a
+									class="comment-cancel-btn"> 취소 </a></li>
+							</ul>
+
+							<div class="comment-write-count">
+								<span class="comment-write-num">0</span>/<span>300</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</c:forEach>
+
+
 	</c:forEach>
-	
-	
+
+
 </section>
 
 <%-- 
