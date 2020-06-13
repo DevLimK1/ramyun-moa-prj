@@ -56,7 +56,7 @@ window.addEventListener("load", function() {
 	    	  var header=main.previousElementSibling;
 	    	  var div=document.createElement("div");
 	    	  div.innerHTML=xhr.responseText.trim(); //문자열을 dom으로 변경
-	    	  
+	    	  console.log(xhr.responseText.trim());
 	    	  var newMain=div.firstElementChild;
 	    	  
 	    	  main.remove();

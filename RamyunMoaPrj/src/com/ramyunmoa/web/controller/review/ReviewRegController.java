@@ -11,9 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.ramyunmoa.web.entity.member.Member;
 import com.ramyunmoa.web.entity.review.Grade;
-import com.ramyunmoa.web.entity.review.Member;
 import com.ramyunmoa.web.entity.review.Review;
 import com.ramyunmoa.web.service.ReviewService;
 import com.ramyunmoa.web.view.review.MfcProductView;
@@ -27,15 +28,16 @@ public class ReviewRegController extends HttpServlet {
 		List<MfcProductView> mpv = new ArrayList<MfcProductView>();
 		List<Grade> grade = new ArrayList<Grade>();
 		Member member=new Member();
+		HttpSession session = request.getSession();
 		
-		int id=1;
+		String uid=(String)session.getAttribute("uid");
 		
 		ReviewService service = new ReviewService();
 
 		try {
 			mpv = service.getMfcProductViewList();
 			grade = service.getGrade();
-			member=service.getMember(id);
+			member=service.getMember(uid);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,6 +45,8 @@ public class ReviewRegController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println(member);
 
 		request.setAttribute("mpv", mpv);
 		request.setAttribute("grade", grade);

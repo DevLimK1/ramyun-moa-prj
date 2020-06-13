@@ -10,19 +10,221 @@ window.addEventListener("load",function(){
 	var commentForm=comment.querySelector(".comment-form");
 	var commentCancelBtn=comment.querySelector(".comment-cancel-btn");
 	var commentRegBtn=comment.querySelector(".comment-reg-btn");
+	var commentRefresh=comment.querySelector(".comment-header-refresh");
+	var reviewDetailId_=comment.querySelector(".review-detail-id");
+	var reviewDetailId=reviewDetailId_.value;
+	var comments="";
+	
+	
+	//새로고침 버튼 --> 구현중
+	commentRefresh.onclick=function(e){
+		var xhr=new XMLHttpRequest();
+		
+		
+		xhr.open('GET','detail-data?id='+reviewDetailId,true);
+		
+		xhr.onload=function(){
+			console.log(xhr.responseText);
+			comments=JSON.parse(xhr.responseText);
+			console.log(comments);
+			bind();
+		}
+		
+	
+		xhr.send(null);
+	}
+	
+	function bind(){ //댓글 새로고침 바인드 --> 구현중
+		//sessionScope 해결해야한다. -> detail-data controller에서 
+		//쿼리로 session에서 아이디가 있다면 얻어와서 쿼리로 가져오자.
+		//자바스크립트로 session 아이디 얻어오는 방법?..
+		var commentFirstForm=document.querySelector(".comment-first-form");
+		var cmtContent="";
+		for(var i in comments){
+			var cmt= comments[i];
+			var childrenTemplate="";
+			var childrenContent="";
+			console.log(cmt.children);
+			
+			if(cmt.children){ //대댓글이 있다면
+				console.log("true");
+				for(var i in cmt.children){
+					var child=cmt.children[i];
+					childrenTemplate=`<div class="comment-write-box second">
+				<input type="hidden" value="${child.bossId}">
+				<div class="img-box">
+					<img src="../images/right-arrow-64x64.png" alt="">
+				</div>
 
+				<div class="comment-box_box">
+					<div class="comment-meta-info">
+						<a href="" class="user-id">${child.writerName }</a>
+						<div class="regdate">${child.regdate}</div>
+						<div class="update">
+							<div class="dots-box">
+								<i class="dots fas fa-ellipsis-v"></i>
+							</div>
+							<div class="update-box d-none">
+								<div class="update-edit">
+									<span>수정</span>
+								</div>
+								<div class="update-delete">
+									<span>삭제</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<p class="comment-content">${child.content}</p>
+
+					<ul class="comment-btn-list">
+						<li class="comment-item">
+							<button class="comment-item-btn btn-reset comment-report-btn">
+								<img src="../../../../images/board/siren-2859791_640.png"
+									width="16px" height="16px" alt="">신고
+							</button>
+						</li>
+						<li class="comment-item">
+							<button class="comment-item-btn btn-reset comment-write-btn">
+								<i class="fas fa-comment-medical"></i>댓글 쓰기
+							</button>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+			<form class="comment-form d-none" action="detail" method="post">
+				<input type="hidden" value="${child.bossId}">
+				<div class="comment-write-box second">
+					<div class="img-box">
+						<img src="../images/right-arrow-64x64.png" alt="">
+					</div>
+
+					<div class="comment-box_box">
+						<div class="comment-meta-info">
+							<a href="" class="comment-writer-name">${sessionScope.uid }</a>
+							<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
+						</div>
+
+						<textarea class="comment-write-content" name="contents"
+							placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"
+							required="required" maxlength="300"></textarea>
+						<div class="comment-container">
+							<ul class="comment-btn-list">
+								<li class="comment-reg-item"><input type="submit"
+									value="등록" class="comment-reg-btn comment-second btn-reset" /></li>
+								<li class="comment-reg-item margin-left"><a
+									class="comment-cancel-btn"> 취소 </a></li>
+							</ul>
+
+							<div class="comment-write-count">
+								<span class="comment-write-num">0</span>/<span>300</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>`;
+					childrenContent+=childrenTemplate;
+				} //~for
+			
+				
+			}//~if
+			else{console.log("false")}
+			
+			//first 댓글 template
+			var template=`<div class="comment-box">
+			<input type="hidden" value="${cmt.id}">
+			<div class="comment-likes">
+				<button type="button" class="likes-btn">
+					<i class="likes far fa-heart"></i> <i
+						class="likes d-none fas fa-heart"></i>
+				</button>
+				<div class="likes-cnt">${cmt.likes}</div>
+			</div>
+
+			<div class="comment-box_box">
+				<div class="comment-meta-info">
+					<a href="" class="user-id">${cmt.writerName }</a>
+					<div class="regdate">${cmt.regdate}</div>
+					<div class="update">
+						<div class="dots-box">
+							<i class="dots fas fa-ellipsis-v"></i>
+						</div>
+						<div class="update-box d-none">
+							<div class="update-edit">
+								<span>수정</span>
+							</div>
+							<div class="update-delete">
+								<span>삭제</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<p class="comment-content">${cmt.content}</p>
+
+				<ul class="comment-btn-list">
+					<li class="comment-item">
+						<button class="comment-item-btn btn-reset comment-report-btn">
+							<img src="../../../../images/board/siren-2859791_640.png"
+								width="16px" height="16px" alt="">신고
+						</button>
+					</li>
+					<li class="comment-item">
+						<button class="comment-item-btn btn-reset comment-write-btn">
+							<i class="fas fa-comment-medical"></i>댓글 쓰기
+						</button>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+		<form class="comment-form d-none" action="detail" method="post">
+			<input type="hidden" value="${cmt.id}">
+			<div class="comment-write-box second">
+				<div class="img-box">
+					<img src="../images/right-arrow-64x64.png" alt="">
+				</div>
+
+				<div class="comment-box_box">
+					<div class="comment-meta-info">
+						<a href="" class="comment-writer-name">${sessionScope.uid }</a>
+						<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
+					</div>
+
+					<textarea class="comment-write-content" name="content"
+						placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"
+						required="required" maxlength="300"></textarea>
+					<div class="comment-container">
+						<ul class="comment-btn-list">
+							<li class="comment-reg-item"><input type="submit" value="등록"
+								class="comment-reg-btn comment-second btn-reset" /></li>
+							<li class="comment-reg-item margin-left"><a
+								class="comment-cancel-btn"> 취소 </a></li>
+						</ul>
+
+						<div class="comment-write-count">
+							<span class="comment-write-num">0</span>/<span>300</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</form>
+		`+childrenContent;
+			cmtContent+=template;	
+		}
+	}
+	
 	
 	// comment data values
-	var writerName=comment.querySelector(".comment-writer-name");
-	var textarea=comment.querySelector("textarea");
-	var reviewDetailId_=comment.querySelector(".review-detail-id");
+//	var writerName=comment.querySelector(".comment-writer-name");
+//	var textarea=comment.querySelector("textarea");
 	
-//	console.log(textarea);
-	textarea.addEventListener('input',function(e){
-		textarea=e.target.value;
-		console.log(e.target.value);
-		console.log(textarea.length);
-	});
+	
+
 	
 	comment.onclick=function(e){
 		console.log(e.target);
@@ -47,6 +249,25 @@ window.addEventListener("load",function(){
 		
 		if(e.target.classList.contains('likes'))
 			likesBtnClick(e);
+
+		if(e.target.nodeName==='TEXTAREA'){
+			e.target.addEventListener('input',function(e){
+				var cmtTextarea=e.target;
+				var cmtTextareaValue=cmtTextarea.value;
+				console.log(cmtTextareaValue); //글자
+				console.log(cmtTextareaValue.length); //글자 수 카운트
+				
+				cmtTextarea.nextElementSibling.lastElementChild.firstElementChild.innerText=cmtTextareaValue.length;
+				
+			});
+		}
+		
+//		console.log(textarea);
+//		textarea.addEventListener('input',function(e){
+//			textarea=e.target.value;
+//			console.log(e.target.value);
+//			console.log(textarea.length);
+//		});
 		
 			
 	}
@@ -109,10 +330,9 @@ window.addEventListener("load",function(){
 		elem.classList.add("d-none");
 	}
 	
-	// 대댓글 등록 버튼 클릭시
 	
 	
-	// 상단 댓글 등록 버튼 클릭시
+	
 	function commentRegBtnClick(e){ // 댓글 등록버튼 클릭시
 		e.preventDefault();
 // alert("hi");
@@ -129,7 +349,7 @@ window.addEventListener("load",function(){
 		var elem=e.target;
 		var content=current.previousElementSibling.value // 작성한 content
 		var writerName=current.previousElementSibling.previousElementSibling.firstElementChild.innerText;
-		var reviewDetailId=reviewDetailId_.value;
+		
 		
 		while(!current.classList.contains('comment-form'))
 			current=current.parentElement;
@@ -199,12 +419,12 @@ window.addEventListener("load",function(){
 		
 		            <div class="comment-box_box">
 		                <div class="comment-meta-info">
-		                    <a href="" class="comment-writer-name">id랍니다</a>
+		                    <a href="" class="comment-writer-name">${result.writerName }</a>
 		                    <!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 		                </div>
 		
 		                <textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols=""
-		                    spellcheck="false" required="required"></textarea>
+		                    spellcheck="false" required="required" maxlength="300"></textarea>
 		                <div class="comment-container">
 		                    <ul class="comment-btn-list">
 		                        <li class="comment-reg-item"><input type="submit" value="등록"
@@ -237,12 +457,12 @@ window.addEventListener("load",function(){
 		
 		            <div class="comment-box_box">
 		                <div class="comment-meta-info">
-		                    <a href="" class="comment-writer-name">id랍니다</a>
+		                    <a href="" class="comment-writer-name">${result.writerName }</a>
 		                    <!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 		                </div>
 		
 		                <textarea class="comment-write-content" name="contents" placeholder="댓글을 입력해주세요." rows="" cols=""
-		                    spellcheck="false" required="required"></textarea>
+		                    spellcheck="false" required="required" maxlength="300"></textarea>
 		                <div class="comment-container">
 		                    <ul class="comment-btn-list">
 		                        <li class="comment-reg-item"><input type="submit" value="등록"

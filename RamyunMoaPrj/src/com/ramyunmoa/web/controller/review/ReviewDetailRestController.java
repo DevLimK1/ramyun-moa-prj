@@ -2,6 +2,7 @@ package com.ramyunmoa.web.controller.review;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -24,11 +25,15 @@ import com.ramyunmoa.web.view.review.ReviewDetailView;
 /**
  * Servlet implementation class ReviewDetailController
  */
-@WebServlet("/review/detail")
-public class ReviewDetailController extends HttpServlet {
+@WebServlet("/review/detail-data")
+public class ReviewDetailRestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
 		int id=Integer.parseInt(request.getParameter("id"));
 		System.out.println("id:"+id);
 		ReviewService service=new ReviewService();
@@ -36,10 +41,9 @@ public class ReviewDetailController extends HttpServlet {
 		
 		List<ReviewCmt> cmt= null;
 		
-//		List<ReviewCmt> children=null;
 		
 		try {
-			rdv=service.getReviewDetailView(id);
+//			rdv=service.getReviewDetailView(id);
 			cmt=service.getReviewCmt(id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -49,16 +53,25 @@ public class ReviewDetailController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		System.out.println("rdv:"+rdv);
+		System.out.println("cmd-->"+cmt);
 		
 		request.setAttribute("cmt", cmt);
-		request.setAttribute("r", rdv);
+//		request.setAttribute("r", rdv);
 		
 		
-		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
-		container.render("review.detail", request, response);
-//		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/view/board/review/detail.jsp");
-//		dispatcher.forward(request, response);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm")
+				.create(); // 날짜 포맷 설정방법
+		
+		String json = gson.toJson(cmt);
+//		String json2 = gson.toJson(rdv);
+		
+//		json+=json2
+
+		System.out.println(json);
+		PrintWriter out= response.getWriter();
+		out.write(json);
+//		out.write(json2);
+
 	
 	}
 

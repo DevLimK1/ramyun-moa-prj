@@ -148,7 +148,7 @@ public class MemberService {
 	// ȸ������
 	public int insertMember(Member member) throws ClassNotFoundException, SQLException {
 		int result = 0;
-		String sql = "INSERT INTO Member(uid,pwd,email,nickname,gender,grade) values(?,?,?,?,?,?)";
+		String sql = "INSERT INTO Member(uid,pwd,email,nickname,gender) values(?,?,?,?,?)";
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -159,7 +159,6 @@ public class MemberService {
 		st.setString(3, member.getEmail());
 		st.setString(4, member.getNickname());
 		st.setString(5, member.getGender());
-		st.setString(6, "����ȸ��");
 
 		result = st.executeUpdate();
 		System.out.println(result);

@@ -1,5 +1,7 @@
 package com.ramyunmoa.web.entity.member;
 
+import java.util.Date;
+
 public class Member {
 	private int id;
 	private String uid;
@@ -9,7 +11,7 @@ public class Member {
 	private String pwd;
 	private String nickname;
 	private String gender;
-	private String regdate;
+	private Date regdate;
 	private String grade;
 	
 	public Member() {
@@ -17,7 +19,7 @@ public class Member {
 	}
 
 	public Member(int id, String uid, String email, String email1, String email2, String pwd, String nickname,
-			String gender, String regdate, String grade) {
+			String gender, Date regdate, String grade) {
 		this.id = id;
 		this.uid = uid;
 		this.email = email;
@@ -46,7 +48,7 @@ public class Member {
 
 
 
-	public Member(int id, String uid, String email, String pwd, String nickname, String gender, String regdate) {
+	public Member(int id, String uid, String email, String nickname,String pwd , String gender, Date regdate) {
 		super();
 		this.id = id;
 		this.uid = uid;
@@ -56,6 +58,7 @@ public class Member {
 		this.gender = gender;
 		this.regdate = regdate;
 	}
+
 	public String getGrade() {
 		return grade;
 	}
@@ -68,10 +71,10 @@ public class Member {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 	

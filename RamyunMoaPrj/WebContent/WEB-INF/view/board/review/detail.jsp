@@ -40,7 +40,7 @@
 						pattern="yyyy-MM-dd HH:mm" /> --%>
 					<fmt:formatDate value="${r.regdate}" pattern="yyyy-MM-dd HH:mm" />
 				</div>
-				<div class="writer-name">${r.nickname }</div>
+				<div class="writer-name">${r.writerName }</div>
 			</div>
 			<div class="meta-info">
 				<div class="hit">조회수 ${r.hit }</div>
@@ -119,13 +119,13 @@
 
 			<div class="comment-box_box">
 				<div class="comment-meta-info">
-					<a href="" class="comment-writer-name">id랍니다</a>
+					<a href="" class="comment-writer-name">${sessionScope.uid}</a>
 					<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 				</div>
 
 				<textarea class="comment-write-content " name="content"
 					placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"
-					required="required"></textarea>
+					required="required" maxlength="300"></textarea>
 				<div class="comment-container">
 					<ul class="comment-btn-list">
 						<li class="comment-reg-item"><input type="submit" value="등록"
@@ -202,13 +202,13 @@
 
 				<div class="comment-box_box">
 					<div class="comment-meta-info">
-						<a href="" class="comment-writer-name">id랍니다</a>
+						<a href="" class="comment-writer-name">${sessionScope.uid }</a>
 						<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 					</div>
 
 					<textarea class="comment-write-content" name="content"
 						placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"
-						required="required"></textarea>
+						required="required" maxlength="300"></textarea>
 					<div class="comment-container">
 						<ul class="comment-btn-list">
 							<li class="comment-reg-item"><input type="submit" value="등록"
@@ -281,13 +281,13 @@
 
 					<div class="comment-box_box">
 						<div class="comment-meta-info">
-							<a href="" class="comment-writer-name">id랍니다</a>
+							<a href="" class="comment-writer-name">${sessionScope.uid }</a>
 							<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 						</div>
 
 						<textarea class="comment-write-content" name="contents"
 							placeholder="댓글을 입력해주세요." rows="" cols="" spellcheck="false"
-							required="required"></textarea>
+							required="required" maxlength="300"></textarea>
 						<div class="comment-container">
 							<ul class="comment-btn-list">
 								<li class="comment-reg-item"><input type="submit"

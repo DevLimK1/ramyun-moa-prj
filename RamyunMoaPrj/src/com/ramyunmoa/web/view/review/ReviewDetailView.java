@@ -7,7 +7,7 @@ public class ReviewDetailView {
 	private String title;
 	private String mfcProduct;
 	private Date regdate;
-	private String nickname;
+	private String writerName;
 	private int hit;
 	private int likes;
 	private String content;
@@ -19,13 +19,13 @@ public class ReviewDetailView {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ReviewDetailView(int id, String title, String mfcProduct, Date regdate, String nickname, int hit, int likes,
+	public ReviewDetailView(int id, String title, String mfcProduct, Date regdate, String writerName, int hit, int likes,
 			String content, int gradeId, String gdContent,int cmtCount) {
 		this.id = id;
 		this.title = title;
 		this.mfcProduct = mfcProduct;
 		this.regdate = regdate;
-		this.nickname = nickname;
+		this.writerName= writerName;
 		this.hit = hit;
 		this.likes = likes;
 		this.content = content;
@@ -68,12 +68,15 @@ public class ReviewDetailView {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	public String getNickname() {
-		return nickname;
+	
+	public String getWriterName() {
+		return writerName;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
 	}
+
 	public int getHit() {
 		return hit;
 	}
@@ -107,8 +110,8 @@ public class ReviewDetailView {
 	@Override
 	public String toString() {
 		return "ReviewDetailView [id=" + id + ", title=" + title + ", mfcProduct=" + mfcProduct + ", regdate=" + regdate
-				+ ", nickname=" + nickname + ", hit=" + hit + ", likes=" + likes + ", content=" + content + ", gradeId="
-				+ gradeId + ", gdContent=" + gdContent + ", cmtCount=" + cmtCount + "]";
+				+ ", writerName=" + writerName + ", hit=" + hit + ", likes=" + likes + ", content=" + content
+				+ ", gradeId=" + gradeId + ", gdContent=" + gdContent + ", cmtCount=" + cmtCount + "]";
 	}
 	
 	

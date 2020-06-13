@@ -253,6 +253,10 @@ input::placeholder {
 	margin-bottom: 20px;
 }
 
+.comment-write-num{
+	font-weight: bold;
+}
+
 /* ************* detail-comment ***************** */
 #comment {
 	background-color: white;

@@ -61,7 +61,7 @@ public class MemberRegController extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('����� ȸ�������� ���ϵ帳�ϴ�!'); location.href='login'; </script>");
+			out.println("<script>alert('라면모아 회원가입되었습니다. 환영합니다 ^-^ '); location.href='login'; </script>");
 			out.flush();
 			
 		} catch (ClassNotFoundException e) {

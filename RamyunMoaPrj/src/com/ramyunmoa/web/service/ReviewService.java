@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.ramyunmoa.web.entity.member.Member;
 import com.ramyunmoa.web.entity.review.Grade;
-import com.ramyunmoa.web.entity.review.Member;
+
 import com.ramyunmoa.web.entity.review.Review;
 import com.ramyunmoa.web.entity.review.ReviewCmt;
 import com.ramyunmoa.web.view.review.MfcProductView;
@@ -62,7 +63,7 @@ public class ReviewService {
 			String title = rs.getString("title");
 			String mfcProduct = rs.getString("mfc-product");
 			Date regdate = rs.getDate("regdate");
-			String nickname = rs.getString("nickname");
+			String writerName = rs.getString("writerName");
 			int hit = rs.getInt("hit");
 			int likes = rs.getInt("likes");
 			String content = rs.getString("content");
@@ -70,7 +71,7 @@ public class ReviewService {
 			String gdContent = rs.getString("gdContent");
 			int cmtCount = rs.getInt("cmtCount");
 
-			rdv = new ReviewDetailView(id, title, mfcProduct, regdate, nickname, hit, likes, content, gradeId,
+			rdv = new ReviewDetailView(id, title, mfcProduct, regdate, writerName, hit, likes, content, gradeId,
 					gdContent, cmtCount);
 
 		}
@@ -107,52 +108,53 @@ public class ReviewService {
 		return result;
 	}
 
-	/*
-	 * // 자세한 페이지 수정 public int updateReview(Review review) throws
-	 * ClassNotFoundException, SQLException { int result = 0;
-	 * 
-	 * String sql =
-	 * "UPDATE ReviewBoardTest SET title=?,content=?,item=?,star=?,gradeTitle=?,starGrade=? WHERE id=?"
-	 * ; String url =
-	 * "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-	 * 
-	 * Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
-	 * 드라이버 클래스가 달라져야함 Connection con = DriverManager.getConnection(url, "rmteam",
-	 * "rm0322"); PreparedStatement st = con.prepareStatement(sql);
-	 * 
-	 * st.setString(1, review.getTitle()); st.setString(2, review.getContent());
-	 * st.setString(3, review.getItem()); st.setString(4, review.getStar());
-	 * st.setString(5, review.getGradeTitle()); st.setInt(6, review.getStarGrade());
-	 * st.setInt(7, review.getId());
-	 * 
-	 * result = st.executeUpdate();
-	 * 
-	 * // rs.close(); st.close(); con.close();
-	 * 
-	 * return result; }
-	 */
+	// 자세한 페이지 수정
+	public int updateReview(Review review) throws ClassNotFoundException, SQLException {
+		int result = 0;
 
-	/*
-	 * // 자세한페이지 삭제 public int deleteReview(int id) throws ClassNotFoundException,
-	 * SQLException {
-	 * 
-	 * int result = 0;
-	 * 
-	 * String sql = "DELETE FROM ReviewBoardTest WHERE id=?"; String url =
-	 * "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-	 * 
-	 * Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
-	 * 드라이버 클래스가 달라져야함 Connection con = DriverManager.getConnection(url, "rmteam",
-	 * "rm0322"); PreparedStatement st = con.prepareStatement(sql);
-	 * 
-	 * st.setInt(1, id);
-	 * 
-	 * result = st.executeUpdate();
-	 * 
-	 * // rs.close(); st.close(); con.close();
-	 * 
-	 * return result; }
-	 */
+		String sql = "UPDATE Review SET title=?,content=?,productId=?,gradeId=? WHERE id=?";
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+
+		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
+//	  드라이버 클래스가 달라져야함
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement st = con.prepareStatement(sql);
+
+		st.setString(1, review.getTitle());
+		st.setString(2, review.getContent());
+		st.setInt(3, review.getProductId());
+		st.setInt(4, review.getGradeId());
+		st.setInt(5, review.getId());
+
+		result = st.executeUpdate();
+
+		// rs.close(); st.close(); con.close();
+
+		return result;
+	}
+
+	
+	  // 자세한페이지 삭제 
+	public int deleteReview(int id) throws ClassNotFoundException, SQLException {
+	  
+	  int result = 0;
+	  
+	  String sql = "DELETE FROM Review WHERE id=?"; 
+	  String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+	  
+	  Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
+	  //드라이버 클래스가 달라져야함 
+	  Connection con = DriverManager.getConnection(url, "rmteam",
+	  "rm0322"); PreparedStatement st = con.prepareStatement(sql);
+	  
+	  st.setInt(1, id);
+	  
+	  result = st.executeUpdate();
+	  
+	  // rs.close(); st.close(); con.close();
+	  
+	  return result; }
+	 
 
 	// 리뷰 목록 검색
 	public List<ReviewListView> getReviewListView(String field, String query, int page)
@@ -222,14 +224,13 @@ public class ReviewService {
 		int result = 0;
 		ReviewCmt cmt2 = null;
 		String sql = "";
-		boolean flag=false;
-		
-		if (cmt.getBossId() == -1) { //대댓글이 아니라면
+		boolean flag = false;
+
+		if (cmt.getBossId() == -1) { // 대댓글이 아니라면
 			sql = "INSERT INTO ReviewCmt(writerName, content,reviewId) VALUES(?,?,?)";
-		}
-		else { //대댓글이면
+		} else { // 대댓글이면
 			sql = "INSERT INTO ReviewCmt(writerName, content,reviewId,bossId) VALUES(?,?,?,?)";
-			flag=true;
+			flag = true;
 		}
 
 		String sql2 = "SELECT * FROM ReviewCmt WHERE writerName=? ORDER BY REGDATE DESC LIMIT 1"; // 최근 데이터 하나만 추출
@@ -250,8 +251,8 @@ public class ReviewService {
 			st = con.prepareStatement(sql); // INSERT sql
 
 			System.out.println(cmt.getBossId());
-		
-			if (flag) { //대댓글이라면
+
+			if (flag) { // 대댓글이라면
 				st.setInt(4, cmt.getBossId());
 			}
 			st.setString(1, cmt.getWriterName());
@@ -372,10 +373,10 @@ public class ReviewService {
 	}
 
 	// 회원 정보 가져오기
-	public Member getMember(int id) throws SQLException, ClassNotFoundException {
+	public Member getMember(String uid) throws SQLException, ClassNotFoundException {
 		Member member = null;
 
-		String sql = "SELECT * FROM Member WHERE id=?";
+		String sql = "SELECT * FROM Member WHERE uid=?";
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -383,14 +384,14 @@ public class ReviewService {
 		PreparedStatement st = con.prepareStatement(sql);
 //		Statement st = con.createStatement();
 
-		st.setInt(1, id);
+		st.setString(1, uid);
 
 		ResultSet rs = st.executeQuery();
 
 		// 쿼리 실행 된 결과값 가져오기
 		if (rs.next()) {
 			member = new Member(rs.getInt("id"), rs.getString("uid"), rs.getString("email"), rs.getString("nickname"),
-					rs.getString("pwd"), rs.getString("gender"), rs.getString("grade"), rs.getDate("regdate"));
+					rs.getString("pwd"), rs.getString("gender"), rs.getDate("regdate"));
 		}
 
 		rs.close();
@@ -428,9 +429,9 @@ public class ReviewService {
 		return id;
 
 	}
-	
-	//부모id를 참조하는 자식 정보들
-	public List<ReviewCmt> getCmtByParent(int id) throws ClassNotFoundException, SQLException{
+
+	// 부모id를 참조하는 자식 정보들
+	public List<ReviewCmt> getCmtByParent(int id) throws ClassNotFoundException, SQLException {
 		List<ReviewCmt> list = new ArrayList<ReviewCmt>();
 
 		String sql = "SELECT * FROM ReviewCmt WHERE bossId=?";
@@ -446,17 +447,17 @@ public class ReviewService {
 		// 쿼리 실행 된 결과값 가져오기
 		while (rs.next()) {
 			ReviewCmt view = new ReviewCmt(rs.getInt("id"), rs.getString("content"), rs.getString("writerName"),
-					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("reviewId"),rs.getInt("bossId"));
-			
+					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("reviewId"), rs.getInt("bossId"));
+
 			list.add(view);
 		}
 
 		rs.close();
 		st.close();
 		con.close();
-		
+
 		return list;
-		
+
 	}
 
 	// 자세한페이지 댓글 목록
@@ -476,25 +477,23 @@ public class ReviewService {
 		// 쿼리 실행 된 결과값 가져오기
 		while (rs.next()) {
 			ReviewCmt view = new ReviewCmt(rs.getInt("id"), rs.getString("content"), rs.getString("writerName"),
-					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("reviewId"),rs.getInt("bossId"));
-			
+					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("reviewId"), rs.getInt("bossId"));
+
 			list.add(view);
 		}
 
 		rs.close();
 		st.close();
 		con.close();
-		
-		
-		for(int i=0;i<list.size();i++) {
-			ReviewCmt cmt=list.get(i);
-			cmt.setChildren(getCmtByParent(cmt.getId()));;
+
+		for (int i = 0; i < list.size(); i++) {
+			ReviewCmt cmt = list.get(i);
+			cmt.setChildren(getCmtByParent(cmt.getId()));
+			;
 		}
 
 		return list;
 
-		
-		
 	}
 
 //	public List<ReviewCmt> getChildren(int id) throws ClassNotFoundException, SQLException {

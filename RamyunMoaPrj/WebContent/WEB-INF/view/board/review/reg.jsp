@@ -24,8 +24,7 @@
 
 				<fieldset class="perface-field">
 					<legend class="d-none">서브링크 검색필드</legend>
-					<label class="" for="">제조사-라면:</label> 
-					<input style="width: 350px;"
+					<label class="" for="">제조사-라면:</label> <input style="width: 350px;"
 						placeholder="입력하시면 더 빨리 찾을 수 있어요 :)" type="text"
 						name="mfc-product" list="product" required="required">
 					<datalist id="product">
@@ -41,7 +40,7 @@
 					<label class="" for="">평점:</label> <select name="grade"
 						class="select star-grade-select">
 						<c:forEach var="grade" items="${grade}">
-							<option value="${grade.id}">${grade.content}
+							<option value="${grade.id}" ${grade.id==3 ? "selected" : ""}>${grade.content}
 								<c:choose>
 									<c:when test="${grade.value==1}">★☆☆☆☆</c:when>
 									<c:when test="${grade.value==2}">★★☆☆☆</c:when>
@@ -67,8 +66,15 @@
 				</div>
 
 				<div class="content-box">
-					<textarea class="content" placeholder="내용을 입력하세요." name="content"
-						required></textarea>
+					<div class="toolbar">
+						<button class="btn-bold">B</button>
+						<button class="btn-italic">I</button>
+						<button class="btn-img">Img</button>
+						<input multiple="multiple" type="file" class="d-none btn-file">
+					</div>
+					<div class="content-area" data-placeholder="내용을 입력해주세요." contenteditable="true"></div>
+					<!-- <textarea class="content" placeholder="내용을 입력하세요." name="content"
+						required></textarea> -->
 				</div>
 
 				<div class="btn-box">
