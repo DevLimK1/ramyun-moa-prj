@@ -37,7 +37,7 @@ public class MemberLoginController extends HttpServlet {
 		
 		String uid = request.getParameter("uid");
 		String pwd = request.getParameter("pwd");
-		
+		String nickname="";
 	
 		MemberService service = new MemberService();
 		
@@ -51,6 +51,9 @@ public class MemberLoginController extends HttpServlet {
 			
 			try { 
 				result = service.loginCheck(uid,pwd);
+				nickname=service.getMemberNicknameByUid(uid);
+				
+				session.setAttribute("nickname", nickname);
 				
 				if(result == true) {
 				System.out.println("로그인 성공!");

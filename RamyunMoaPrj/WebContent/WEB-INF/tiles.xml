@@ -103,12 +103,12 @@
 
 	
 	<!-- 후기게시판 -->
-	<definition name="review.*" template="/WEB-INF/view/board/inc/layout.jsp">
+	<definition name="board.*.*" template="/WEB-INF/view/board/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
-		<put-attribute name="main" value="/WEB-INF/view/board/review/{1}.jsp" />
+		<put-attribute name="main" value="/WEB-INF/view/board/{1}/{2}.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
-		 <put-attribute name="css" value="/css/board/review/{1}.css" />
-		 <put-attribute name="js" value="/js/board/review/{1}.js" />
+		 <put-attribute name="css" value="/css/board/{1}/{2}.css" />
+		 <put-attribute name="js" value="/js/board/{1}/{2}.js" />
 	</definition>
 	
 	

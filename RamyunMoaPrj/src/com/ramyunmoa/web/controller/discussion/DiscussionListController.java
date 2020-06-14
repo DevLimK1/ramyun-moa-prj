@@ -1,4 +1,4 @@
-package com.ramyunmoa.web.controller.review;
+package com.ramyunmoa.web.controller.discussion;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,8 +21,8 @@ import com.ramyunmoa.web.view.review.ReviewListView;
  * Servlet implementation class listController
  */
 //사용자 요청 url
-@WebServlet("/review/list")
-public class ReviewListController extends HttpServlet {
+@WebServlet("/discussion/list")
+public class DiscussionListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -67,7 +67,7 @@ public class ReviewListController extends HttpServlet {
 
 		
 		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
-		container.render("board.review.list", request, response);
+		container.render("board.discussion.list", request, response);
 //		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/review/list.jsp");
 //		dispatcher.forward(request, response);
 

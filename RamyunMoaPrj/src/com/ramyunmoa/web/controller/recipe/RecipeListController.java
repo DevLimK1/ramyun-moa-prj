@@ -1,4 +1,4 @@
-package com.ramyunmoa.web.controller.review;
+package com.ramyunmoa.web.controller.recipe;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,21 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
-import com.ramyunmoa.web.service.ReviewService;
-import com.ramyunmoa.web.view.review.ReviewListView;
+import com.ramyunmoa.web.service.RecipeService;
+import com.ramyunmoa.web.view.recipe.RecipeListView;
 
 /**
  * Servlet implementation class listController
  */
 //사용자 요청 url
-@WebServlet("/review/list")
-public class ReviewListController extends HttpServlet {
+@WebServlet("/recipe/list")
+public class RecipeListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<ReviewListView> list = new ArrayList();
+		List<RecipeListView> list = new ArrayList();
 
 		String field_ = request.getParameter("f");
 		String query_ = request.getParameter("q");
@@ -46,13 +46,13 @@ public class ReviewListController extends HttpServlet {
 		if (page_ != null && !page_.equals(""))
 			page = Integer.parseInt(page_);
 
-		ReviewService service = new ReviewService();
+		RecipeService service = new RecipeService();
 		
 		int count =0 ;
 		
 		try {
-			list = service.getReviewListView(field, query, page);
-			count= service.getReviewCount(field, query);
+			list = service.getRecipeListView(field, query, page);
+			count= service.getRecipeCount(field, query);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,7 +67,7 @@ public class ReviewListController extends HttpServlet {
 
 		
 		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
-		container.render("board.review.list", request, response);
+		container.render("board.recipe.list", request, response);
 //		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/review/list.jsp");
 //		dispatcher.forward(request, response);
 

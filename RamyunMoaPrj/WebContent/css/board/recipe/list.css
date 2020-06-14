@@ -131,15 +131,25 @@
         text-align: center;
   /*       width: 70px; */
       }
-  
+      
+      .review-list-box_vote i{
+      	    color: gold;
+    font-weight: bold;
+    font-size: 1.2em;
+      }
+      
+      .vote-cnt{
+      opacity: 0.7;
+    font-weight: bold;
+      }
   .review-list-box_content{
   /*   flex-grow: 1; */
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 20px;
+    margin-left: 30px;
   }
   
-   .review-title{
+  .review-title{
   	    font-weight: bold;
     color: black;
   }
@@ -150,11 +160,6 @@
   
   .review-list-box-meta{
   color:darkcyan;
-  }
-  
-  .star{
-      color: gold;
-      font-weight:bold;
   }
   
     .review-list-box_title{

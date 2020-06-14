@@ -12,7 +12,7 @@
 	<nav class="sub-header">
 		<h1 class="d-none">서브 헤더</h1>
 
-		<div class="sub-header-title fnt_jua">후기 게시판</div>
+		<div class="sub-header-title fnt_jua">토론 게시판</div>
 
 
 		<section class="sub-link">
@@ -24,8 +24,8 @@
 						class="fas fa-fire-alt"></i>인기</a></li>
 				<li class="sub-link-item"><a href=""><i
 						class="fas fa-crown"></i>TOP</a></li>
-				<li class="sub-link-item"><a href=""><i
-						class="fas fa-filter"></i>라면별 후기</a></li>
+				<!-- <li class="sub-link-item"><a href=""><i
+						class="fas fa-filter"></i>라면별 후기</a></li> -->
 			</ul>
 
 			<section class="sub-link-search">
@@ -66,19 +66,14 @@
 				<div class="review-list-box">
 
 					<div class="review-list-box_group">
-						<a class="fnt_sunflower" href="#">${list.mfcProduct}</a>
+						<a class="fnt_sunflower" href="#">라면 vs 라면</a>
 					</div>
 
 					<div class="review-list-box_vote">
 						<!-- <i class="far fa-thumbs-up"></i> -->
 						<div class="star">
-							<c:choose>
-								<c:when test="${list.gradeId==1}">★☆☆☆☆</c:when>
-								<c:when test="${list.gradeId==2}">★★☆☆☆</c:when>
-								<c:when test="${list.gradeId==3}">★★★☆☆</c:when>
-								<c:when test="${list.gradeId==4}">★★★★☆</c:when>
-								<c:when test="${list.gradeId==5}">★★★★★</c:when>
-							</c:choose>
+							<img class="fire-img" alt="" src="/images/board/fire.png">
+							<div class="vote-cnt">203</div>
 						</div>
 					</div>
 

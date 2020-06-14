@@ -112,7 +112,7 @@
     }
   
       .review-list-box .review-list-box_group{
-        width: 220px; 
+        width: 200px; 
         display: flex;
         align-items: center;
         justify-content: center;
@@ -131,15 +131,24 @@
         text-align: center;
   /*       width: 70px; */
       }
+      
+      .fire-img{
+      	width:32px;
+      }
+      
+      .vote-cnt{
+      opacity: 0.7;
+    font-weight: bold;
+    }
   
   .review-list-box_content{
   /*   flex-grow: 1; */
     margin-top: auto;
     margin-bottom: auto;
-    margin-left: 20px;
+    margin-left: 30px;
   }
   
-   .review-title{
+  .review-title{
   	    font-weight: bold;
     color: black;
   }
@@ -150,11 +159,6 @@
   
   .review-list-box-meta{
   color:darkcyan;
-  }
-  
-  .star{
-      color: gold;
-      font-weight:bold;
   }
   
     .review-list-box_title{

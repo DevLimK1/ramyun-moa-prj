@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.ramyunmoa.web.entity.member.Member;
+import com.ramyunmoa.web.view.review.ReviewDetailView;
 
 public class MemberService {
 
@@ -267,6 +269,30 @@ public class MemberService {
 	  
 	  return result;
 	  }
+
+	public String getMemberNicknameByUid(String uid) throws ClassNotFoundException, SQLException {
+		String nickname= "";
+
+		String sql = "SELECT nickname FROM Member WHERE uid=?";
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, uid);
+
+		ResultSet rs = st.executeQuery();
+
+		if (rs.next()) {
+			nickname = rs.getString("nickname");
+		}
+
+		rs.close();
+		st.close();
+		con.close();
+
+		return nickname;
+	}
 	 
 
 	/*

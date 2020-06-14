@@ -19,7 +19,7 @@ import com.ramyunmoa.web.view.review.MfcProductView;
 import com.ramyunmoa.web.view.review.ReviewDetailView;
 import com.ramyunmoa.web.view.review.ReviewListView;
 
-public class ReviewService {
+public class DiscussionService {
 
 	/*
 	 * // 전체조회 public List<Review> getReviewList() throws ClassNotFoundException,
@@ -495,7 +495,6 @@ public class ReviewService {
 		return list;
 
 	}
-
 
 //	public List<ReviewCmt> getChildren(int id) throws ClassNotFoundException, SQLException {
 //		List<ReviewCmt> list=null;

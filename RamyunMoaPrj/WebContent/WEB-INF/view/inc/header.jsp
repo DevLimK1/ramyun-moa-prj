@@ -10,8 +10,8 @@
 			<ul class="navbar-menu">
 				<li><a href="/product/list">라면 소개</a> <span>|</span></li>
 				<li><a href="/review/list">후기 게시판</a> <span>|</span></li>
-				<li><a href="">라면 토론장</a> <span>|</span></li>
-				<li><a href="">레시피 공유</a></li>
+				<li><a href="/discussion/list">라면 토론장</a> <span>|</span></li>
+				<li><a href="/recipe/list">레시피 공유</a></li>
 			</ul>
 			<ul class="navbar-member">
 				<c:if test="${sessionScope.uid==null}">

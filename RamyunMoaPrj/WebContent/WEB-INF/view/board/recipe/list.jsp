@@ -12,7 +12,7 @@
 	<nav class="sub-header">
 		<h1 class="d-none">서브 헤더</h1>
 
-		<div class="sub-header-title fnt_jua">후기 게시판</div>
+		<div class="sub-header-title fnt_jua">레시피공유 게시판</div>
 
 
 		<section class="sub-link">
@@ -25,7 +25,7 @@
 				<li class="sub-link-item"><a href=""><i
 						class="fas fa-crown"></i>TOP</a></li>
 				<li class="sub-link-item"><a href=""><i
-						class="fas fa-filter"></i>라면별 후기</a></li>
+						class="fas fa-filter"></i>라면별 레시피</a></li>
 			</ul>
 
 			<section class="sub-link-search">
@@ -72,13 +72,8 @@
 					<div class="review-list-box_vote">
 						<!-- <i class="far fa-thumbs-up"></i> -->
 						<div class="star">
-							<c:choose>
-								<c:when test="${list.gradeId==1}">★☆☆☆☆</c:when>
-								<c:when test="${list.gradeId==2}">★★☆☆☆</c:when>
-								<c:when test="${list.gradeId==3}">★★★☆☆</c:when>
-								<c:when test="${list.gradeId==4}">★★★★☆</c:when>
-								<c:when test="${list.gradeId==5}">★★★★★</c:when>
-							</c:choose>
+							<i class="far fa-thumbs-up"></i>
+							<div class="vote-cnt">${list.likes }</div>
 						</div>
 					</div>
 
@@ -162,6 +157,6 @@
 	</div>
 	<!-- --------------js--------------- -->
 	<script type="text/javascript" src="../js/utils.js"></script>
-	<script type="text/javascript" src="../js/board/review/list.js"></script>
+	<script type="text/javascript" src="../js/board/recipe/list.js"></script>
 </main>
 

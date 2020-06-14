@@ -1,4 +1,4 @@
-package com.ramyunmoa.web.controller.review;
+package com.ramyunmoa.web.controller.recipe;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,8 +20,8 @@ import com.ramyunmoa.web.service.ReviewService;
 import com.ramyunmoa.web.view.review.MfcProductView;
 import com.ramyunmoa.web.view.review.ReviewDetailView;
 
-@WebServlet("/review/edit")
-public class ReviewEditController extends HttpServlet {
+@WebServlet("/recipe/edit")
+public class RecipeEditController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -59,7 +59,7 @@ public class ReviewEditController extends HttpServlet {
 //		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/review/edit.jsp");
 //		dispatcher.forward(request, response);
 		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
-		container.render("board.review.edit", request, response);
+		container.render("board.recipe.edit", request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

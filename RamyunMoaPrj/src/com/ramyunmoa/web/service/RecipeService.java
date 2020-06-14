@@ -12,14 +12,13 @@ import java.util.List;
 
 import com.ramyunmoa.web.entity.member.Member;
 import com.ramyunmoa.web.entity.review.Grade;
-
 import com.ramyunmoa.web.entity.review.Review;
 import com.ramyunmoa.web.entity.review.ReviewCmt;
+import com.ramyunmoa.web.view.recipe.RecipeListView;
 import com.ramyunmoa.web.view.review.MfcProductView;
 import com.ramyunmoa.web.view.review.ReviewDetailView;
-import com.ramyunmoa.web.view.review.ReviewListView;
 
-public class ReviewService {
+public class RecipeService {
 
 	/*
 	 * // 전체조회 public List<Review> getReviewList() throws ClassNotFoundException,
@@ -157,11 +156,11 @@ public class ReviewService {
 	 
 
 	// 리뷰 목록 검색
-	public List<ReviewListView> getReviewListView(String field, String query, int page)
+	public List<RecipeListView> getRecipeListView(String field, String query, int page)
 			throws ClassNotFoundException, SQLException {
-		List<ReviewListView> list = new ArrayList<ReviewListView>();
+		List<RecipeListView> list = new ArrayList<RecipeListView>();
 
-		String sql = "SELECT * FROM ReviewListView " + " WHERE " + field
+		String sql = "SELECT * FROM RecipeListView " + " WHERE " + field
 				+ " LIKE ? ORDER BY regdate DESC LIMIT 10 OFFSET ?";
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
@@ -178,12 +177,12 @@ public class ReviewService {
 
 		// 쿼리 실행 된 결과값 가져오기
 		while (rs.next()) {
-			ReviewListView review = new ReviewListView(rs.getInt("id"), rs.getInt("writerId"),
-					rs.getString("mfc-product"), rs.getInt("gradeId"), rs.getString("title"), rs.getString("nickname"),
+			RecipeListView review = new RecipeListView(rs.getInt("id"), rs.getInt("writerId"),rs.getInt("hit"),rs.getInt("productId"),
+					rs.getString("mfc-product"), rs.getString("title"), rs.getString("nickname"),rs.getInt("likes"),
 					rs.getDate("regdate"), rs.getString("logo"), rs.getString("img"), rs.getInt("cmtCount"));
 			list.add(review);
 		}
-
+		
 		rs.close();
 		st.close();
 		con.close();
@@ -192,11 +191,11 @@ public class ReviewService {
 	}
 
 	// 리뷰 게시판 글 갯수
-	public int getReviewCount(String field, String query) throws ClassNotFoundException, SQLException {
+	public int getRecipeCount(String field, String query) throws ClassNotFoundException, SQLException {
 
 		int count = 0;
 
-		String sql = "SELECT COUNT(ID) COUNT FROM ReviewListView " + " WHERE " + field
+		String sql = "SELECT COUNT(ID) COUNT FROM RecipeListView " + " WHERE " + field
 				+ " LIKE ? ORDER BY regdate DESC";
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
@@ -495,7 +494,6 @@ public class ReviewService {
 		return list;
 
 	}
-
 
 //	public List<ReviewCmt> getChildren(int id) throws ClassNotFoundException, SQLException {
 //		List<ReviewCmt> list=null;

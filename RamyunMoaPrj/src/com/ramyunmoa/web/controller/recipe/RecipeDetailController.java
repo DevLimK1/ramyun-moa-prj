@@ -1,4 +1,4 @@
-package com.ramyunmoa.web.controller.review;
+package com.ramyunmoa.web.controller.recipe;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,8 +24,8 @@ import com.ramyunmoa.web.view.review.ReviewDetailView;
 /**
  * Servlet implementation class ReviewDetailController
  */
-@WebServlet("/review/detail")
-public class ReviewDetailController extends HttpServlet {
+@WebServlet("/recipe/detail")
+public class RecipeDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,7 +56,7 @@ public class ReviewDetailController extends HttpServlet {
 		
 		
 		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
-		container.render("board.review.detail", request, response);
+		container.render("board.recipe.detail", request, response);
 //		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/view/board/review/detail.jsp");
 //		dispatcher.forward(request, response);
 	
