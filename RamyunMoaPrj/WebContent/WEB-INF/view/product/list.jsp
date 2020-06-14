@@ -27,15 +27,15 @@
 					<li>
 						<form action="list" method="get">
 							<input class="search" type="text" name="s" value="${param.s}"
-								placeholder="라면이름 검색"> <input type="submit"
-								value="&#xf002">
+								placeholder="검색"> <input type="submit" value="&#xf002">
 						</form>
 					</li>
+					<li><label>컵라면</label> <input type="checkbox"></li>
 				</ul>
 			</nav>
 
 			<c:set var="page" value="${(empty param.p)?1:param.p}" />
-			<c:set var="lastNum" value="${fn: substringBefore(count/25+1,'.')}" />
+			<c:set var="lastNum" value="${fn: substringBefore(count/20+1,'.')}" />
 
 			<section class="noodle-img">
 				<h1 class="hidden">noodle-image</h1>
@@ -69,11 +69,6 @@
 			<section class="pager">
 				<h1 class="hidden">pager</h1>
 
-				<a
-					href="list-data?m=${param.m}&p=${page-1>=1?page-1:1}&s=${param.s}">
-					<i class="fas fa-arrow-circle-left"></i>
-				</a>
-
 				<ul>
 					<c:forEach begin="1" end="${lastNum}" var="i">
 						<li><a href="list-data?m=${param.m}&p=${i}&s=${param.s}">${i}</a>
@@ -81,10 +76,6 @@
 					</c:forEach>
 				</ul>
 
-				<a
-					href="list-data?m=${param.m}&p=${(page+1<=lastNum)?page+1:lastNum}&s=${param.s}">
-					<i class="fas fa-arrow-circle-right"></i>
-				</a>
 
 			</section>
 		</section>
@@ -92,10 +83,26 @@
 		<section class="noodle-ranking">
 			<h1 class="hidden">noodle-ranking</h1>
 
-			<span class="table-title">Ranking</span>
-			<div class="table-sub-left">
-				<span>(2019년 3분기 매출액 - 단위:백만원)</span>
+			<div class="ranking-menu">
+				<div>
+					<span class="table-title">Ranking</span>
+					<div class="table-sub-left">
+						<span>(2019년 3분기 매출액 - 단위:백만원)</span>
+					</div>
+				</div>
+
+				<div class="radio">
+					<div>
+						<label for="">판매량</label> <input type="radio" name="ranking"
+							value="sales">
+					</div>
+					<div>
+						<label for="">좋아요</label> <input type="radio" name="ranking"
+							value="likes">
+					</div>
+				</div>
 			</div>
+
 			<table class="noodle-ranking-table">
 
 				<c:forEach var="r" items="${rankingList}" varStatus="rankingList">

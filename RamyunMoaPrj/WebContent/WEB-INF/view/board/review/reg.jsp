@@ -15,8 +15,8 @@
 			<h1 class="d-none">서브링크</h1>
 
 
-			<form action="reg" method="POST" class="sub-link-search-form">
-
+<!-- 			<form action="reg" method="POST" class="sub-link-search-form"> -->
+<form action=""  class="sub-link-search-form">
 				<input type="hidden" name="writerId" value="${member.id}">
 				<div class="reg-writerName">
 					작성자: <span class="writerName-txt">${member.nickname}</span>
@@ -67,9 +67,10 @@
 
 				<div class="content-box">
 					<div class="toolbar">
-						<button class="btn-bold">B</button>
-						<button class="btn-italic">I</button>
-						<button class="btn-img">Img</button>
+						<button class="btn-bold"><i class="fas fa-bold"></i></button>
+						<button class="btn-italic"><i class="fas fa-italic"></i></button>
+						<button class="btn-underline"><i class="fas fa-underline"></i></button>
+						<button class="btn-img"><i class="far fa-image"></i></button>
 						<input multiple="multiple" type="file" class="d-none btn-file">
 					</div>
 					<div class="content-area" data-placeholder="내용을 입력해주세요." contenteditable="true"></div>
@@ -79,7 +80,7 @@
 
 				<div class="btn-box">
 					<div class="btn-box_box">
-						<input class="btn-text btn-default" type="submit" value="등록" /> <a
+						<input class="btn-text btn-default btn-submit" type="submit" value="등록" /> <a
 							class="btn-text btn-cancel" href="list">취소 </a>
 					</div>
 				</div>

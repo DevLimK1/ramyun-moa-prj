@@ -73,6 +73,8 @@ public class ReviewRegController extends HttpServlet {
 		String content = request.getParameter("content");
 		int mpvId=0;
 		
+		System.out.println("content:"+content);
+		
 		int writerId=Integer.parseInt(writerId_);
 //		int mpvId=Integer.parseInt(mpvId_);
 		int gradeId = Integer.parseInt(gradeId_);

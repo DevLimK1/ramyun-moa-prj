@@ -12,7 +12,7 @@ import com.ramyunmoa.web.entity.member.Member;
 
 public class MemberService {
 
-	// ȸ������ ���
+	// 회원정보 출력
 	public Member getMember(int id) throws ClassNotFoundException, SQLException {
 
 		Member member = null;
@@ -42,7 +42,7 @@ public class MemberService {
 		return member;
 	}
 
-	// ȸ������Ʈ
+	// 회원 리스트
 	public List<Member> getMemberList() throws SQLException, ClassNotFoundException {
 
 		List<Member> list = new ArrayList<>();
@@ -74,9 +74,8 @@ public class MemberService {
 		return list;
 	}
 
-	// ���̵� �ߺ� Ȯ��
+	// 아이디 중복 확인
 	public boolean checkUid(String uid) throws ClassNotFoundException, SQLException {
-		System.out.print("�ߺ�Ȯ��");
 
 		Connection con = null;
 		PreparedStatement st = null;
@@ -99,7 +98,7 @@ public class MemberService {
 		return flag;
 	}
 
-	// �̸��� �ߺ� Ȯ��
+	// 이메일 중복 확인
 	public boolean checkEmail(String email) throws ClassNotFoundException, SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
@@ -122,7 +121,7 @@ public class MemberService {
 		return flag;
 	}
 
-	// �г��� �ߺ� Ȯ��
+	// 닉네임 중복 확인
 	public boolean checkNick(String nickname) throws ClassNotFoundException, SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
@@ -145,28 +144,89 @@ public class MemberService {
 		return flag;
 	}
 
-	// ȸ������
+	// 멤버 등록(회원가입)
 	public int insertMember(Member member) throws ClassNotFoundException, SQLException {
+		
 		int result = 0;
 		String sql = "INSERT INTO Member(uid,pwd,email,nickname,gender) values(?,?,?,?,?)";
+		//String sql2 = "INSERT INTO GivenRole(RoleId) values(?)";
+		
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		
 		PreparedStatement st = con.prepareStatement(sql);
+		//PreparedStatement st2 = con.prepareStatement(sql2);
+		
 		st.setString(1, member.getUid());
 		st.setString(2, member.getPwd());
 		st.setString(3, member.getEmail());
 		st.setString(4, member.getNickname());
 		st.setString(5, member.getGender());
 
+		//st2.setInt(1,1);
+		
+		
 		result = st.executeUpdate();
-		System.out.println(result);
+		//result = st2.executeUpdate();
+
+		
+		st.close();
+		//st2.close();
+		con.close();
 		return result;
 
 	}
+/*	
+	// 역할 등록(회원가입시)
+	public int insertRole(Member member) throws ClassNotFoundException, SQLException {
+		
+		int result = 0;
+		String sql = "INSERT INTO GivenRole(RoleId,MemberId) values(?,?)";
+		String sql2 = "SELECT LAST_INSERT_ID()";
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
-	// ���������� ��й�ȣ Ȯ��
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement st = con.prepareStatement(sql);
+		PreparedStatement st2 = con.prepareStatement(sql2);
+		
+		st.setInt(1, 1);
+		st.setInt(2, ((ResultSet) st2).getInt(Integer.parseInt(sql2)));
+		
+		result = st.executeUpdate();
+	
+		
+		st.close();
+		con.close();
+		return result;
+	}
+*/	
+	//로그인 
+	public boolean loginCheck(String uid, String pwd) throws ClassNotFoundException, SQLException {
+		Connection con = null;
+		PreparedStatement st = null;
+		String sql = null;
+		boolean flag = false;
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		try {
+			con = DriverManager.getConnection(url, "rmteam", "rm0322");
+			sql = "SELECT nickname FROM Member WHERE uid=? AND pwd=?";
+			st = con.prepareStatement(sql);
+			st.setString(1, uid);
+			st.setString(2, pwd);
+			flag = st.executeQuery().next();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	// 비밀번호 확인
 	public boolean checkPwd(String pwd) throws ClassNotFoundException, SQLException {
 
 		Connection con = null;
@@ -190,19 +250,20 @@ public class MemberService {
 		return flag;
 	}
 
-	
-	  public int deleteMember(Integer id) throws ClassNotFoundException,
-	  SQLException{// ȸ��Ż��
+	// 회원 삭제
+	  public int deleteMember(String uid, String pwd) throws ClassNotFoundException, SQLException{
 	  
-	  int result=0; String sql = "DELETE FROM Member WHERE id=?"; String url =
-	  "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+	  int result=0; 
+	  String sql = "DELETE FROM Member WHERE uid=? AND pwd=?";
+	  String url =  "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 	  
-	  Class.forName("com.mysql.cj.jdbc.Driver"); Connection con =
-	  DriverManager.getConnection(url, "rmteam", "rm0322"); PreparedStatement st =
-	  con.prepareStatement(sql); st.setInt(1, id);
-	  
-	  
-	  st.close(); con.close(); result=st.executeUpdate();
+	  Class.forName("com.mysql.cj.jdbc.Driver");
+	  Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+	  PreparedStatement st = con.prepareStatement(sql);
+	  st.setString(1, uid);
+	  st.setString(2, pwd);
+	  result=st.executeUpdate();	  
+	  st.close(); con.close();
 	  
 	  return result;
 	  }
@@ -224,7 +285,7 @@ public class MemberService {
 	 * } catch (SQLException e) { e.printStackTrace(); } return flag; }
 	 */
 
-	// �α���
+	// 로그인
 //	public String loginCheck(String uid, String pwd)  throws ClassNotFoundException, SQLException{
 //		
 //		uid = null;
@@ -273,32 +334,5 @@ public class MemberService {
 //		return flag;
 //	}
 
-	public boolean loginCheck(String uid, String pwd) throws ClassNotFoundException, SQLException {
-		Connection con = null;
-		PreparedStatement st = null;
-		String sql = null;
-		boolean flag = false;
-
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-		Class.forName("com.mysql.cj.jdbc.Driver");
-
-		try {
-			con = DriverManager.getConnection(url, "rmteam", "rm0322");
-			sql = "SELECT uid FROM Member WHERE uid=? AND pwd=?";
-			st = con.prepareStatement(sql);
-			st.setString(1, uid);
-			st.setString(2, pwd);
-			flag = st.executeQuery().next();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return flag;
-	}
-
-	public String getRoleByUserId(String uid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

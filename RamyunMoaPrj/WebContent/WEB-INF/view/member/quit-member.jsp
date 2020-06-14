@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <main id="login-main">
 	<div>
-		<form class="form-row quit-form" name="quitFrm" method="post" action="quitMember">
+		<form class="form-row quit-form" name="quitFrm" method="post" action="quit-member">
 			<table>
 				<tr>
 					<td>비밀번호 확인</td>

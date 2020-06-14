@@ -69,4 +69,38 @@ public class AdminFeedbackListController extends HttpServlet{
 		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
 		container.render("admin.board.feedback.list", request, response);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		FeedbackService service = new FeedbackService();
+		String[] delIds = request.getParameterValues("del-id");
+		String cmd = request.getParameter("cmd");
+		
+//		for(int i=0;i<delIds.length;i++)
+//			System.out.printf("del id : %s\n", delIds[i]);
+		
+		if(cmd.equals("del")) {
+//			if(delIds == null)
+//				return;
+			
+			int[] dIds = new int[delIds.length];
+			for(int i=0; i<delIds.length;i++)
+				dIds[i] = Integer.parseInt(delIds[i]);
+			
+		try {
+			int result = service.deletNoticeAll(dIds);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		}
+		
+		
+		response.sendRedirect("list");
+	}
 }

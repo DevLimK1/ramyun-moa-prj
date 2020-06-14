@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 .hidden {
 	display: none;
+}
+
+.current {
+    color: #c4001d;
+    font-weight: bold;
 }
 
 a {
@@ -7,12 +14,11 @@ a {
 	direction: none;
 }
 
+
 body {
-	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	display: flex;
 }
 
 main {
@@ -28,7 +34,8 @@ main {
 }
 
 .pager {
-	margin-top: auto;;
+	margin-top: auto;
+	;
 }
 
 /* ----------헤더 top부분----------- */
@@ -39,27 +46,29 @@ main {
 	background-color: #292929;
 	color: white;
 	align-items: center;
-	padding: 0px 20px;
+	padding: 40px;
 }
 
-.top-header input, select {
+.top-header input,
+select {
 	font-size: 14px;
 }
 
 .top-home {
-	margin-right: 50px;
+	margin-left: 50px;
+	font-size: 2em;
+	font-family: 'Righteous', cursive;
 }
 
 .top-header-list {
-	display: flex;
 	margin-left: auto;
+	display: flex;
+	font-size: 1em;
 }
 
 .top-header-list li {
-	margin-right: 10px;
-	padding: 5px;
-	border-radius: 10px;
 	font-size: 15px;
+	padding: 30px;
 }
 
 .top-header-list a {
@@ -70,6 +79,7 @@ main {
 .bottom-header {
 	background-color: #ffbc0d;
 	margin: 3px 0px 3.5px 0px;
+	padding: 20px;
 }
 
 .bottom-header a {
@@ -89,7 +99,7 @@ main {
 	line-height: 50px;
 }
 
-.admin-menu li:hover {
+li:hover {
 	opacity: 0.5;
 }
 
@@ -157,7 +167,7 @@ main {
 	background: #8b8c9b;
 	background-color: #292929;
 	color: white;
-	padding: 20px 0px;
+	padding: 40px 0px;
 }
 
 .footer>div {

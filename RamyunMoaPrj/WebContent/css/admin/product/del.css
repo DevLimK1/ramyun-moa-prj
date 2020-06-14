@@ -2,21 +2,36 @@
     margin: 50px 0px;
 }
 
+.current {
+    color: #c4001d;
+    font-weight: bold;
+}
+
 .title {
     font-size: 2em;
     font-family: 'Righteous', cursive;
     padding-bottom: 30px;
 }
 
-.search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+table {
+    width: 85%;
 }
 
-.search>div {
-    padding: 10px;
+.search {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px 100px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.search div {
+    padding: 15px;
+}
+
+.search>div:last-child {
+    margin-left: auto;
 }
 
 /* table */
@@ -24,7 +39,6 @@
 .item-table {
     margin-left: auto;
     margin-right: auto;
-    font-size: 12px;
     border: solid;
 }
 
@@ -36,8 +50,7 @@
 
 .item-table td {
     border: solid 0.5px black;
-    padding: 5px 10px;
-    font-weight: bold;
+    padding: 10px;
 }
 
 .item-table img {
@@ -46,8 +59,8 @@
 }
 
 .item-table input[type="text"] {
-    width: 75px;
-    height: 35px;
+    width: 90%;
+    height: 90%;
     text-align: center;
     margin: 5px 10px;
 }
@@ -72,25 +85,53 @@
 
 .pager ul {
     display: flex;
-    justify-content: center;
+    padding: 5px;
 }
 
 .pager ul>li {
-    padding: 15px;
+    padding: 5px;
 }
 
-.fixed {
-    background-color: #bbbbbb;
+.pager ul>li>a {
+    padding: 0px 10px;
+    font-size: 1.5em;
+    font-family: 'Black Han Sans', sans-serif;
 }
 
-.line {
-    border-left: solid 1px black;
-}
 
-tbody>tr:nth-child(2n-1) {
+tbody>tr:nth-child(5n-4) {
     border-top: solid;
 }
 
-tbody>tr:nth-child(2n) {
-    border-top: solid 1px black;
+input[type="submit"] {
+    padding: 0px 10px;
+    font-weight: bold;
+}
+
+.list {
+    margin-right: 100px
+}
+
+.list div {
+    padding: 2.5px;
+}
+
+.list,
+.three-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.bold {
+    font-weight: bold;
+    background-color: #eeeeee;
+}
+
+label {
+    padding-left: 25px;
+}
+
+thead {
+    background-color: #eeeeee;
 }

@@ -24,6 +24,9 @@ window.addEventListener("load", function() {
 	
 	var shield = new Shield(".review-board");
 
+	var navbar=document.querySelector(".navbar");
+	var member=navbar.querySelector(".member");
+	
 	
 	regBtn.onclick = regBtnClick;
 	pager.onclick = pagerClick;
@@ -36,6 +39,13 @@ window.addEventListener("load", function() {
 	function regBtnClick(e) { // 등록버튼 클릭
 		
 		e.preventDefault();
+		
+		var loginFlag=member.children[0].innerText;
+		
+		if(loginFlag === '로그인'){
+			alert('글쓰기는 로그인이 필요합니다.');
+			return;
+		}
 		
 		if (e.target.nodeName != "I"){
 		 console.log(e.target.nodeName);
@@ -63,22 +73,27 @@ window.addEventListener("load", function() {
 	    	  header.insertAdjacentElement("afterend",newMain);
 //	    	  header.insertAdjacentHTML("afterend",xhr.responseText.trim());
 	    	  shield.hide();
-	    	  
+	    	 
 	    	  //reg.js 코드 불러오는 방법1)
 	    	  var xhr2=new XMLHttpRequest();
 	    	  xhr2.open('GET','../js/board/review/reg.js',true);
 
+	    	  
 	    	  xhr2.onload=function(){
 	    		  console.log(xhr2.responseText);
-	    		  eval(xhr2.responseText); 
-	    		  var regBox = document.querySelector(".reg-box");
+	    		  
+//	    		  eval(xhr2.responseText); 
+	    		  new Function(xhr2.responseText)();//eval대신 사용!
+	    		  
+//	    		  var regBox = document.querySelector(".reg-box");
 
-	    		  console.log(regBox);
+//	    		  console.log(regBox);
 
-	    		  var btnCancel = regBox.querySelector(".btn-cancel");
-	    		  console.log(cancelBtnClick);
-	    		  btnCancel.onclick = cancelBtnClick;
+//	    		  var btnCancel = regBox.querySelector(".btn-cancel");
+//	    		  console.log(cancelBtnClick);
+//	    		  btnCancel.onclick = cancelBtnClick;
 	    	  }
+	    	  
 
 	    	  xhr2.send(null);
 	    	  

@@ -32,7 +32,7 @@
 			<li><a href="/admin/board/main"> <i
 					class="fas fa-clipboard-list"></i>게시판관리
 			</a></li>
-			<li><a href=""> <i class="fas fa-headset"></i>고객센터
+			<li><a href="/admin/board/notice/list"> <i class="fas fa-headset"></i>고객센터
 			</a></li>
 			<li><a href=""> RM 게시판 </a></li>
 		</ul>

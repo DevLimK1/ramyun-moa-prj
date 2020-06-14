@@ -16,7 +16,7 @@ window.addEventListener("load",function(){
 	var comments="";
 	
 	
-	//새로고침 버튼 --> 구현중
+	// 새로고침 버튼 --> 구현중
 	commentRefresh.onclick=function(e){
 		var xhr=new XMLHttpRequest();
 		
@@ -34,10 +34,10 @@ window.addEventListener("load",function(){
 		xhr.send(null);
 	}
 	
-	function bind(){ //댓글 새로고침 바인드 --> 구현중
-		//sessionScope 해결해야한다. -> detail-data controller에서 
-		//쿼리로 session에서 아이디가 있다면 얻어와서 쿼리로 가져오자.
-		//자바스크립트로 session 아이디 얻어오는 방법?..
+	function bind(){ // 댓글 새로고침 바인드 --> 구현중
+		// sessionScope 해결해야한다. -> detail-data controller에서
+		// 쿼리로 session에서 아이디가 있다면 얻어와서 쿼리로 가져오자.
+		// 자바스크립트로 session 아이디 얻어오는 방법?..
 		var commentFirstForm=document.querySelector(".comment-first-form");
 		var cmtContent="";
 		for(var i in comments){
@@ -46,7 +46,7 @@ window.addEventListener("load",function(){
 			var childrenContent="";
 			console.log(cmt.children);
 			
-			if(cmt.children){ //대댓글이 있다면
+			if(cmt.children){ // 대댓글이 있다면
 				console.log("true");
 				for(var i in cmt.children){
 					var child=cmt.children[i];
@@ -127,13 +127,13 @@ window.addEventListener("load",function(){
 				</div>
 			</form>`;
 					childrenContent+=childrenTemplate;
-				} //~for
+				} // ~for
 			
 				
-			}//~if
+			}// ~if
 			else{console.log("false")}
 			
-			//first 댓글 template
+			// first 댓글 template
 			var template=`<div class="comment-box">
 			<input type="hidden" value="${cmt.id}">
 			<div class="comment-likes">
@@ -220,25 +220,42 @@ window.addEventListener("load",function(){
 	
 	
 	// comment data values
-//	var writerName=comment.querySelector(".comment-writer-name");
-//	var textarea=comment.querySelector("textarea");
+// var writerName=comment.querySelector(".comment-writer-name");
+// var textarea=comment.querySelector("textarea");
 	
 	
 
+	var navbar=document.querySelector(".navbar");
+	var member=navbar.querySelector(".member");
 	
 	comment.onclick=function(e){
 		console.log(e.target);
 		
-		if(e.target.classList.contains('comment-sort-write-btn'))
+		if(e.target.classList.contains('comment-sort-write-btn')){
+			var loginFlag=member.children[0].innerText;
+			
+			if(loginFlag === '로그인'){
+				alert('글쓰기는 로그인이 필요합니다.');
+				return;
+			}
 			commentSortWriteBtnClick(e);// 맨 위 상단 댓글쓰기 버튼클릭
+		}
 		
 		
 		if (e.target.classList.contains('comment-reg-btn'))
 			commentRegBtnClick(e);// 등록버튼 클릭시 ★ 이벤트 e를 인자로 넘겨줘야함!!
 		
 		
-		if(e.target.classList.contains('comment-write-btn'))
+		if(e.target.classList.contains('comment-write-btn')){
+			var loginFlag=member.children[0].innerText;
+			
+			if(loginFlag === '로그인'){
+				alert('글쓰기는 로그인이 필요합니다.');
+				return;
+			}
 			commentWriteBtnClick(e); // 대댓글 댓글쓰기 버튼클릭
+		
+		}
 			
 		
 		if(e.target.classList.contains('comment-cancel-btn'))
@@ -254,20 +271,20 @@ window.addEventListener("load",function(){
 			e.target.addEventListener('input',function(e){
 				var cmtTextarea=e.target;
 				var cmtTextareaValue=cmtTextarea.value;
-				console.log(cmtTextareaValue); //글자
-				console.log(cmtTextareaValue.length); //글자 수 카운트
+				console.log(cmtTextareaValue); // 글자
+				console.log(cmtTextareaValue.length); // 글자 수 카운트
 				
 				cmtTextarea.nextElementSibling.lastElementChild.firstElementChild.innerText=cmtTextareaValue.length;
 				
 			});
 		}
 		
-//		console.log(textarea);
-//		textarea.addEventListener('input',function(e){
-//			textarea=e.target.value;
-//			console.log(e.target.value);
-//			console.log(textarea.length);
-//		});
+// console.log(textarea);
+// textarea.addEventListener('input',function(e){
+// textarea=e.target.value;
+// console.log(e.target.value);
+// console.log(textarea.length);
+// });
 		
 			
 	}

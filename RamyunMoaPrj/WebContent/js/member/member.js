@@ -3,12 +3,12 @@
 function inputCheck() {
 
 	var frm = document.regFrm;
-	var check1 = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,18}$/.test(frm.pwd.value); // 영문,숫자
+	var check1 = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,18}$/.test(frm.pwd.value); // 영문,숫자
 
-	var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,18}$/
+	var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{6,18}$/
 			.test(frm.pwd.value); // 영문,특수문자
 
-	var check3 = /^(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,18}$/.test(frm.pwd.value); // 특수문자,
+	var check3 = /^(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{6,18}$/.test(frm.pwd.value); // 특수문자,
 	// 숫자
 
 	if (frm.uid.value == "") {
@@ -41,7 +41,7 @@ function inputCheck() {
 
 	if (!(check1 || check2 || check3)) {
 
-		alert("비밀번호는 8~18자의 영문 대소문자, 숫자, 특수문자만 가능합니다");
+		alert("비밀번호는 6~18자의 영문 대소문자, 숫자, 특수문자만 가능합니다");
 		frm.repwd.focus();
 		return false;
 
@@ -134,7 +134,7 @@ function uidCheck(uid) {
 		return;
 	}
 	url = "uidCheck?uid=" + uid;
-	window.open(url, "UidCheck", "width=300,height=150");
+	window.open(url, "UidCheck", "width=330,height=150");
 }
 
 function nickCheck(nickname) {
@@ -147,7 +147,7 @@ function nickCheck(nickname) {
 	}
 
 	url = "nickCheck?nickname=" + nickname;
-	window.open(url, "NickCheck", "width=300,height=150");
+	window.open(url, "NickCheck", "width=330,height=150");
 }
 
 function emailCheck(email) {
@@ -239,27 +239,16 @@ function myScrap() {
 function changePwd() {
 
 }
-function quitPage() {
-	location.href = "/member/quitMember";
 
-}
 function quitProc() {
 	var quitForm = document.quitFrm;
 
-	var result = confirm("정말 탈퇴 하시겠습니까? 기존 정보는 지워집니다");
+	confirm("정말 탈퇴 하시겠습니까? 기존 정보는 지워집니다");
 
 	if (quitForm.pwd.value == "") {
 		alert("비밀번호를 입력해 주세요.");
 		quitForm.pwd.focus();
 		return;
 	}
-
-	if (result) {
-		alert("회원탈퇴 완료");
-		quitMember.submit();
-
-	} else {
-
-		return;
-	}
+		quitFrm.submit();
 }

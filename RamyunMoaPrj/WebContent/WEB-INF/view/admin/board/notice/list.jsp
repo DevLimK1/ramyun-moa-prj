@@ -37,7 +37,8 @@
 					<td class="col-text">작성자</td>
 					<td class="col-num">조회수</td>
 					<td class="col-text">작성일</td>
-					<td class="col-text">공개/비공개</td>
+					<td class="w60">공개</td>
+					<td class="w60">삭제</td>
 				</tr>
 			</thead>
 
@@ -54,6 +55,7 @@
 						<td>${n.hit }</td>
 						<td>${n.regdate}</td>
 						<td class="file"><input type="checkbox" name="open-id" ${open } value="${n.id }"></td>
+						<td class="file"><input type="checkbox" name="del-id" value="${n.id }"></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -68,6 +70,7 @@
 				</c:forEach>
 				<input type="hidden" name="ids" value="${ids } ${n.id }">
 				<input type="submit" name="cmd" value="open">
+				<input type="submit" name="cmd" value="del">
 				<a href="reg">글쓰기</a>
 			</div>
 		</section>

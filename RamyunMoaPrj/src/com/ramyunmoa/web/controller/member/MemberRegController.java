@@ -23,7 +23,7 @@ public class MemberRegController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doget �۵�");
+		System.out.println("회원가입 doGet 작동");
 		TilesContainer container = TilesAccess.getContainer(
 		        request.getSession().getServletContext());
 		container.render("member.regist", request, response);
@@ -33,7 +33,7 @@ public class MemberRegController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("doPost �۵�");
+		System.out.println("회원가입 doPost 작동");
 		request.setCharacterEncoding("UTF-8");
 
 		String uid = request.getParameter("uid");
@@ -58,10 +58,12 @@ public class MemberRegController extends HttpServlet {
 		try {
 			
 			service.insertMember(member);
+			//System.out.println("멤버정보는 드감");
+			//service.insertRole(member);
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('라면모아 회원가입되었습니다. 환영합니다 ^-^ '); location.href='login'; </script>");
+			out.println("<script>alert('라면모아 회원가입을 축하드립니다!'); location.href='login'; </script>");
 			out.flush();
 			
 		} catch (ClassNotFoundException e) {

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
-import com.ramyunmoa.web.service.ProductService;
+import com.ramyunmoa.web.service.ProdService;
 import com.ramyunmoa.web.view.product.AdminProdView;
 
 @WebServlet("/admin/product/main")
@@ -22,36 +22,26 @@ public class ProductController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		ProductService service = new ProductService();
-
-		String mfr = "";
-		int page = 1;
-		String searchName = "";
-
-		String mfr_ = req.getParameter("m");
-		if (mfr_ != null && !mfr_.equals("")) {
-			mfr = mfr_;
-		}
-
-		String page_ = req.getParameter("p");
-		if (page_ != null && !page_.equals("")) {
-			page = Integer.parseInt(page_);
-		}
-
-		String searchName_ = req.getParameter("s");
-		if (searchName_ != null && !searchName_.equals("")) {
-			searchName = searchName_;
-		}
-
-		List<AdminProdView> list = null;
-		int count = 0;
+		ProdService service = new ProdService();
 
 		try {
 
-			list = service.getAdminList(mfr, searchName, page);
-			req.setAttribute("list", list);
-			count = service.getListCount(mfr, searchName);
-			req.setAttribute("count", count);
+			int count1 = service.getListCount("농심", "", "");
+			req.setAttribute("count1", count1);
+			int count2 = service.getListCount("삼양", "", "");
+			req.setAttribute("count2", count2);
+			int count3 = service.getListCount("오뚜기", "", "");
+			req.setAttribute("count3", count3);
+			int count4 = service.getListCount("팔도", "", "");
+			req.setAttribute("count4", count4);
+			int count5 = service.getListCount("GS25", "", "");
+			req.setAttribute("count5", count5);
+			int count6 = service.getListCount("CU", "", "");
+			req.setAttribute("count6", count6);
+			int count7 = service.getListCount("세븐일레븐", "", "");
+			req.setAttribute("count7", count7);
+			int count8 = service.getListCount("", "", "");
+			req.setAttribute("count8", count8);
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

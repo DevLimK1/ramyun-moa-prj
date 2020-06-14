@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <main class="main">
 	<section class="customer-service">
 		<h1 class="font-size-30">고객의 소리</h1>
@@ -20,13 +20,14 @@
 					<option ${(param.f == "writerId")?"selected":"" } value="writerId">작성자</option>
 				</select> 
 				<label class="hidden">검색어</label> 
-				<input class="search-text" type="text" name="q" placeholder="검색어를 입력하세요"> 
+				<input class="search-text" type="text" name="q" placeholder="검색어를 입력하세요">
 				<input class="search-button" type="submit" value="검색">
 			</fieldset>
 		</form>
 	</section>
 
 	<section class="list">
+		<form action="list" method="post">
 		<h1 class="hidden">게시글 목록</h1>
 		<table class="table">
 			<thead>
@@ -36,6 +37,7 @@
 					<td class="col-text">작성자</td>
 					<td class="col-num">조회수</td>
 					<td class="col-text">작성일</td>
+					<td class="w60">삭제</td>
 				</tr>
 			</thead>
 
@@ -47,6 +49,7 @@
 						<td>${f.writerId }</td>
 						<td>${f.hit }</td>
 						<td>${f.regdate }</td>
+						<td class="file"><input type="checkbox" name="del-id" value="${f.id }"></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -54,17 +57,16 @@
 
 		<section class="write">
 			<h1 class="hidden">문의하기</h1>
-			<div>
-				<a href="reg">글쓰기</a>
-			</div>
+			<input type="submit" name="cmd" value="del">
+			<a href="reg">글쓰기</a>
 		</section>
-
+		</form>
 		<section class="page">
 			<h1 class="hidden">페이지</h1>
 
-			<c:set var="page" value="${(empty param.p)?1:param.p }" />
-			<c:set var="startNum" value="${page-(page-1)%5 }" />
-			<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}" />
+			<c:set var="page" value="${(empty param.p)?1:param.p }"/>
+			<c:set var="startNum" value="${page-(page-1)%5 }"/>
+			<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}"/>
 
 			<div>
 				<c:if test="${startNum>1 }">
@@ -74,7 +76,7 @@
 					<span class="prev" onclick="alert('이전페이지가 없습니다.')">이전</span>
 				</c:if>
 			</div>
-
+			
 			<ul>
 				<c:forEach var="i" begin="0" end="4">
 					<c:if test="${(startNum+i) <= lastNum }">

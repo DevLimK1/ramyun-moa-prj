@@ -430,4 +430,38 @@ public class NoticeService {
 		
 		return result;
 	}
+
+	public int deletNoticeAll(int[] ids) throws ClassNotFoundException, SQLException {
+		
+		int result = 0;
+		
+		String params = "";
+		
+		for(int i=0; i<ids.length;i++) {
+			params += ids[i];
+			
+			if(i < ids.length-1)
+				params += ",";
+		}
+		
+		String sql2 = "DELETE FROM NoticeComment WHERE boardId IN ("+params+")";
+		String sql = "DELETE FROM Notice WHERE id IN ("+params+")";
+		
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement st = con.prepareStatement(sql);
+		PreparedStatement st2 = con.prepareStatement(sql2);
+		
+		int rs2 = st2.executeUpdate();
+		result = st.executeUpdate();
+		
+		
+
+		st.close();
+		con.close();
+		
+		return result;
+	}
+
 }

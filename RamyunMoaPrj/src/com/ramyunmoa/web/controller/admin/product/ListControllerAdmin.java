@@ -27,6 +27,7 @@ public class ListControllerAdmin extends HttpServlet {
 		String mfr = "";
 		int page = 1;
 		String searchName = "";
+		String cup = "";
 
 		String mfr_ = req.getParameter("m");
 		if (mfr_ != null && !mfr_.equals("")) {
@@ -43,14 +44,21 @@ public class ListControllerAdmin extends HttpServlet {
 			searchName = searchName_;
 		}
 
+		String cup_ = req.getParameter("c");
+		if (cup_ != null && !cup_.equals("")) {
+			cup = cup_;
+		}
+
+		System.out.println("c" + cup);
+
 		List<AdminProdView> list = null;
 		int count = 0;
 
 		try {
 
-			list = service.getAdminList(mfr, searchName, page);
+			list = service.getAdminList(mfr, searchName, cup, page);
 			req.setAttribute("list", list);
-			count = service.getListCount(mfr, searchName);
+			count = service.getListCount(mfr, searchName, cup);
 			req.setAttribute("count", count);
 
 		} catch (ClassNotFoundException e) {
@@ -60,6 +68,7 @@ public class ListControllerAdmin extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
 		TilesContainer container = TilesAccess.getContainer(req.getSession().getServletContext());
 		container.render("admin.product.management", req, resp);

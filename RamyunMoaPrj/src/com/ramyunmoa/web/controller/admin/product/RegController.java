@@ -17,7 +17,7 @@ import javax.servlet.http.Part;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
-import com.ramyunmoa.web.service.ProductService;
+import com.ramyunmoa.web.service.ProdService;
 import com.ramyunmoa.web.view.product.AdminProdView;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 100 * 1024 * 1024, maxRequestSize = 300 * 1024 * 1024)
@@ -106,7 +106,7 @@ public class RegController extends HttpServlet {
 		int year = Integer.parseInt(req.getParameter("year"));
 		int quarter = Integer.parseInt(req.getParameter("quarter"));
 
-		ProductService service = new ProductService();
+		ProdService service = new ProdService();
 
 		AdminProdView data = new AdminProdView(name, capacity, kcal, mfrId, img, amount, year, quarter, natrium,
 				carbohydrate, sugars, fat, transfat, saturatedFat, cholesterol, protein);

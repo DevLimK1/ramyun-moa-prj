@@ -25,6 +25,16 @@ public class BoardAdmin {
 		this.nickname = nickname;
 	}
 
+	public BoardAdmin(int id, String title, String content, int likes, int hit, Date regdate, String nickname) {
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.likes = likes;
+		this.hit = hit;
+		this.regdate = regdate;
+		this.nickname = nickname;
+	}
+
 	public int getId() {
 		return id;
 	}

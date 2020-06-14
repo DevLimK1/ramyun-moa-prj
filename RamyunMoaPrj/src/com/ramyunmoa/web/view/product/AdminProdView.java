@@ -65,6 +65,30 @@ public class AdminProdView {
 
 	}
 
+	public AdminProdView(int id, String name, int capacity, int kcal, int natrium, int carbohydrate, int sugars,
+			int fat, int transfat, int saturatedFat, int cholesterol, int protein, String mfr, int mfrId, int amount,
+			int year, int quarter, String img) {
+		this.id = id;
+		this.name = name;
+		this.capacity = capacity;
+		this.kcal = kcal;
+		this.natrium = natrium;
+		this.carbohydrate = carbohydrate;
+		this.sugars = sugars;
+		this.fat = fat;
+		this.transfat = transfat;
+		this.saturatedFat = saturatedFat;
+		this.cholesterol = cholesterol;
+		this.protein = protein;
+		this.mfr = mfr;
+		this.mfrId = mfrId;
+		this.amount = amount;
+		this.year = year;
+		this.quarter = quarter;
+		this.img = img;
+
+	}
+
 	public int getMfrId() {
 		return mfrId;
 	}

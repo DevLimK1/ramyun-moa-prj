@@ -1,109 +1,73 @@
-.contents {
-    margin: 50px 0px;
-}
-
 .title {
-    font-size: 2em;
-    font-family: 'Righteous', cursive;
-    padding-bottom: 30px;
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 2.5em;
+	padding: 20px;
 }
 
-.search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+.sub {
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 2.0em;
+	text-align: left;
 }
 
-.search>div {
-    padding: 10px;
+.notice-review {
+	width: 100%;
 }
 
-/* table */
-
-.item-table {
-    font-size: 12px;
-    border: solid;
-    width: 1000px;
-    margin: 30px auto 30px auto;
-
+.notice-review thead tr:last-child td {
+	width: 12.5%;
 }
 
-.item-table img {
-    max-width: 100px;
-    max-height: 100px;
-    margin: 10px 20px;
+tr, td {
+	border: 1px solid #bbbbbb;
+	padding: 10px;
+	height: 20px;
 }
 
-.item-table td {
-    border: solid 0.5px #bbbbbb;
-    padding: 5px 10px;
-    font-weight: bold;
+.flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.item-table img {
-    max-width: 100px;
-    max-height: 100px;
+.notice-review input:hover {
+	opacity: 0.5;
 }
 
-.item-table input[type="text"] {
-    width: 50px;
-    /* height: 35px; */
-    text-align: center;
-    margin: 5px 10px;
+.container {
+	width: 90%;
+	margin: 40px auto;
 }
 
-.item-table .regImg {
-    width: 75px;
-    height: 75px;
-    border: solid 1px;
-    margin: 20px 10px;
+.container-table {
+	width: 90%;
+	margin: 30px auto 20px auto;
 }
 
-.item-table .input-title {
-    width: 150px;
+.notice-table {
+	width: 100%;
+	border-top: solid #eeeeee;
+	border-bottom: solid #eeeeee;
+	margin-bottom: 40px;
 }
 
-.item-table tbody tr:last-child>td:last-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9em;
+.notice-table a:hover {
+	text-decoration: underline;
 }
 
-.item-table tbody tr:last-child>td:last-child select {
-    display: flex;
-    width: 60px;
+.notice-table>thead>tr>td {
+	font-size: 0.9em;
+	border-top: solid 2px #cccccc;
+	border-bottom: solid 1.5px #bbbbbb;
+	font-weight: bold;
+	width: 25%;
 }
 
-.pager {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+.notice-table tr td {
+	border-bottom: solid 0.5px #dddddd;
+	padding: 10px;
 }
 
-.pager ul {
-    display: flex;
-    justify-content: center;
-}
-
-.pager ul>li {
-    padding: 15px;
-}
-
-.fixed {
-    background-color: #bbbbbb;
-}
-
-.line {
-    border-left: solid 1px black;
-}
-
-tbody>tr:nth-child(2n-1) {
-    border-top: solid;
-}
-
-tbody>tr:nth-child(2n) {
-    border-top: solid 1px black;
+thead {
+	background-color: #dddddd;
 }

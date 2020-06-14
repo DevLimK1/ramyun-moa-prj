@@ -36,8 +36,8 @@
 						<label class="d-none" for="">검색분류</label> <select name="f"
 							class="select">
 							<option ${param.f=="title" ? "selected" : "" } value="title">제목</option>
-							<option ${param.f=="writerName" ? "selected" : "" }
-								value="writerName">작성자</option>
+							<option ${param.f=="nickname" ? "selected" : "" }
+								value="nickname">작성자</option>
 							<option ${param.f=="content" ? "selected" : "" } value="content">내용</option>
 						</select> <label class="d-none" for="">검색어</label> <input type="text"
 							name="q" value="${param.q }"> <input type="submit"

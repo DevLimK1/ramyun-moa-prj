@@ -14,6 +14,12 @@ addEventListener("load", function () {
 	var listImgDiv = imgSec.querySelector(".noodle-list-img");
 	var itemName = listImgDiv.querySelectorAll(".item-name");
 
+	var checkCup = container.querySelector("input[type='checkbox']");
+
+	var rankingSec = container.querySelector(".noodle-ranking");
+	var radioSales = rankingSec.querySelector("input[value='sales']");
+	var radioLikes = rankingSec.querySelector("input[value='likes']");
+
 	for (var i = 0; i < itemName.length; i++) {
 
 		if (itemName[i].innerText.includes("(")) {
@@ -30,6 +36,20 @@ addEventListener("load", function () {
 	categoryUl.firstElementChild.style.color = "#c4001d";
 	pagerUl.firstElementChild.style.color = "#c4001d";
 
+	checkCup.onselect = function () {
+		e.preventDefault = false;
+		alert(3);
+	}
+
+	radioSales.onselect = function () {
+		e.preventDefault = false;
+		alert(1);
+	}
+
+	radioLikes.onselect = function () {
+		e.preventDefault = false;
+		alert(2);
+	}
 
 	submit.onclick = function (e) {
 

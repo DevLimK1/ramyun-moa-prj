@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <main class="main">
 	<section>
-		<h1 class="font-size-30">고객의 소리 작성</h1>
+		<h1 class="font-size-30 margin-bottom">고객의 소리 작성</h1>
 	</section>
 
 	<form action="reg" method="post">

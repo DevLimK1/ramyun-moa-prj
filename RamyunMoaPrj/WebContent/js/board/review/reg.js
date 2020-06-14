@@ -10,7 +10,8 @@
 //
 // btnCancel.onclick = cancelBtnClick;
 // TODO : cancel button
-function cancelBtnClick(e) {
+/*
+function cancelBtnClick(e) { //취소버튼 비동기
 	shield.show();
 	e.preventDefault();
 
@@ -26,6 +27,7 @@ function cancelBtnClick(e) {
 	shield.hide();
 
 }
+*/
 
 var contentBox = document.querySelector(".content-box");
 var boldButton = contentBox.querySelector(".btn-bold");
@@ -33,6 +35,86 @@ var italicButton = contentBox.querySelector(".btn-italic");
 var imgButton = contentBox.querySelector(".btn-img");// 트리거 위한 버튼
 var fileButton = contentBox.querySelector(".btn-file");
 var contentArea = contentBox.querySelector(".content-area");
+var underlineButton= contentBox.querySelector(".btn-underline");
+var btnBox=document.querySelector(".btn-box");
+var submitButton=btnBox.querySelector(".btn-submit");
+var subLinkForm=document.querySelector(".sub-link-search-form");
+
+var writerName=subLinkForm.querySelector(".writerName-txt");
+var writerId=subLinkForm.querySelector("input[name=writerId]");
+var mfcProduct=subLinkForm.querySelector("input[name=mfc-product]");
+var gradeId=subLinkForm.querySelector("select[name=grade]");
+var title=subLinkForm.querySelector("input[name=title]");
+
+subLinkForm.onsubmit=function(e){
+	
+	e.preventDefault();
+	console.log("onsubmit");
+	
+	var content=contentArea.innerHTML;
+	title=title.value;
+	writerName=writerName.innerText;
+	writerId=writerId.value;
+	mfcProduct=mfcProduct.value;
+	gradeId=gradeId.value;
+	
+	console.log(gradeId.value); //평점값
+	console.log(mfcProduct.value);//제조사-라면값
+	console.log(writerName);//작성자이름
+	console.log(writerId); //작성자 id
+	
+	var data=`content=${content}&writerId=${writerId}&title=${title}&writerName=${writerName}&mfc-product=${mfcProduct}&grade=${gradeId}`;
+	
+	
+	var xhr=new XMLHttpRequest();
+	
+	
+	xhr.open('POST','reg-data',true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.onload=function(){
+		console.log(xhr.responseText);
+//		comments=JSON.parse(xhr.responseText);
+//		location.replace('detail')
+		location.href='list';
+//		console.log(comments);
+//		bind();
+	}
+	
+
+	xhr.send(data);
+}
+
+
+
+/*등록 버튼 클릭시
+//submitButton.onclick=function(e){
+	e.preventDefault();
+	alert('등록버튼 클릭');
+	console.log(contentArea.innerHTML);
+	var content=contentArea.innerHTML;
+	var data=`content=${content}`;
+	
+//	title=${title}
+//	mfcProduct=${mfcProduct}
+//	writerId=
+//	content=${content}&
+	
+	
+	var xhr=new XMLHttpRequest();
+	
+	
+	xhr.open('POST','reg-data',true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.onload=function(){
+		console.log(xhr.responseText);
+		comments=JSON.parse(xhr.responseText);
+//		console.log(comments);
+//		bind();
+	}
+	
+
+	xhr.send(data);
+}*/
 
 fileButton.oninput = function(e) {
 	// e.preventDefault();
@@ -115,7 +197,7 @@ contentArea.onclick = function(e) {
 
 imgButton.onclick = function(e) {
 	e.preventDefault();
-	alert('imgButtonClicked!');
+//	alert('imgButtonClicked!');
 
 	// fileButton의 onClick을 트리거하는 코드
 	var event = new MouseEvent("click", {
@@ -135,4 +217,9 @@ boldButton.onclick = function(e) {
 italicButton.onclick = function(e) {
 	e.preventDefault();
 	document.execCommand("italic");
+}
+
+underlineButton.onclick=function(e){
+	e.preventDefault();
+	document.execCommand("underline");
 }

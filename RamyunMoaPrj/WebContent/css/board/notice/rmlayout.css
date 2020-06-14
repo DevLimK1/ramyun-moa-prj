@@ -8,8 +8,8 @@
 a {
     color: black;
     text-decoration: none;
-    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'맑은 고딕', 
-                    Dotum,'돋움', Arial, sans-serif;
+    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'留묒� 怨좊뵓', 
+                    Dotum,'�룍��', Arial, sans-serif;
 }   
 
 .text-highlight{
@@ -81,14 +81,94 @@ a {
 }
 
 .font-size-30{
-    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'맑은 고딕', 
-                    Dotum,'돋움', Arial, sans-serif;
+    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'留묒� 怨좊뵓', 
+                    Dotum,'�룍��', Arial, sans-serif;
     font-size: 30px;
 }
 
+.margin-bottom{
+	margin-bottom: 10px;
+}
 
+/*----------------------------------------- <admin header> <admin footer> ----------------------------------*/
 
-/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ <list> ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+.top-header {
+	display: flex;
+	margin-top: 5px;
+	font-size: 20px;
+	background-color: #292929;
+	color: white;
+	align-items: center;
+	padding: 0px 20px;
+}
+
+.top-header input, select {
+	font-size: 14px;
+}
+
+.top-home {
+	margin-right: 50px;
+}
+
+.top-header-list {
+	display: flex;
+	margin-left: auto;
+}
+
+.top-header-list li {
+	margin-right: 10px;
+	padding: 5px;
+	border-radius: 10px;
+	font-size: 15px;
+}
+
+.top-header-list a {
+	color: white;
+}
+
+.bottom-header {
+	background-color: #ffbc0d;
+	margin: 3px 0px 3.5px 0px;
+}
+
+.bottom-header a {
+	color: white;
+	font-weight: 500;
+	font-size: 20px;
+}
+
+.admin-menu {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.admin-menu li {
+	width: 130px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.admin-menu li:hover {
+	opacity: 0.5;
+}
+
+.footer {
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 100%;
+	width: 100%;
+	background: #8b8c9b;
+	background-color: #292929;
+	color: white;
+	padding: 20px 0px;
+}
+
+.footer>div {
+	width: 95%;
+	margin: 0 auto;
+}
+
+/*�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃 <list> �넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃*/
 #body{
     display: flex;
     min-height: 500px;
@@ -97,6 +177,7 @@ a {
 
 .content-container{
     display: flex;
+    justify-content: center;
     width: 1080px;
     margin-left: auto;
     margin-right: auto;
@@ -112,8 +193,8 @@ a {
 }
     .aside .customer-center>h1{
         font-size: 25px;
-        font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'맑은 고딕', 
-                        Dotum,'돋움', Arial, sans-serif;
+        font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'留묒� 怨좊뵓', 
+                        Dotum,'�룍��', Arial, sans-serif;
         padding-bottom: 10px;
     }
 
@@ -121,6 +202,20 @@ a {
         font-size: 20px;
         text-indent: 10px;
     }
+    
+.admin-aside{
+	border-right: 2px solid black;
+	width: 220px;
+	text-align: center;
+}
+
+	.admin-aside .customer-center>h1{
+		font-size: 20px;
+	    background: #42a5f5;
+	    height: 40px;
+	    line-height: 40px;
+	    padding-left: 15px;
+	}
 
 .main{
     display: block;
@@ -156,8 +251,8 @@ a {
 .list {
     width: 780px;
     height: inherit;
-    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'맑은 고딕', 
-                    Dotum,'돋움', Arial, sans-serif;
+    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'留묒� 怨좊뵓', 
+                    Dotum,'�룍��', Arial, sans-serif;
 }
 
     .list .table{
@@ -229,9 +324,9 @@ a {
             width: 15px;
             height: 15px;
         }
-/*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ <list> ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
+/*�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁 <list> �넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁*/
 
-/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ <reg> ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+/*�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃 <reg> �넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃*/
 .post{
     display: flex;
     width: 780px;
@@ -283,9 +378,9 @@ a {
     margin-left: 635px;
 }
 
-/*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ <reg> ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
+/*�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁 <reg> �넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁*/
 
-/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ <detail> <edit> ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+/*�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃 <detail> <edit> �넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃*/
 
 .detail{
 	margin-top: 20px;
@@ -405,13 +500,9 @@ a {
 	width: 700px;
 }
 	.comment-box .comment{
-		--display: flex;
 		height: 100px;
-		border: 1px solid purple;
-		margin-bottom: 5px;
+		border-bottom: 1px solid #F8B91A;
 		padding: 5px;
-		--flex-direction: column;
-		
 	}
 	
 		.comment-box .comment>div:first-child{
@@ -425,12 +516,10 @@ a {
 			display: inline-block;
 			width: 25px;
 			height: 25px;
-			--border: 1px solid red;
 		}
 		
 		.comment-box .comment .writer{
 			display: inline-block;
-			--border: 1px solid orange;
 			height: 16px;
 			
 		}
@@ -456,15 +545,14 @@ a {
 			height: 15px;
 			font-size: 10px;
 			text-indent: 5px;
-			--border: 1px solid blue;
 		}
 	
 	.comment-box .comment-post{
-		--display: flex;
 		justify-content: center;
 		align-items: center;
 		width: 700px;
 		text-align: right;
+		margin-top : 10px;
 	}
 	
 		.comment-box .comment-post .comment-textarea{

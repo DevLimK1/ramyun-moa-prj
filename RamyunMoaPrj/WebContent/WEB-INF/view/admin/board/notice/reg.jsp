@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <main class="main">
 	<section>
-		<h1 class="font-size-30">공지 작성</h1>
+		<h1 class="font-size-30 margin-bottom">공지 작성</h1>
 	</section>
 
 	<form action="reg" method="post">

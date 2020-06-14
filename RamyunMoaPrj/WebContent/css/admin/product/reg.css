@@ -2,6 +2,11 @@
     margin: 50px 0px;
 }
 
+.current {
+	color: #c4001d;
+	font-weight: bold;
+}
+
 .title {
     font-size: 2em;
     font-family: 'Righteous', cursive;
@@ -10,18 +15,22 @@
 
 /* table */
 
+select {
+    text-align-last: center;
+    font-size: 1em;
+    padding: 10px 5px;
+}
+
 .item-table {
     margin: 30px 0px;
     margin-left: auto;
     margin-right: auto;
-    font-size: 12px;
     border: solid;
 }
 
 .item-table td {
     border: solid 0.5px #bbbbbb;
     padding: 10px 5px;
-    font-weight: bold;
 }
 
 .item-table img {
@@ -36,25 +45,38 @@
     margin: 5px 10px;
 }
 
+.img-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 .item-table .regImg {
-    width: 100px;
-    height: 100px;
-    border: solid 1px;
-    margin: 20px 10px;
+    width: 90%;
+    height: 200px;
+}
+
+.item-table .regImg img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .item-table .input-title {
     width: 150px;
 }
 
-.item-table tbody tr:last-child>td:last-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9em;
+
+thead {
+    background-color: #eeeeee;
 }
 
-.item-table tbody tr:last-child>td:last-child select {
-    display: flex;
-    width: 60px;
+input[type="file"] {
+    padding: 10px
+}
+
+.bold {
+    background-color: #eeeeee;
+    font-weight: bold;
 }

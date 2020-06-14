@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <main class="main">
 	<section class="first">
@@ -34,7 +33,7 @@
 		<div class="finger">
 			<i class="far fa-hand-point-right"></i>
 		</div>
-		<a href="" class="cal-calc-go">
+		<a href="/calc" target="_blank" class="cal-calc-go">
 			<button class="cal-calc-btn">go! go!</button>
 		</a>
 	</div>
@@ -61,38 +60,24 @@
 					<p>후기 게시판</p>
 					<ul class="whats-list">
 						<c:forEach var="l" items="${reviewList}">
-							<li><span>${l.title}</span></li>
+							<li><a href="review/detail?id=${l.id}">${l.title}</a></li>
 						</c:forEach>
 					</ul>
 				</div>
 				<div class="whats-tit">
 					<p>라면 토론장</p>
 					<ul class="whats-list">
-						<li><span>글 내용1</span></li>
-						<li><span>글 내용2</span></li>
-						<li><span>글 내용3</span></li>
-						<li><span>글 내용4</span></li>
-						<li><span>글 내용5</span></li>
-						<li><span>글 내용6</span></li>
-						<li><span>글 내용7</span></li>
-						<li><span>글 내용8</span></li>
-						<li><span>글 내용9</span></li>
-						<li><span>글 내용10</span></li>
+						<c:forEach var="d" items="${discussionList}">
+							<li><span>${d.title}</span></li>
+						</c:forEach>
 					</ul>
 				</div>
 				<div class="whats-tit">
 					<p>레시피 공유</p>
 					<ul class="whats-list">
-						<li><span>글 내용1</span></li>
-						<li><span>글 내용2</span></li>
-						<li><span>글 내용3</span></li>
-						<li><span>글 내용4</span></li>
-						<li><span>글 내용5</span></li>
-						<li><span>글 내용6</span></li>
-						<li><span>글 내용7</span></li>
-						<li><span>글 내용8</span></li>
-						<li><span>글 내용9</span></li>
-						<li><span>글 내용10</span></li>
+						<c:forEach var="r" items="${recipeList}">
+							<li><span>${r.title}</span></li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>

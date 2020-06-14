@@ -16,19 +16,20 @@ import com.ramyunmoa.web.view.product.RankingView;
 
 public class ProdService {
 
-	public List<ProductView> getProdList(String mfr, String searchName, int page)
+	public List<ProductView> getProdList(String mfr, String searchName, String cup, int page)
 			throws SQLException, ClassNotFoundException {
 
 		List<ProductView> list = new ArrayList<ProductView>();
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-		String sql = "SELECT * FROM ProductView WHERE mfr LIKE ? AND name LIKE ? ORDER BY name LIMIT ?, 25";
+		String sql = "SELECT * FROM ProductView WHERE mfr LIKE ? AND name LIKE ? AND name LIKE ? ORDER BY name LIMIT ?, 20";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, '%' + mfr + '%');
 		ps.setString(2, '%' + searchName + '%');
-		ps.setInt(3, (page - 1) * 25);
+		ps.setString(3, '%' + cup + '%');
+		ps.setInt(4, (page - 1) * 20);
 		ResultSet rs = ps.executeQuery();
 
 		while (rs.next()) {
@@ -62,17 +63,18 @@ public class ProdService {
 		return rankingList;
 	}
 
-	public int getListCount(String mfr, String searchName) throws ClassNotFoundException, SQLException {
+	public int getListCount(String mfr, String searchName, String cup) throws ClassNotFoundException, SQLException {
 
 		int count = 0;
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-		String sql = "SELECT COUNT(id) count FROM ProductView WHERE mfr LIKE ? AND name LIKE ?";
+		String sql = "SELECT COUNT(id) count FROM ProductView WHERE mfr LIKE ? AND name LIKE ? AND name LIKE ?";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, '%' + mfr + '%');
 		ps.setString(2, '%' + searchName + '%');
+		ps.setString(3, '%' + cup + '%');
 		ResultSet rs = ps.executeQuery();
 
 		if (rs.next()) {
@@ -102,19 +104,20 @@ public class ProdService {
 		return nutrition;
 	}
 
-	public List<AdminProdView> getAdminList(String mfr, String searchName, int page)
+	public List<AdminProdView> getAdminList(String mfr, String searchName, String cup, int page)
 			throws SQLException, ClassNotFoundException {
 
 		List<AdminProdView> adminProdList = new ArrayList<AdminProdView>();
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-		String sql = "SELECT * FROM AdminProdView WHERE mfr LIKE ? AND name LIKE ? ORDER BY id LIMIT ?, 5";
+		String sql = "SELECT * FROM AdminProdView WHERE mfr LIKE ? AND name LIKE ? AND name LIKE ? ORDER BY id LIMIT ?, 5";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, '%' + mfr + '%');
 		ps.setString(2, '%' + searchName + '%');
-		ps.setInt(3, (page - 1) * 5);
+		ps.setString(3, '%' + cup + '%');
+		ps.setInt(4, (page - 1) * 5);
 		ResultSet rs = ps.executeQuery();
 
 		while (rs.next()) {
@@ -127,7 +130,7 @@ public class ProdService {
 		}
 		return adminProdList;
 	}
-	
+
 	public NutritionView getNutriStd() throws SQLException, ClassNotFoundException {
 
 		NutritionView nutriStd = null;
@@ -145,6 +148,173 @@ public class ProdService {
 					rs.getInt("protein"));
 		}
 		return nutriStd;
+	}
+
+	public void insertData(AdminProdView data) throws SQLException, ClassNotFoundException {
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+
+		String sql1 = "INSERT INTO Product VALUES(?, ?, ?, ?, ?)";
+		PreparedStatement ps1 = con.prepareStatement(sql1);
+		ResultSet rs1 = ps1.executeQuery();
+		ps1.setString(1, data.getName());
+		ps1.setInt(2, data.getCapacity());
+		ps1.setInt(3, data.getKcal());
+		ps1.setInt(4, data.getMfrId());
+		ps1.setString(5, data.getImg());
+
+		String sql2 = "SELECT id FROM Product ORDER BY id DESC LIMIT 1;";
+		Statement st2 = con.createStatement();
+		ResultSet rs2 = st2.executeQuery(sql2);
+
+		int productId = 0;
+		if (rs2.next()) {
+			productId = rs2.getInt("id");
+		}
+
+		String sql3 = "INSERT INTO Sales VALUES(?, ?, ?, ?)";
+		PreparedStatement ps3 = con.prepareStatement(sql3);
+		ps3.setInt(1, productId);
+		ps3.setInt(2, data.getAmount());
+		ps3.setInt(3, data.getYear());
+		ps3.setInt(4, data.getQuarter());
+		ps3.executeUpdate();
+
+		String sql4 = "INSERT INTO Nutrition VALUES(?, ?, ?)";
+		PreparedStatement ps4 = con.prepareStatement(sql4);
+		ps4.setInt(1, productId);
+		ps4.setString(2, "나트륨");
+		ps4.setInt(3, data.getNatrium());
+		ps4.executeUpdate();
+		
+		ps4.setInt(1, productId);
+		ps4.setString(2, "탄수화물");
+		ps4.setInt(3, data.getCarbohydrate());
+		ps4.executeUpdate();
+
+		ps4.setInt(1, productId);
+		ps4.setString(2, "당류");
+		ps4.setInt(3, data.getSugars());
+		ps4.executeUpdate();
+
+		ps4.setInt(1, productId);
+		ps4.setString(2, "지방");
+		ps4.setInt(3, data.getFat());
+		ps4.executeUpdate();
+
+		ps4.setInt(1, productId);
+		ps4.setString(2, "트랜스지방");
+		ps4.setInt(3, data.getTransfat());
+		ps4.executeUpdate();
+
+		ps4.setInt(1, productId);
+		ps4.setString(2, "포화지방");
+		ps4.setInt(3, data.getSaturatedFat());
+		ps4.executeUpdate();
+
+		ps4.setInt(1, productId);
+		ps4.setString(2, "콜레스테롤");
+		ps4.setInt(3, data.getCholesterol());
+		ps4.executeUpdate();
+
+		ps4.setInt(1, productId);
+		ps4.setString(2, "단백질");
+		ps4.setInt(3, data.getProtein());
+		ps4.executeUpdate();
+
+	}
+
+	public void updateData(AdminProdView product) throws SQLException, ClassNotFoundException {
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String sql1 = "UPDATE Product SET name = ?, capacity = ?, kcal = ?, manufacturerId = ?, img = ? WHERE id = ?";
+		String sql2 = "UPDATE Sales SET amount = ?, year = ?, quarter = ? WHERE productId = ?";
+		String sql3 = "UPDATE Nutrition SET title = ?, content = ? WHERE productId = ?";
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+
+		PreparedStatement st1 = con.prepareStatement(sql1);
+		st1.setString(1, product.getName());
+		st1.setInt(2, product.getCapacity());
+		st1.setInt(3, product.getKcal());
+		st1.setInt(4, product.getMfrId());
+		st1.setString(5, product.getImg());
+		st1.setInt(6, product.getId());
+		st1.executeUpdate();
+
+		PreparedStatement st2 = con.prepareStatement(sql2);
+		st2.setInt(1, product.getAmount());
+		st2.setInt(2, product.getYear());
+		st2.setInt(3, product.getQuarter());
+		st2.setInt(4, product.getId());
+		st2.executeUpdate();
+
+		PreparedStatement st3 = con.prepareStatement(sql3);
+		st3.setString(1, "나트륨");
+		st3.setInt(2, product.getNatrium());
+		st3.setInt(3, product.getId());
+		st3.executeUpdate();
+		
+		st3.setString(1, "탄수화물");
+		st3.setInt(3, product.getCarbohydrate());
+		st3.setInt(3, product.getId());
+		st3.executeUpdate();
+		
+		st3.setString(1, "당류");
+		st3.setInt(2, product.getSugars());
+		st3.setInt(3, product.getId());
+		st3.executeUpdate();
+		
+		st3.setString(1, "지방");
+		st3.setInt(5, product.getFat());
+		st3.setInt(3, product.getId());
+		st3.executeUpdate();
+		
+		st3.setString(1, "트랜스지방");
+		st3.setInt(6, product.getTransfat());
+		st3.setInt(3, product.getId());
+		st3.executeUpdate();
+		
+		st3.setString(1, "포화지방");
+		st3.setInt(7, product.getSaturatedFat());
+		st3.setInt(3, product.getId());
+		st3.executeUpdate();
+		
+		st3.setString(1, "콜레스테롤");
+		st3.setInt(8, product.getCholesterol());
+		st3.setInt(3, product.getId());
+		st3.executeUpdate();
+		
+		st3.setString(1, "단백질");
+		st3.setInt(9, product.getProtein());
+		st3.setInt(3, product.getId());
+		st3.executeUpdate();
+
+	}
+
+	public int deleteData(int id) throws SQLException, ClassNotFoundException {
+
+		int result = 0;
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String sql = "DELETE FROM Product WHERE id = ?";
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement st = con.prepareStatement(sql);
+
+		st.setInt(1, id);
+
+		result = st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return result;
+
 	}
 
 }

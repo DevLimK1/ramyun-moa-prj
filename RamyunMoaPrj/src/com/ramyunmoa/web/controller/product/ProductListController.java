@@ -28,6 +28,7 @@ public class ProductListController extends HttpServlet {
 		String mfr = "";
 		int page = 1;
 		String searchName = "";
+		String cup = "";
 
 		String mfr_ = req.getParameter("m");
 		if (mfr_ != null && !mfr_.equals("")) {
@@ -43,6 +44,11 @@ public class ProductListController extends HttpServlet {
 		if (searchName_ != null && !searchName_.equals("")) {
 			searchName = searchName_;
 		}
+		
+		String cup_ = req.getParameter("c");
+		if (cup_ != null && !cup_.equals("")) {
+			cup = cup_;
+		}
 
 		List<ProductView> list = null;
 		List<RankingView> rankingList = null;
@@ -50,11 +56,11 @@ public class ProductListController extends HttpServlet {
 
 		try {
 
-			list = service.getProdList(mfr, searchName, page);
+			list = service.getProdList(mfr, searchName, cup, page);
 			req.setAttribute("list", list);
 			rankingList = service.getRanking(mfr);
 			req.setAttribute("rankingList", rankingList);
-			count = service.getListCount(mfr, searchName);
+			count = service.getListCount(mfr, searchName, cup);
 			req.setAttribute("count", count);
 
 		} catch (ClassNotFoundException e) {

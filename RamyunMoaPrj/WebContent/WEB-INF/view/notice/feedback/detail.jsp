@@ -87,7 +87,7 @@
 	</form>
 		<form action="detail" method="post">
 			<div class="comment-post">
-				<textarea class="comment-textarea" name="content"></textarea>
+				<textarea class="comment-textarea" name="content" placeholder="400자까지 입력 가능합니다."></textarea>
 				<!-- <input class="comment-textarea" type="text" > -->
 				<input type="submit" value="등록" class="comment-button">
 				<input type="hidden" name="boardId" value="${f.id }">

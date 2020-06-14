@@ -111,10 +111,24 @@
                 <input class="title-text" type="text" placeholder="제목" value="제목이랍니다" readonly required>
             </div> -->
 
-			<div class="content-box">
+
+		<div class="content-box">
+					<div class="toolbar">
+						<button class="btn-bold"><i class="fas fa-bold"></i></button>
+						<button class="btn-italic"><i class="fas fa-italic"></i></button>
+						<button class="btn-underline"><i class="fas fa-underline"></i></button>
+						<button class="btn-img"><i class="far fa-image"></i></button>
+						<input multiple="multiple" type="file" class="d-none btn-file">
+					</div>
+					<div class="content-area" data-placeholder="내용을 입력해주세요." contenteditable="true">${r.content }</div>
+					<!-- <textarea class="content" placeholder="내용을 입력하세요." name="content"
+						required></textarea> -->
+				</div>
+
+			<%-- <div class="content-box">
 				<textarea class="content" placeholder="내용을 입력하세요." name="content"
 					required>${r.content }</textarea>
-			</div>
+			</div> --%>
 
 			<!-- <form action="" method="POST">
 				<div class="btn-box">

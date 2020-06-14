@@ -10,6 +10,11 @@
 	align-items: center;
 }
 
+input[type="submit"] {
+	margin: 2.5px;
+	padding: 0px 5px;
+}
+
 input[type="button"] {
 	margin: 2.5px;
 	padding: 0px 5px;
@@ -45,12 +50,16 @@ select {
 }
 
 .container-table {
-	width: 90%;
-	margin: 30px auto 20px auto;
+	width: 100%;
+	margin: 0 auto;
 }
 
 .notice-table {
 	width: 100%;
+}
+
+thead {
+	background-color: #eeeeee;
 }
 
 .notice-table a:hover {
@@ -65,12 +74,13 @@ select {
 }
 
 .notice-table>thead>tr>td:nth-child(1),
-td:nth-child(6) {
+td:nth-child(6),
+td:nth-child(7) {
 	width: 5%;
 }
 
 .notice-table>thead>tr>td:nth-child(2) {
-	width: 55%;
+	width: 50%;
 }
 
 .notice-table>thead>tr>td:nth-child(3),
@@ -96,7 +106,7 @@ td:nth-child(5) {
 }
 
 .list,
-.del-btn {
+.three-btn {
 	display: flex;
 	justify-content: flex-end;
 	margin-bottom: 10px;

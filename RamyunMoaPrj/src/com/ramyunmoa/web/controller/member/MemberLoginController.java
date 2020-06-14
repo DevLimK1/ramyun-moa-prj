@@ -22,7 +22,7 @@ public class MemberLoginController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet 작동");
+		System.out.println("로그인 doGet 작동");
 		TilesContainer container = TilesAccess.getContainer(
 		        request.getSession().getServletContext());
 		container.render("member.login", request, response);
@@ -32,7 +32,7 @@ public class MemberLoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		System.out.println("doPost 작동");
+		System.out.println("로그인 doPost 작동");
 		HttpSession session = request.getSession();
 		
 		String uid = request.getParameter("uid");
@@ -84,7 +84,8 @@ public class MemberLoginController extends HttpServlet {
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter out = response.getWriter();
 					out.println("<script>alert('아이디 또는 비밀번호를 확인해 주세요.'); location.href='login'; </script>");
-					out.flush();
+					return;
+					//					out.flush();
 					//response.sendRedirect("login");
 					
 					

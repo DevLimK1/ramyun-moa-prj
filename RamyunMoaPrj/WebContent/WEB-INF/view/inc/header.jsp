@@ -20,16 +20,16 @@
 					<li class="member"><a href="/notice/list">고객센터</a></li>
 				</c:if>
 
-				<!-- 로그인 됐을경우  내정보 / 로그아웃 표시 -->
-				<c:if test="${sessionScope.uid!=null}">
+			<!-- 로그인 됐을경우  내정보 / 로그아웃 표시 -->
+				<c:if test="${sessionScope.uid!=null && sessionScope.uid!='admin' }">
 					<li class="member"><a href="/member/mypage" >내정보</a></li><span>|</span>
-					<li class="member"><a href="/member/logout" onclick="logout()">로그아웃</a></li>
+					<li class="member"><a onclick="logout()">로그아웃</a></li>
 					<li class="member"><a href="/notice/list">고객센터</a></li>
 				</c:if>
 				<!-- 관리자 로그인   로그아웃 -->
 				<c:if test="${sessionScope.uid=='admin'}">
-					<li class="member"><a href="" onclick="memberList()">관리자페이지</a></li><span>|</span>
-					<li class="member"><a href="/member/logout" onclick="logout()">로그아웃</a></li>
+					<li class="member"><a href="/admin/board/main" >관리자페이지</a></li><span>|</span>
+					<li class="member"><a onclick="logout()">로그아웃</a></li>
 				</c:if>
 			</ul>
 		</div>
