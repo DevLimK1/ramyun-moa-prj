@@ -57,7 +57,7 @@
 
 		<section class="write">
 			<h1 class="hidden">문의하기</h1>
-			<input type="submit" name="cmd" value="del">
+			<input type="submit" name="cmd" value="삭제">
 			<a href="reg">글쓰기</a>
 		</section>
 		</form>

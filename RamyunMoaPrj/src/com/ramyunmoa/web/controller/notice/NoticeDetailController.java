@@ -9,12 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
 import com.ramyunmoa.web.entity.notice.Notice;
 import com.ramyunmoa.web.entity.notice.NoticeComment;
+import com.ramyunmoa.web.service.MemberService;
 import com.ramyunmoa.web.service.NoticeCommentService;
 import com.ramyunmoa.web.service.NoticeService;
 import com.ramyunmoa.web.view.notice.NoticeCommentView;
@@ -96,14 +98,28 @@ public class NoticeDetailController extends HttpServlet{
 	    response.setContentType("UTF-8");
 		
 		String content = request.getParameter("content");
-		String writerId = request.getParameter("writerId");
 
 		String boardId_ = request.getParameter("boardId");
 		int boardId = Integer.parseInt(boardId_);
 		
+		String uid = request.getParameter("uid");
+		String nickname="";
+		
+		MemberService mService = new MemberService();
+		
+		try {
+			nickname=mService.getMemberNicknameByUid(uid);
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		NoticeComment comment = new NoticeComment();
 		comment.setContent(content);
-		comment.setWriterId("������");
+		comment.setWriterId(nickname);
 		comment.setBoardId(boardId);
 		
 		NoticeCommentService cService = new NoticeCommentService();

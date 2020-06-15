@@ -13,10 +13,10 @@
 		<h1 class="d-none">수정</h1>
 
 		<div class="mini-title-box">
-			<a href="list" class="mini-title">후기게시판 전체목록</a>
+			<a href="list" class="mini-title">레시피공유게시판 전체목록</a>
 		</div>
 
-		<form action="edit" method="POST" class="sub-link-search-form">
+		<form action="" class="sub-link-search-form">
 
 			<div class="title-box detail-margin-top">
 				<!-- <div class="title fnt_jua">라면은 정말맛있어 정말맛있어요!!</div> -->
@@ -53,7 +53,7 @@
 				</select>
 			</fieldset> --%>
 
-			<fieldset class="grade-field">
+			<%-- <fieldset class="grade-field">
 				<legend class="d-none">평점필드</legend>
 				<label class="" for="">평점:</label> <select name="grade"
 					class="select star-grade-select">
@@ -75,7 +75,7 @@
 						<option value="5">집에 쌓아놓고 먹고싶음 ★★★★★</option> -->
 				</select>
 
-			</fieldset>
+			</fieldset> --%>
 
 			<%-- 		<fieldset class="grade-field detail-margin-top">
 				<legend class="d-none">평점필드</legend>
@@ -98,7 +98,7 @@
 			<div class="meta-box detail-margin-top">
 				<div class="meta-info">
 					<div class="regdate">${r.regdate }</div>
-					<div class="writer-name">${r.writerName}</div>
+					<div class="writer-name writerName-txt">${r.writerName}</div>
 				</div>
 				<div class="meta-info">
 					<div class="hit">조회수 ${r.hit }</div>
@@ -153,6 +153,7 @@
 	<!-- *************************************** -->
 
 </main>
+<script type="text/javascript" src="/js/board/recipe/reg.js"></script>
 
 
 

@@ -76,7 +76,7 @@ window.addEventListener("load", function() {
 	    	 
 	    	  //reg.js 코드 불러오는 방법1)
 	    	  var xhr2=new XMLHttpRequest();
-	    	  xhr2.open('GET','../js/board/review/reg.js',true);
+	    	  xhr2.open('GET','../js/board/recipe/reg.js',true);
 
 	    	  
 	    	  xhr2.onload=function(){

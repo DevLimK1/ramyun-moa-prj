@@ -22,7 +22,7 @@ public class ProductListRestController extends HttpServlet {
 
 		resp.setCharacterEncoding("utf-8");
 		resp.setContentType("text/html;charset=utf-8");
-		
+
 		ProdService service = new ProdService();
 
 		String mfr = "";
@@ -31,25 +31,24 @@ public class ProductListRestController extends HttpServlet {
 		String cup = "";
 
 		String mfr_ = req.getParameter("m");
-		if (mfr_ != null && !mfr_.equals("")) {
+		if (mfr_ != null && !mfr_.equals("") && !mfr_.equals("undefined")) {
 			mfr = mfr_;
 		}
 
 		String page_ = req.getParameter("p");
-		if (page_ != null && !page_.equals("")) {
+		if (page_ != null && !page_.equals("") && !page_.equals("undefined")) {
 			page = Integer.parseInt(page_);
 		}
 
 		String searchName_ = req.getParameter("s");
-		if (searchName_ != null && !searchName_.equals("")) {
+		if (searchName_ != null && !searchName_.equals("") && !searchName_.equals("undefined")) {
 			searchName = searchName_;
 		}
-		
+
 		String cup_ = req.getParameter("c");
-		if (cup_ != null && !cup_.equals("")) {
+		if (cup_ != null && !cup_.equals("") && !cup_.equals("undefined")) {
 			cup = cup_;
 		}
-		
 
 		List<ProductView> list = null;
 

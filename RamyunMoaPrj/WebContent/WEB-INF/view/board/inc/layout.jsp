@@ -17,6 +17,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <script src="/js/main.js"></script>
 <script type="text/javascript" src="/js/member/member.js"></script>
+<script type="text/javascript" src="/js/utils.js"></script>
+
 </head>
 
 <body>

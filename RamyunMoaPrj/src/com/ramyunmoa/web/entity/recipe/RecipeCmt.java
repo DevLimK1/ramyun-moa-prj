@@ -9,7 +9,7 @@ public class RecipeCmt {
 	private String writerName;
 	private Date regdate;
 	private int likes;
-	private int reviewId;//FK
+	private int recipeId;//FK
 	private int bossId;//FK (자기참조)
 	private List<RecipeCmt> children;
 	
@@ -28,28 +28,29 @@ public class RecipeCmt {
 	}
 	
 	
-	public RecipeCmt(int id, String content, String writerName, Date regdate, int likes, int reviewId) {
+	public RecipeCmt(int id, String content, String writerName, Date regdate, int likes, int recipeId) {
 		this.id = id;
 		this.content = content;
 		this.writerName = writerName;
 		this.regdate = regdate;
 		this.likes = likes;
-		this.reviewId = reviewId;
+		this.recipeId = recipeId;
 	}
 
 	
 	
 	
 
-public RecipeCmt(int id, String content, String writerName, Date regdate, int likes, int reviewId, int bossId) {
+public RecipeCmt(int id, String content, String writerName, Date regdate, int likes, int recipeId, int bossId) {
 		this.id = id;
 		this.content = content;
 		this.writerName = writerName;
 		this.regdate = regdate;
 		this.likes = likes;
-		this.reviewId = reviewId;
+		this.recipeId = recipeId;
 		this.bossId = bossId;
 	}
+
 
 
 //	public List getChildren() {
@@ -61,6 +62,16 @@ public RecipeCmt(int id, String content, String writerName, Date regdate, int li
 //		this.children = children;
 //	}
 
+
+
+	public int getRecipeId() {
+	return recipeId;
+}
+
+
+public void setRecipeId(int recipeId) {
+	this.recipeId = recipeId;
+}
 
 
 	public int getBossId() {
@@ -103,16 +114,10 @@ public RecipeCmt(int id, String content, String writerName, Date regdate, int li
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
-	public int getReviewId() {
-		return reviewId;
-	}
-	public void setReviewId(int reviewId) {
-		this.reviewId = reviewId;
-	}
 	@Override
 	public String toString() {
-		return "ReviewCmt [id=" + id + ", content=" + content + ", writerName=" + writerName + ", regdate=" + regdate
-				+ ", likes=" + likes + ", reviewId=" + reviewId + ", bossId=" + bossId + ", children=" + children + "]";
+		return "RecipeCmt [id=" + id + ", content=" + content + ", writerName=" + writerName + ", regdate=" + regdate
+				+ ", likes=" + likes + ", recipeId=" + recipeId + ", bossId=" + bossId + ", children=" + children + "]";
 	}
 	
 	

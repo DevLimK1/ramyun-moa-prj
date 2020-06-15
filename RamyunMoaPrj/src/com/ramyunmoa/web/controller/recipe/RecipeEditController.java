@@ -14,11 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
-import com.ramyunmoa.web.entity.review.Grade;
-import com.ramyunmoa.web.entity.review.Review;
-import com.ramyunmoa.web.service.ReviewService;
+import com.ramyunmoa.web.entity.recipe.Recipe;
+import com.ramyunmoa.web.service.RecipeService;
+import com.ramyunmoa.web.view.recipe.RecipeDetailView;
 import com.ramyunmoa.web.view.review.MfcProductView;
-import com.ramyunmoa.web.view.review.ReviewDetailView;
 
 @WebServlet("/recipe/edit")
 public class RecipeEditController extends HttpServlet {
@@ -31,15 +30,15 @@ public class RecipeEditController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 
 		// 2.데이터베이스에서 쿼리
-		ReviewService service = new ReviewService();
-		ReviewDetailView rdv = null;
+		RecipeService service = new RecipeService();
+		RecipeDetailView rdv = null;
 		List<MfcProductView> mpv = new ArrayList<MfcProductView>();
-		List<Review> list = new ArrayList();
-		List<Grade> grade = new ArrayList<Grade>();
+		List<Recipe> list = new ArrayList();
+		/* List<Grade> grade = new ArrayList<Grade>(); */
 		try {
-			rdv = service.getReviewDetailView(id);
+			rdv = service.getRecipeDetailView(id);
 			mpv=service.getMfcProductViewList();
-			grade = service.getGrade();
+			/* grade = service.getGrade(); */
 //			list = service.getReviewList();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -53,7 +52,7 @@ public class RecipeEditController extends HttpServlet {
 		// 3.View에게 전달
 		request.setAttribute("r", rdv);
 		request.setAttribute("mpv", mpv);
-		request.setAttribute("grade", grade);
+		/* request.setAttribute("grade", grade); */
 //		request.setAttribute("list", list);
 
 //		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/review/edit.jsp");
@@ -70,24 +69,24 @@ public class RecipeEditController extends HttpServlet {
 		String mfcProduct = request.getParameter("mfc-product");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int gradeId=Integer.parseInt(request.getParameter("grade"));
+		/* int gradeId=Integer.parseInt(request.getParameter("grade")); */
 		int mvpId=0; 
 		
-		Review review=new Review();
+		Recipe recipe=new Recipe();
 		
 		
 
-		ReviewService service = new ReviewService();
+		RecipeService service = new RecipeService();
 		try {
 			mvpId=service.getMfcProductViewId(mfcProduct); //상품 아이디 가지고오기
 			
-			review.setId(id);
-			review.setTitle(title);
-			review.setContent(content);
-			review.setGradeId(gradeId);
-			review.setProductId(mvpId);
+			recipe.setId(id);
+			recipe.setTitle(title);
+			recipe.setContent(content);
+			/* review.setGradeId(gradeId); */
+			recipe.setProductId(mvpId);
 			
-			service.updateReview(review);
+			service.updateRecipe(recipe);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

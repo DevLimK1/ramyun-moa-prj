@@ -18,11 +18,10 @@ public class CalcController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-CalcService service = new CalcService();
+		CalcService service = new CalcService();
 		
 		try {
 			List<ProductView> prodList = service.getProdList();

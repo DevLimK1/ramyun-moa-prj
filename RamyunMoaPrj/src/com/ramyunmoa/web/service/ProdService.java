@@ -22,14 +22,14 @@ public class ProdService {
 		List<ProductView> list = new ArrayList<ProductView>();
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-		String sql = "SELECT * FROM ProductView WHERE mfr LIKE ? AND name LIKE ? AND name LIKE ? ORDER BY name LIMIT ?, 20";
+		String sql = "SELECT * FROM ProductView WHERE mfr LIKE ? AND name LIKE ? AND name LIKE ? ORDER BY name LIMIT ?, 16";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, '%' + mfr + '%');
 		ps.setString(2, '%' + searchName + '%');
 		ps.setString(3, '%' + cup + '%');
-		ps.setInt(4, (page - 1) * 20);
+		ps.setInt(4, (page - 1) * 16);
 		ResultSet rs = ps.executeQuery();
 
 		while (rs.next()) {
@@ -226,12 +226,10 @@ public class ProdService {
 
 	}
 
-	public void updateData(AdminProdView product) throws SQLException, ClassNotFoundException {
+	public void updateData1(AdminProdView product) throws SQLException, ClassNotFoundException {
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql1 = "UPDATE Product SET name = ?, capacity = ?, kcal = ?, manufacturerId = ?, img = ? WHERE id = ?";
-		String sql2 = "UPDATE Sales SET amount = ?, year = ?, quarter = ? WHERE productId = ?";
-		String sql3 = "UPDATE Nutrition SET title = ?, content = ? WHERE productId = ?";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -245,12 +243,32 @@ public class ProdService {
 		st1.setInt(6, product.getId());
 		st1.executeUpdate();
 
+	}
+	
+	public void updateData2(AdminProdView product) throws SQLException, ClassNotFoundException {
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String sql2 = "UPDATE Sales SET amount = ?, year = ?, quarter = ? WHERE productId = ?";
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+
 		PreparedStatement st2 = con.prepareStatement(sql2);
 		st2.setInt(1, product.getAmount());
 		st2.setInt(2, product.getYear());
 		st2.setInt(3, product.getQuarter());
 		st2.setInt(4, product.getId());
 		st2.executeUpdate();
+
+	}
+	
+	public void updateData3(AdminProdView product) throws SQLException, ClassNotFoundException {
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String sql3 = "UPDATE Nutrition SET title = ?, content = ? WHERE productId = ?";
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 
 		PreparedStatement st3 = con.prepareStatement(sql3);
 		st3.setString(1, "나트륨");
@@ -259,7 +277,7 @@ public class ProdService {
 		st3.executeUpdate();
 		
 		st3.setString(1, "탄수화물");
-		st3.setInt(3, product.getCarbohydrate());
+		st3.setInt(2, product.getCarbohydrate());
 		st3.setInt(3, product.getId());
 		st3.executeUpdate();
 		
@@ -269,27 +287,27 @@ public class ProdService {
 		st3.executeUpdate();
 		
 		st3.setString(1, "지방");
-		st3.setInt(5, product.getFat());
+		st3.setInt(2, product.getFat());
 		st3.setInt(3, product.getId());
 		st3.executeUpdate();
 		
 		st3.setString(1, "트랜스지방");
-		st3.setInt(6, product.getTransfat());
+		st3.setInt(2, product.getTransfat());
 		st3.setInt(3, product.getId());
 		st3.executeUpdate();
 		
 		st3.setString(1, "포화지방");
-		st3.setInt(7, product.getSaturatedFat());
+		st3.setInt(2, product.getSaturatedFat());
 		st3.setInt(3, product.getId());
 		st3.executeUpdate();
 		
 		st3.setString(1, "콜레스테롤");
-		st3.setInt(8, product.getCholesterol());
+		st3.setInt(2, product.getCholesterol());
 		st3.setInt(3, product.getId());
 		st3.executeUpdate();
 		
 		st3.setString(1, "단백질");
-		st3.setInt(9, product.getProtein());
+		st3.setInt(2, product.getProtein());
 		st3.setInt(3, product.getId());
 		st3.executeUpdate();
 

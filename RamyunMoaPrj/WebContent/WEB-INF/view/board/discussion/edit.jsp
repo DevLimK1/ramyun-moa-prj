@@ -13,25 +13,25 @@
 		<h1 class="d-none">수정</h1>
 
 		<div class="mini-title-box">
-			<a href="list" class="mini-title">후기게시판 전체목록</a>
+			<a href="list" class="mini-title">토론게시판 전체목록</a>
 		</div>
 
-		<form action="edit" method="POST" class="sub-link-search-form">
+		<form action="" class="sub-link-search-form">
 
 			<div class="title-box detail-margin-top">
 				<!-- <div class="title fnt_jua">라면은 정말맛있어 정말맛있어요!!</div> -->
 				<input class="title" name="title" type="text"
-					placeholder="제목을 입력하세요." value="${r.title }" required>
+					placeholder="제목을 입력하세요." value="${dis.title }" required>
 			</div>
 
 			<fieldset class="perface-field">
 				<legend class="d-none">서브링크 검색필드</legend>
 				<label class="" for="">제조사-라면:</label> <input style="width: 350px;"
-					placeholder="입력하시면 더 빨리 찾을 수 있어요 :)" type="text" name="mfc-product"
-					list="product" required="required" value="${r.mfcProduct }">
-				<datalist id="product">
-					<c:forEach var="mpv" items="${mpv}">
-						<option value="${mpv.mfcProduct}"></option>
+					placeholder="입력하시면 더 빨리 찾을 수 있어요 :)" type="text" name="topic"
+					list="topic" required="required" value="${dis.topic}">
+				<datalist id="topic">
+					<c:forEach var="topic" items="${topic}">
+						<option value="${topic.title}"></option>
 						<%-- <input type="hidden" name="mpvId" value="${mpv.id}"> --%>
 					</c:forEach>
 				</datalist>
@@ -53,7 +53,7 @@
 				</select>
 			</fieldset> --%>
 
-			<fieldset class="grade-field">
+	<%-- 		<fieldset class="grade-field">
 				<legend class="d-none">평점필드</legend>
 				<label class="" for="">평점:</label> <select name="grade"
 					class="select star-grade-select">
@@ -75,7 +75,7 @@
 						<option value="5">집에 쌓아놓고 먹고싶음 ★★★★★</option> -->
 				</select>
 
-			</fieldset>
+			</fieldset> --%>
 
 			<%-- 		<fieldset class="grade-field detail-margin-top">
 				<legend class="d-none">평점필드</legend>
@@ -97,13 +97,13 @@
 
 			<div class="meta-box detail-margin-top">
 				<div class="meta-info">
-					<div class="regdate">${r.regdate }</div>
-					<div class="writer-name">${r.writerName}</div>
+					<div class="regdate">${dis.regdate }</div>
+					<div class="writer-name">${dis.nickname}</div>
 				</div>
 				<div class="meta-info">
-					<div class="hit">조회수 ${r.hit }</div>
-					<div class="comment">댓글 ${r.cmtCount }</div>
-					<div class="love">♥ ${r.likes }</div>
+					<div class="hit">조회수 ${dis.hit }</div>
+					<div class="comment">댓글 ${dis.cmtCount }</div>
+					<div class="love">♥ ${dis.likes }</div>
 				</div>
 			</div>
 
@@ -138,9 +138,9 @@
 
 			<div class="btn-box">
 				<div class="btn-box_box">
-					<input type="hidden" name="id" value="${r.id }" /> <input
+					<input type="hidden" name="id" value="${dis.id }" /> <input
 						class="btn-text btn-save btn-hover" type="submit" value="저장" /> <a
-						class="btn-text btn-cancel btn-hover" href="detail?id=${r.id}">취소</a>
+						class="btn-text btn-cancel btn-hover" href="detail?id=${dis.id}">취소</a>
 				</div>
 			</div>
 
@@ -153,7 +153,7 @@
 	<!-- *************************************** -->
 
 </main>
-
+<script type="text/javascript" src="/js/board/discussion/reg.js"></script>
 
 
 <%-- 

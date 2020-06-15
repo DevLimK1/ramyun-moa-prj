@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ramyunmoa.web.entity.discussion.Discussion;
 import com.ramyunmoa.web.entity.member.Member;
 import com.ramyunmoa.web.entity.review.Grade;
-import com.ramyunmoa.web.entity.review.Review;
+import com.ramyunmoa.web.service.DiscussionService;
 import com.ramyunmoa.web.service.ReviewService;
 import com.ramyunmoa.web.view.review.MfcProductView;
 
@@ -72,7 +73,8 @@ public class DiscussionRegRestController extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String writerName=request.getParameter("writerName");
-		
+		String topic= request.getParameter("topic");
+		int topicId=0;
 		int mpvId=0;
 		
 		System.out.println("writerName:"+writerName);
@@ -84,7 +86,7 @@ public class DiscussionRegRestController extends HttpServlet {
 		
 		int writerId=Integer.parseInt(writerId_);
 //		int mpvId=Integer.parseInt(mpvId_);
-		int gradeId = Integer.parseInt(gradeId_);
+		/* int gradeId = Integer.parseInt(gradeId_); */
 		
 		System.out.println("mfcProduct:"+mfcProduct);
 		System.out.println("writerId:"+writerId);
@@ -92,11 +94,11 @@ public class DiscussionRegRestController extends HttpServlet {
 
 		// MfcProductView와 Grade에 데이터 set
 
-		ReviewService service = new ReviewService();
-		Review review= new Review();
-
+		DiscussionService service = new DiscussionService();
+		Discussion dis= new Discussion();
+System.out.println(topic);
 		try {
-			mpvId=service.getMfcProductViewId(mfcProduct);
+			topicId=service.getTopicId(topic);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -105,17 +107,16 @@ public class DiscussionRegRestController extends HttpServlet {
 			e1.printStackTrace();
 		}
 		
-		review.setTitle(title);
-		review.setContent(content);
-		review.setProductId(mpvId);
-		review.setGradeId(gradeId);
-		review.setWriterId(writerId);
+		dis.setTitle(title);
+		dis.setContent(content);
+		dis.setWriterId(writerId);
+		dis.setTopicId(topicId);
 		
-		System.out.println("review:"+review);
+		System.out.println("review:"+dis);
 
 		try {
 			// service객체에서 추가메소드실행
-			service.insertReview(review);
+			service.insertDiscussion(dis);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

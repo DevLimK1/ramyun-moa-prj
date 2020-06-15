@@ -16,7 +16,7 @@
 			<a href="list" class="mini-title">후기게시판 전체목록</a>
 		</div>
 
-		<form action="edit" method="POST" class="sub-link-search-form">
+		<form action="" class="sub-link-search-form">
 
 			<div class="title-box detail-margin-top">
 				<!-- <div class="title fnt_jua">라면은 정말맛있어 정말맛있어요!!</div> -->
@@ -153,7 +153,7 @@
 	<!-- *************************************** -->
 
 </main>
-
+<script type="text/javascript" src="/js/board/review/reg.js"></script>
 
 
 <%-- 

@@ -45,6 +45,17 @@ public class EditController extends HttpServlet {
 			break;
 		}
 
+		String p = "";
+		String p_ = req.getParameter("p");
+		if (p_ != null && !p_.equals("")) {
+			p = p_;
+		}
+		String s = "";
+		String s_ = req.getParameter("s");
+		if (s_ != null && !s_.equals("")) {
+			s = s_;
+		}
+
 		int id = Integer.parseInt(req.getParameter("id"));
 		String name = req.getParameter("name");
 		int capacity = Integer.parseInt(req.getParameter("capacity"));
@@ -69,7 +80,9 @@ public class EditController extends HttpServlet {
 
 		try {
 
-			service.updateData(product);
+			service.updateData1(product);
+			service.updateData2(product);
+			service.updateData3(product);
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -79,7 +92,7 @@ public class EditController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		resp.sendRedirect("detail?id=" + id);
+		resp.sendRedirect("update?m=" + mfr + "&p=" + p + "&s=" + s);
 
 	}
 

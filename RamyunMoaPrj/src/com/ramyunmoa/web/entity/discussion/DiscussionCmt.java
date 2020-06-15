@@ -9,7 +9,7 @@ public class DiscussionCmt {
 	private String writerName;
 	private Date regdate;
 	private int likes;
-	private int reviewId;//FK
+	private int discussionId;//FK
 	private int bossId;//FK (자기참조)
 	private List<DiscussionCmt> children;
 	
@@ -28,26 +28,26 @@ public class DiscussionCmt {
 	}
 	
 	
-	public DiscussionCmt(int id, String content, String writerName, Date regdate, int likes, int reviewId) {
+	public DiscussionCmt(int id, String content, String writerName, Date regdate, int likes, int discussionId) {
 		this.id = id;
 		this.content = content;
 		this.writerName = writerName;
 		this.regdate = regdate;
 		this.likes = likes;
-		this.reviewId = reviewId;
+		this.discussionId = discussionId;
 	}
 
 	
 	
 	
 
-public DiscussionCmt(int id, String content, String writerName, Date regdate, int likes, int reviewId, int bossId) {
+public DiscussionCmt(int id, String content, String writerName, Date regdate, int likes, int discussionId, int bossId) {
 		this.id = id;
 		this.content = content;
 		this.writerName = writerName;
 		this.regdate = regdate;
 		this.likes = likes;
-		this.reviewId = reviewId;
+		this.discussionId = discussionId;
 		this.bossId = bossId;
 	}
 
@@ -103,17 +103,25 @@ public DiscussionCmt(int id, String content, String writerName, Date regdate, in
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
-	public int getReviewId() {
-		return reviewId;
-	}
-	public void setReviewId(int reviewId) {
-		this.reviewId = reviewId;
-	}
+
+
 	@Override
 	public String toString() {
-		return "ReviewCmt [id=" + id + ", content=" + content + ", writerName=" + writerName + ", regdate=" + regdate
-				+ ", likes=" + likes + ", reviewId=" + reviewId + ", bossId=" + bossId + ", children=" + children + "]";
+		return "DiscussionCmt [id=" + id + ", content=" + content + ", writerName=" + writerName + ", regdate="
+				+ regdate + ", likes=" + likes + ", discussionId=" + discussionId + ", bossId=" + bossId + ", children="
+				+ children + "]";
 	}
+
+
+	public int getDiscussionId() {
+		return discussionId;
+	}
+
+
+	public void setDiscussionId(int discussionId) {
+		this.discussionId = discussionId;
+	}
+
 	
 	
 	

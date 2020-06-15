@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<main id="login-main">
+<main id="mypage-main">
+<section class="main-section">
 	<div>
 		<form class="form-row quit-form" name="quitFrm" method="post" action="quit-member">
+		<h1 class="d-none">회원 탈퇴</h1>
 			<table>
 				<tr>
 					<td>비밀번호 확인</td>
@@ -19,4 +21,5 @@
 			</table>
 		</form>
 	</div>
+	</section>
 </main>

@@ -8,7 +8,7 @@
 	<nav class="sub-header">
 		<h1 class="d-none">서브 헤더</h1>
 
-		<div class="sub-header-title">후기 등록하기</div>
+		<div class="sub-header-title">레시피공유 등록하기</div>
 
 
 		<section class="reg-box">
@@ -35,7 +35,7 @@
 					</datalist>
 				</fieldset>
 
-				<fieldset class="grade-field">
+				<%-- <fieldset class="grade-field">
 					<legend class="d-none">평점필드</legend>
 					<label class="" for="">평점:</label> <select name="grade"
 						class="select star-grade-select">
@@ -57,8 +57,7 @@
 						<option value="5">집에 쌓아놓고 먹고싶음 ★★★★★</option> -->
 					</select>
 
-				</fieldset>
-
+				</fieldset> --%>
 
 				<div class="title-box">
 					<input class="title" name="title" type="text"

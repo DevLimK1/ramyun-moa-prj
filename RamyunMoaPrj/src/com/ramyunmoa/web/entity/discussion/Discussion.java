@@ -12,9 +12,10 @@ public class Discussion {
 	private String img;
 	private Date regdate;
 //	private String regdate;
-	private int productId;
+	/* private int productId; */
+	private int topicId;
 	private int writerId;
-	private int gradeId;
+	/* private int gradeId; */
 
 	public Discussion() {
 		// TODO Auto-generated constructor stub
@@ -30,6 +31,16 @@ public class Discussion {
 		this.hit=hit;
 		this.regdate=regdate;
 	}
+	
+	
+	public int getTopicId() {
+		return topicId;
+	}
+
+	public void setTopicId(int topicId) {
+		this.topicId = topicId;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -72,30 +83,18 @@ public class Discussion {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	public int getProductId() {
-		return productId;
-	}
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
 	public int getWriterId() {
 		return writerId;
 	}
 	public void setWriterId(int writerId) {
 		this.writerId = writerId;
 	}
-	public int getGradeId() {
-		return gradeId;
-	}
-	public void setGradeId(int gradeId) {
-		this.gradeId = gradeId;
-	}
 	
 	@Override
 	public String toString() {
-		return "Review [id=" + id + ", title=" + title + ", content=" + content + ", likes=" + likes + ", hit=" + hit
-				+ ", img=" + img + ", regdate=" + regdate + ", productId=" + productId + ", writerId=" + writerId
-				+ ", gradeId=" + gradeId + "]";
+		return "Discussion [id=" + id + ", title=" + title + ", content=" + content + ", likes=" + likes + ", hit="
+				+ hit + ", img=" + img + ", regdate=" + regdate + ", topicId=" + topicId + ", writerId=" + writerId
+				+ "]";
 	}
 	
 //	private int comment;

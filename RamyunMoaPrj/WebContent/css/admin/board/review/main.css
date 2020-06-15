@@ -83,13 +83,11 @@ select {
 	width: 25%;
 }
 
-.notice-table>thead>tr>td:first-child,
-td:last-child {
-	width: 10%;
-}
-
-.t2 td {
+.t1 td {
 	width: 25%;
+}
+.t2 tr>td:first-child, td:last-child {
+	width: 10%;
 }
 
 .notice-table tr td {

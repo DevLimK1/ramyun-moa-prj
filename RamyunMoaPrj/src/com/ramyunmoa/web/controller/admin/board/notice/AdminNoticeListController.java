@@ -79,51 +79,26 @@ public class AdminNoticeListController extends HttpServlet{
 		NoticeService service = new NoticeService();
 		
 		String[] openIds = request.getParameterValues("open-id");
-		String[] delIds = request.getParameterValues("del-id");
 		String cmd = request.getParameter("cmd");
 		String ids_ = request.getParameter("ids");
-		
 		String[] ids = ids_.trim().split(" ");
 		
 		List<String> oids = null;
 		List<String> cids = new ArrayList(Arrays.asList(ids));
 		
-		switch(cmd) {
+		if(cmd.equals("open")) {
 			
-			case "open":
-				
-				System.out.println(cids);
-				if(openIds == null) 
-					oids = null;
-				
-				else {
-					oids = Arrays.asList(openIds);
-					cids.removeAll(oids);
-				}
-		
-				try {
-					service.pubNoticeAll(oids, cids);
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				break;
-				
-			case "del" : 
-				
-				if(delIds == null)
-					break;
-				
-				int[] dIds = new int[delIds.length];
-				for(int i=0; i<delIds.length;i++)
-					dIds[i] = Integer.parseInt(delIds[i]);
-				
+			System.out.println(cids);
+			if(openIds == null) 
+				oids = null;
+			
+			else {
+				oids = Arrays.asList(openIds);
+				cids.removeAll(oids);
+			}
+	
 			try {
-				int result = service.deletNoticeAll(dIds);
+				service.pubNoticeAll(oids, cids);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -131,31 +106,7 @@ public class AdminNoticeListController extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-				break;
 		}
-		
-		
-//		if(cmd.equals("open")) {
-//			
-//			System.out.println(cids);
-//			if(openIds == null) 
-//				oids = null;
-//			
-//			else {
-//				oids = Arrays.asList(openIds);
-//				cids.removeAll(oids);
-//			}
-//	
-//			try {
-//				service.pubNoticeAll(oids, cids);
-//			} catch (ClassNotFoundException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
 		
 		response.sendRedirect("list");
 		

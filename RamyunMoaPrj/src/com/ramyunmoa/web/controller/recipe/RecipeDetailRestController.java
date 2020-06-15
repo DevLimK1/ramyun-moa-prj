@@ -13,14 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tiles.TilesContainer;
-import org.apache.tiles.access.TilesAccess;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.ramyunmoa.web.entity.recipe.RecipeCmt;
 import com.ramyunmoa.web.entity.review.ReviewCmt;
+import com.ramyunmoa.web.service.RecipeService;
 import com.ramyunmoa.web.service.ReviewService;
-import com.ramyunmoa.web.view.review.ReviewDetailView;
+import com.ramyunmoa.web.view.recipe.RecipeDetailView;
 
 /**
  * Servlet implementation class ReviewDetailController
@@ -36,15 +35,15 @@ public class RecipeDetailRestController extends HttpServlet {
 		
 		int id=Integer.parseInt(request.getParameter("id"));
 		System.out.println("id:"+id);
-		ReviewService service=new ReviewService();
-		ReviewDetailView rdv=null;
+		RecipeService service=new RecipeService();
+		RecipeDetailView rdv=null;
 		
-		List<ReviewCmt> cmt= null;
+		List<RecipeCmt> cmt= null;
 		
 		
 		try {
 //			rdv=service.getReviewDetailView(id);
-			cmt=service.getReviewCmt(id);
+			cmt=service.getRecipeCmt(id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

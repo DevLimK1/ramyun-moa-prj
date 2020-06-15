@@ -40,7 +40,7 @@ select, button {
     cursor: unset;
 }
 .calc-top {
-    margin: 10px 20px;
+    margin: 10px 0px;
 }
 
 .calc-top button {
@@ -62,8 +62,4 @@ select, button {
     height: 30px;
     background: #64b5f6;
     color: white;
-}
-
-.calculation-btn button:nth-child(2) {
-    background: #2286c3;
 }

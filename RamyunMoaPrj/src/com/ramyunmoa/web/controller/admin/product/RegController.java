@@ -35,51 +35,52 @@ public class RegController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String mfr = req.getParameter("mfr");
-
+		
+		String realPath = null;
+		String img = null;
+		int mfrId = 0;
+		
 		Part filePart = req.getPart("img");
 		String fileName = filePart.getSubmittedFileName();
 		InputStream fis = filePart.getInputStream();
 
-		String realPath = null;
-		String img = null;
-		int mfrId = 0;
+		String mfr = req.getParameter("mfr");
 
 		switch (mfr) {
 		case "농심":
 			mfrId = 1;
-			img = "images/prod-img/item-list/nongsim/" + fileName;
-			realPath = req.getServletContext().getRealPath("/prod-img/item-list/nongsim");
+			img = "/images/prod-img/item-list/nongsim/" + fileName;
+			realPath = req.getServletContext().getRealPath("/images/prod-img/item-list/nongsim");
 			break;
 		case "삼양":
 			mfrId = 2;
-			img = "images/prod-img/item-list/samyang/" + fileName;
-			realPath = req.getServletContext().getRealPath("/prod-img/item-list/samyang");
+			img = "/images/prod-img/item-list/samyang/" + fileName;
+			realPath = req.getServletContext().getRealPath("/images/prod-img/item-list/samyang");
 			break;
 		case "오뚜기":
 			mfrId = 3;
-			img = "images/prod-img/item-list/odduki/" + fileName;
-			realPath = req.getServletContext().getRealPath("/prod-img/item-list/odduki");
+			img = "/images/prod-img/item-list/odduki/" + fileName;
+			realPath = req.getServletContext().getRealPath("/images/prod-img/item-list/odduki");
 			break;
 		case "팔도":
 			mfrId = 4;
-			img = "images/prod-img/item-list/paldo/" + fileName;
-			realPath = req.getServletContext().getRealPath("/prod-img/item-list/paldo");
+			img = "/images/prod-img/item-list/paldo/" + fileName;
+			realPath = req.getServletContext().getRealPath("/images/prod-img/item-list/paldo");
 			break;
 		case "cu":
 			mfrId = 5;
-			img = "images/prod-img/item-list/pb/cu/" + fileName;
-			realPath = req.getServletContext().getRealPath("/prod-img/item-list/pb/cu");
+			img = "/images/prod-img/item-list/pb/cu/" + fileName;
+			realPath = req.getServletContext().getRealPath("/images/prod-img/item-list/pb/cu");
 			break;
 		case "gs25":
 			mfrId = 6;
-			img = "images/prod-img/item-list/pb/gs25/" + fileName;
-			realPath = req.getServletContext().getRealPath("/prod-img/item-list/pb/gs25");
+			img = "/images/prod-img/item-list/pb/gs25/" + fileName;
+			realPath = req.getServletContext().getRealPath("/images/prod-img/item-list/pb/gs25");
 			break;
 		case "세븐일레븐":
 			mfrId = 7;
-			img = "images/prod-img/item-list/pb/seveneleven/" + fileName;
-			realPath = req.getServletContext().getRealPath("/prod-img/item-list/pb/seveneleven");
+			img = "/images/prod-img/item-list/pb/seveneleven/" + fileName;
+			realPath = req.getServletContext().getRealPath("/images/prod-img/item-list/pb/seveneleven");
 			break;
 		}
 

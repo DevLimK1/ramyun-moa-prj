@@ -25,7 +25,7 @@ public class MemberQuitController extends HttpServlet {
 		System.out.println("회원탈퇴 doGet 작동");
 		TilesContainer container = TilesAccess.getContainer(
 		        request.getSession().getServletContext());
-		container.render("member.quit-member", request, response);
+		container.render("mypage.quit-member", request, response);
 		
 	}
 	

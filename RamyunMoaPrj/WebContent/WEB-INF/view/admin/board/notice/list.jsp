@@ -69,8 +69,8 @@
 					<c:set var="ids" value="${ids } ${n.id }" />
 				</c:forEach>
 				<input type="hidden" name="ids" value="${ids } ${n.id }">
-				<input type="submit" name="cmd" value="open">
-				<input type="submit" name="cmd" value="del">
+				<input type="submit" name="cmd" value="공개">
+				<input type="submit" name="cmd" value="삭제">
 				<a href="reg">글쓰기</a>
 			</div>
 		</section>

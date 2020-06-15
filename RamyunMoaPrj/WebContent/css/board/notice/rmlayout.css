@@ -8,8 +8,8 @@
 a {
     color: black;
     text-decoration: none;
-    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'留묒� 怨좊뵓', 
-                    Dotum,'�룍��', Arial, sans-serif;
+    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'筌띾쵐占� �⑥쥓逾�', 
+                    Dotum,'占쎈즻占쏙옙', Arial, sans-serif;
 }   
 
 .text-highlight{
@@ -81,13 +81,17 @@ a {
 }
 
 .font-size-30{
-    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'留묒� 怨좊뵓', 
-                    Dotum,'�룍��', Arial, sans-serif;
+    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'筌띾쵐占� �⑥쥓逾�', 
+                    Dotum,'占쎈즻占쏙옙', Arial, sans-serif;
     font-size: 30px;
 }
 
 .margin-bottom{
 	margin-bottom: 10px;
+}
+
+.w700{
+	width: 700px;
 }
 
 /*----------------------------------------- <admin header> <admin footer> ----------------------------------*/
@@ -99,27 +103,29 @@ a {
 	background-color: #292929;
 	color: white;
 	align-items: center;
-	padding: 0px 20px;
+	padding: 40px;
 }
 
-.top-header input, select {
+.top-header input,
+select {
 	font-size: 14px;
 }
 
 .top-home {
-	margin-right: 50px;
+	margin-left: 50px;
+	font-size: 2em;
+	font-family: 'Righteous', cursive;
 }
 
 .top-header-list {
-	display: flex;
 	margin-left: auto;
+	display: flex;
+	font-size: 1em;
 }
 
 .top-header-list li {
-	margin-right: 10px;
-	padding: 5px;
-	border-radius: 10px;
 	font-size: 15px;
+	padding: 30px;
 }
 
 .top-header-list a {
@@ -161,6 +167,7 @@ a {
 	background-color: #292929;
 	color: white;
 	padding: 20px 0px;
+	height: inherit;
 }
 
 .footer>div {
@@ -168,7 +175,17 @@ a {
 	margin: 0 auto;
 }
 
-/*�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃 <list> �넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃*/
+/*-------------------------- <admin aside> ----------------------------------------------*/
+
+.admin-html{
+	background-color: none;
+}
+
+.admin-body{
+	background-color: #fff;
+}
+
+/*占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦 <list> 占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦*/
 #body{
     display: flex;
     min-height: 500px;
@@ -193,8 +210,8 @@ a {
 }
     .aside .customer-center>h1{
         font-size: 25px;
-        font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'留묒� 怨좊뵓', 
-                        Dotum,'�룍��', Arial, sans-serif;
+        font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'筌띾쵐占� �⑥쥓逾�', 
+                        Dotum,'占쎈즻占쏙옙', Arial, sans-serif;
         padding-bottom: 10px;
     }
 
@@ -205,7 +222,7 @@ a {
     
 .admin-aside{
 	border-right: 2px solid black;
-	width: 220px;
+	width: 270px;
 	text-align: center;
 }
 
@@ -215,6 +232,11 @@ a {
 	    height: 40px;
 	    line-height: 40px;
 	    padding-left: 15px;
+	}
+	
+	.admin-aside i{
+		color: #42a5f5;
+		padding: 0 10px;
 	}
 
 .main{
@@ -251,8 +273,8 @@ a {
 .list {
     width: 780px;
     height: inherit;
-    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'留묒� 怨좊뵓', 
-                    Dotum,'�룍��', Arial, sans-serif;
+    font-family: 'S-CoreDream-3Light', SpeedeeK, Malgun Gothic,'筌띾쵐占� �⑥쥓逾�', 
+                    Dotum,'占쎈즻占쏙옙', Arial, sans-serif;
 }
 
     .list .table{
@@ -324,9 +346,9 @@ a {
             width: 15px;
             height: 15px;
         }
-/*�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁 <list> �넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁*/
+/*占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤 <list> 占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤*/
 
-/*�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃 <reg> �넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃*/
+/*占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦 <reg> 占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦*/
 .post{
     display: flex;
     width: 780px;
@@ -378,9 +400,9 @@ a {
     margin-left: 635px;
 }
 
-/*�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁 <reg> �넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁�넁*/
+/*占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤 <reg> 占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤占쎈꼤*/
 
-/*�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃 <detail> <edit> �넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃�넃*/
+/*占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦 <detail> <edit> 占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦占쎈꼦*/
 
 .detail{
 	margin-top: 20px;
@@ -390,6 +412,7 @@ a {
     table-layout: fixed;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-all;
 }
 	
 	.border-bottom-bdbdbd{
@@ -443,9 +466,10 @@ a {
 	}
 
 	.detail-table .content{
+		width: 700px;
 	    height: 350px;
 	    vertical-align: text-top;
-	    white-space:pre;
+/* 	    white-space:pre; */
 	}
 	
 	.padding-top-5px{

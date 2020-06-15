@@ -110,3 +110,21 @@
 		</div>
 	</div>
 </section>
+
+<script>
+	window.addEventListener("load", function () {
+
+		var delBtn = document.querySelector("input[value='삭제']");
+
+		delBtn.onclick = function (e) {
+
+			if (confirm("삭제하시겠습니까?") == false) {
+				e.preventDefault();
+			}
+			else {
+				alert("삭제하였습니다.");
+			}
+		}
+
+	})
+</script>

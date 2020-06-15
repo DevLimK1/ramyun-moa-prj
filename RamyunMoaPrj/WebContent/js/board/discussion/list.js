@@ -76,7 +76,7 @@ window.addEventListener("load", function() {
 	    	 
 	    	  //reg.js 코드 불러오는 방법1)
 	    	  var xhr2=new XMLHttpRequest();
-	    	  xhr2.open('GET','../js/board/review/reg.js',true);
+	    	  xhr2.open('GET','../js/board/discussion/reg.js',true);
 
 	    	  
 	    	  xhr2.onload=function(){
@@ -239,7 +239,7 @@ window.addEventListener("load", function() {
 			var template = `<div class="review-list-box">
 
 					<div class="review-list-box_group">
-						<a class="fnt_sunflower" href="#">${list.mfcProduct}</a>
+						<a class="fnt_sunflower" href="#">${list.topic}</a>
 					</div>
 
 					<div class="review-list-box_vote">

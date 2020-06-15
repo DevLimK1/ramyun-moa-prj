@@ -8,7 +8,7 @@
 	<nav class="sub-header">
 		<h1 class="d-none">서브 헤더</h1>
 
-		<div class="sub-header-title">후기 등록하기</div>
+		<div class="sub-header-title">토론주제 등록하기</div>
 
 
 		<section class="reg-box">
@@ -26,16 +26,16 @@
 					<legend class="d-none">서브링크 검색필드</legend>
 					<label class="" for="">제조사-라면:</label> <input style="width: 350px;"
 						placeholder="입력하시면 더 빨리 찾을 수 있어요 :)" type="text"
-						name="mfc-product" list="product" required="required">
-					<datalist id="product">
-						<c:forEach var="mpv" items="${mpv}">
-							<option value="${mpv.mfcProduct}"></option>
+						name="topic" list="topic" required="required">
+					<datalist id="topic">
+						<c:forEach var="topic" items="${topic}">
+							<option value="${topic.title}"></option>
 							<%-- <input type="hidden" name="mpvId" value="${mpv.id}"> --%>
 						</c:forEach>
 					</datalist>
 				</fieldset>
 
-				<fieldset class="grade-field">
+		<%-- 		<fieldset class="grade-field">
 					<legend class="d-none">평점필드</legend>
 					<label class="" for="">평점:</label> <select name="grade"
 						class="select star-grade-select">
@@ -57,7 +57,7 @@
 						<option value="5">집에 쌓아놓고 먹고싶음 ★★★★★</option> -->
 					</select>
 
-				</fieldset>
+				</fieldset> --%>
 
 
 				<div class="title-box">
@@ -95,6 +95,6 @@
 	<!-- *************************************** -->
 	<!-- --------------js--------------- -->
 	<script type="text/javascript" src="../js/utils.js"></script>
-	<script type="text/javascript" src="../js/board/review/list.js"></script>
-	<script type="text/javascript" src="../js/board/review/reg.js"></script>
+	<script type="text/javascript" src="../js/board/discussion/list.js"></script>
+	<script type="text/javascript" src="../js/board/discussion/reg.js"></script>
 </main>

@@ -6,11 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.ramyunmoa.web.entity.member.Member;
-import com.ramyunmoa.web.view.review.ReviewDetailView;
+import com.ramyunmoa.web.entity.member.Role;
+import com.ramyunmoa.web.view.member.MemberView;
 
 public class MemberService {
 
@@ -33,8 +33,8 @@ public class MemberService {
 		ResultSet rs = st.executeQuery();
 
 		if (rs.next()) {
-			member = new Member(rs.getInt("ID"), rs.getString("UID"), rs.getString("EMAIL"), rs.getString("PWD"),
-					rs.getString("NICKNAME"), rs.getString("GENDER"), rs.getString("REGDATE"));
+			member = new Member(rs.getInt("ID"), rs.getString("UID"), rs.getString("EMAIL"), rs.getString("NICKNAME"),
+					rs.getString("PWD"), rs.getString("GENDER"), rs.getDate("REGDATE"));
 		}
 
 		rs.close();
@@ -43,6 +43,35 @@ public class MemberService {
 
 		return member;
 	}
+
+	public Member getMember(String uid)throws ClassNotFoundException, SQLException  {
+		Member member = null;
+
+		String sql = "SELECT * FROM Member WHERE UID=?";
+
+		// String url = "jdbc:oracle:thin:@112.223.37.243:1521/xepdb1";
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+
+		// Class.forName("oracle.jdbc.driver.OracleDriver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, uid);
+
+		ResultSet rs = st.executeQuery();
+
+		if (rs.next()) {
+			member = new Member(rs.getInt("ID"), rs.getString("UID"), rs.getString("EMAIL"), rs.getString("NICKNAME"),
+					rs.getString("PWD"), rs.getString("GENDER"), rs.getDate("REGDATE"));
+		}
+
+		rs.close();
+		st.close();
+		con.close();
+
+		return member;
+	}
+	 
 
 	// 회원 리스트
 	public List<Member> getMemberList() throws SQLException, ClassNotFoundException {
@@ -65,7 +94,7 @@ public class MemberService {
 
 		while (rs.next()) {
 			Member member = new Member(rs.getInt("ID"), rs.getString("UID"), rs.getString("EMAIL"), rs.getString("PWD"),
-					rs.getString("NICKNAME"), rs.getString("GENDER"), rs.getString("REGDATE"));
+					rs.getString("NICKNAME"), rs.getString("GENDER"), rs.getDate("REGDATE"));
 			list.add(member);
 		}
 
@@ -151,7 +180,7 @@ public class MemberService {
 		
 		int result = 0;
 		String sql = "INSERT INTO Member(uid,pwd,email,nickname,gender) values(?,?,?,?,?)";
-		//String sql2 = "INSERT INTO GivenRole(RoleId) values(?)";
+		String sql2 = "INSERT INTO GivenRole (RoleId,RoleName,MemberId,MemberUid) SELECT '1','후레이크',id,uid FROM `Member` ORDER BY id DESC limit 1";
 		
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
@@ -159,7 +188,7 @@ public class MemberService {
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		
 		PreparedStatement st = con.prepareStatement(sql);
-		//PreparedStatement st2 = con.prepareStatement(sql2);
+		PreparedStatement st2 = con.prepareStatement(sql2);
 		
 		st.setString(1, member.getUid());
 		st.setString(2, member.getPwd());
@@ -171,13 +200,16 @@ public class MemberService {
 		
 		
 		result = st.executeUpdate();
+		int result2 = st2.executeUpdate();
+		System.out.println(result);
+		System.out.println(result2);
 		//result = st2.executeUpdate();
 
 		
 		st.close();
 		//st2.close();
 		con.close();
-		return result;
+		return result2;
 
 	}
 /*	
@@ -269,31 +301,73 @@ public class MemberService {
 	  
 	  return result;
 	  }
+	  
+	  //비밀번호 변경
+	  public int changePwd( String pwd,String uid) throws ClassNotFoundException, SQLException{
+		  
+	  int result=0; 
+	  String sql = "UPDATE Member SET pwd = ? WHERE id = ?";
+	  String url =  "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+	  
+	  Class.forName("com.mysql.cj.jdbc.Driver");
+	  Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+	  PreparedStatement st = con.prepareStatement(sql);
+	  
+	  st.setString(1, pwd);
+	  st.setString(2, uid);
+	  result=st.executeUpdate();	  
+	  st.close(); con.close();
+	  
+	  return result;
+	  }
 
-	public String getMemberNicknameByUid(String uid) throws ClassNotFoundException, SQLException {
-		String nickname= "";
-
-		String sql = "SELECT nickname FROM Member WHERE uid=?";
+	//uid로 View 에서 역할자 조회
+	public MemberView getRoleByUserId(String uid) throws ClassNotFoundException, SQLException {
+		MemberView mv = null;
+		String sql = "SELECT * From MemberView WHERE uid = ?";
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, uid);
-
 		ResultSet rs = st.executeQuery();
-
+		
 		if (rs.next()) {
-			nickname = rs.getString("nickname");
+			mv = new MemberView(rs.getInt("id"),rs.getInt("roleId"), rs.getString("role-grade"), rs.getString("nickname"),rs.getString("regdate"),rs.getString("email"));
 		}
 
 		rs.close();
 		st.close();
 		con.close();
+		return mv;
 
-		return nickname;
 	}
-	 
+	
+	  public String getMemberNicknameByUid(String uid) throws ClassNotFoundException, SQLException {
+	      String nickname= "";
+
+	      String sql = "SELECT nickname FROM Member WHERE uid=?";
+	      String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+
+	      Class.forName("com.mysql.cj.jdbc.Driver");
+	      Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+	      PreparedStatement st = con.prepareStatement(sql);
+	      st.setString(1, uid);
+
+	      ResultSet rs = st.executeQuery();
+
+	      if (rs.next()) {
+	         nickname = rs.getString("nickname");
+	      }
+
+	      rs.close();
+	      st.close();
+	      con.close();
+
+	      return nickname;
+	   }
+
+	
 
 	/*
 	 * public boolean deleteMember(String pwd) throws ClassNotFoundException,

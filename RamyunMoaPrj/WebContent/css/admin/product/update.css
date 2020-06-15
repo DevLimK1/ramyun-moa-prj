@@ -107,9 +107,17 @@ input[type="image"] {
 }
 
 
-tbody>tr:nth-child(5n-4) {
+.item-table tbody>tr:nth-child(6n-5) {
     border-top: solid;
 }
+
+.item-table .space {
+    border-top: solid;
+    border-left: white solid;
+    border-right: white solid;
+    background-color: white;
+}
+
 
 input[type="submit"] {
     padding: 0px 10px;

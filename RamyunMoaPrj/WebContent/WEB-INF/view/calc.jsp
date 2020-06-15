@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -12,40 +12,36 @@
 <script src="/js/calc.js"></script>
 </head>
 <body>
-	<div id="calc">
-		<div class="select-area">
-			<form class="total-kcal">
-				<label>총칼로리 
-					<input class="kcal-view" name="kcal" value="" readonly>
-				</label>
-			</form>
-			<div class="calc-top">
+   <div id="calc">
+      <div class="select-area">
+         <form class="total-kcal">
+            <label>총칼로리 
+               <input class="kcal-view" name="kcal" value="" readonly>
+            </label>
+         </form>
+         <div class="calc-top">
+               <label for="manufacturer-select">제조사 - 라면</label> 
+               <select id="ramyun-select">
+                  <c:forEach var="info" items="${prodList}" varStatus="status">
+                     <option class="value" value="${info.kcal}" selected>
+                        &#10094${info.mfr}&#10095 ${info.name}
+                     </option>
+                  </c:forEach>
+               </select>
+               
+               <button class="add-btn">추가</button>
+         </div>
+         <form class="form">
+            <fieldset>
+               <legend>추가된 라면</legend>
+               <div></div>
+            </fieldset>
+         </form>
 
-				<label for="manufacturer-select">제조사 - 라면</label> 
-				<select id="ramyun-select">
-					<c:forEach var="info" items="${prodList}">
-							<option class="value" value="info" selected>
-								&#10094${info.mfr}&#10095 
-								${info.name} -
-								${info.kcal}kcal
-							</option>
-					</c:forEach>
-				</select>
-
-				<button class="add-btn">추가</button>
-			</div>
-			<form>
-				<fieldset class="added-rm">
-					<legend>추가된 라면</legend>
-			
-				</fieldset>
-			</form>
-
-		</div>
-		<div class="calculation-btn">
-			<button class="sum-btn">계산하기</button>
-			<button class="re-sum-btn">다시 계산하기</button>
-		</div>
-	</div>
+      </div>
+      <div class="calculation-btn">
+         <button class="re-sum-btn" onClick="window.location.reload()">다시 계산하기</button>
+      </div>
+   </div>
 </body>
 </html>

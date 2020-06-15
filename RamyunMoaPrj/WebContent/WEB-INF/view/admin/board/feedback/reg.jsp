@@ -19,9 +19,12 @@
 
 					<tr class="text-center">
 						<td class="writer">작성자</td>
-						<td class="w180 h30">누구누구누구</td>
+						<td class="w180 h30">
+							<input type="hidden" name="uid" value="${sessionScope.uid }">
+							${sessionScope.nickname }
+						</td>
 						<td class="regdate">작성일</td>
-						<td class="w180 h30">2020-05-20</td>
+						<td class="w180 h30">${regdate }</td>
 					</tr>
 					
 					<tr>

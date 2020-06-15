@@ -23,6 +23,7 @@
 	rel="stylesheet">
 <link href='<tiles:getAsString name="css"/>' type="text/css"
 	rel="stylesheet" />
+<script type="text/javascript" src="/js/member/member.js"></script>
 <style>
 </style>
 </head>

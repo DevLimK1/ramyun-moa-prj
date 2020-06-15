@@ -42,8 +42,7 @@ var subLinkForm=document.querySelector(".sub-link-search-form");
 
 var writerName=subLinkForm.querySelector(".writerName-txt");
 var writerId=subLinkForm.querySelector("input[name=writerId]");
-var mfcProduct=subLinkForm.querySelector("input[name=mfc-product]");
-var gradeId=subLinkForm.querySelector("select[name=grade]");
+var topic=subLinkForm.querySelector("input[name=topic]");
 var title=subLinkForm.querySelector("input[name=title]");
 
 subLinkForm.onsubmit=function(e){
@@ -55,15 +54,13 @@ subLinkForm.onsubmit=function(e){
 	title=title.value;
 	writerName=writerName.innerText;
 	writerId=writerId.value;
-	mfcProduct=mfcProduct.value;
-	gradeId=gradeId.value;
+	topic=topic.value;
 	
-	console.log(gradeId.value); //평점값
-	console.log(mfcProduct.value);//제조사-라면값
+	console.log(topic.value);//제조사-라면값
 	console.log(writerName);//작성자이름
 	console.log(writerId); //작성자 id
 	
-	var data=`content=${content}&writerId=${writerId}&title=${title}&writerName=${writerName}&mfc-product=${mfcProduct}&grade=${gradeId}`;
+	var data=`content=${content}&writerId=${writerId}&title=${title}&writerName=${writerName}&topic=${topic}`;
 	
 	
 	var xhr=new XMLHttpRequest();

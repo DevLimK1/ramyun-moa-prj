@@ -5,8 +5,10 @@ addEventListener("load", function () {
 
 	var categoryUl = container.querySelector(".noodle-list-category ul");
 	var categoryA = categoryUl.querySelectorAll("a");
-	var pagerUl = container.querySelector(".pager ul");
-	var pagerA = pagerUl.querySelectorAll("a");
+
+	var pager = container.querySelector(".pager");
+	var pageLink = pager.querySelector(".pageLink>ul");
+	var pagerA = pageLink.querySelectorAll("a");
 
 	var search = categoryUl.querySelector(".search")
 	var submit = categoryUl.querySelector("input[type='submit']")
@@ -19,6 +21,12 @@ addEventListener("load", function () {
 	var rankingSec = container.querySelector(".noodle-ranking");
 	var radioSales = rankingSec.querySelector("input[value='sales']");
 	var radioLikes = rankingSec.querySelector("input[value='likes']");
+
+	var currentPage = pager.querySelector(".list .current");
+	var pageShare;
+	var mfrShare;
+	var searchShare;
+	var cupShare;
 
 	for (var i = 0; i < itemName.length; i++) {
 
@@ -33,149 +41,40 @@ addEventListener("load", function () {
 		}
 	}
 
-	categoryUl.firstElementChild.style.color = "#c4001d";
-	pagerUl.firstElementChild.style.color = "#c4001d";
-
-	checkCup.onselect = function () {
-		e.preventDefault = false;
-		alert(3);
-	}
-
-	radioSales.onselect = function () {
-		e.preventDefault = false;
-		alert(1);
-	}
-
-	radioLikes.onselect = function () {
-		e.preventDefault = false;
-		alert(2);
+	checkCup.oninput = function () {
+		cupShare = checkCup.value;
+		var xhr = new XMLHttpRequest();
+		xhr.open('get', `list-data?m=${mfrShare}&p=${pageShare}&s=${searchShare}&c=${cupShare}`, true);
+		xhr.send();
+		xhr.onload = function () {
+			var list = JSON.parse(xhr.responseText);
+			listImgDiv.innerHTML = "";
+			printList(list);
+		}
 	}
 
 	submit.onclick = function (e) {
 
 		e.preventDefault();
-		var s = search.value;
+		searchShare = search.value;
 
 		var xhr = new XMLHttpRequest();
-		xhr.open('get', "list-data?s=" + s, true);
+		xhr.open('get', `list-data?m=${mfrShare}&p=${pageShare}&s=${searchShare}&c=${cupShare}`, true);
 		xhr.send();
 		xhr.onload = function () {
 			var list = JSON.parse(xhr.responseText);
 			listImgDiv.innerHTML = "";
-
-			for (var i in list) {
-
-				if (list[i].name.includes("(")) {
-					var index = list[i].name.indexOf("(");
-					list[i].name = list[i].name.substring(0, index);
-				}
-
-				if (list[i].name.includes(" ")) {
-					var temp = list[i].name.split(" ");
-					list[i].name = `${temp[0]}<br/>${temp[1]}`;
-				}
-
-				var itemDiv = document.createElement("div");
-				listImgDiv.append(itemDiv);
-				itemDiv.classList.add("item");
-				itemDiv.innerHTML = `<div class="item-img">
-										<img class="rm-img" src="${list[i].img}" value="${list[i].id}">
-										</div>
-										<div class="item-name">
-											<span>${list[i].name}</span>
-										</div>
-										<div class="review-link">
-											<div>
-												<a href="">
-													<i class="far fa-comment-dots"></i>
-													<span>9999</span>
-												</a>
-											</div>
-											<div>
-												<a href="">
-													<i class="far fa-heart"></i>
-													<span>9999</span>
-												</a>
-											</div>
-										</div>`;
-			}
-
+			printList(list);
 		}
-
 	}
 
-
-	categoryUl.onclick = function (e) {
-
-		e.preventDefault();
-		if (e.target.nodeName != "A") return;
-
-		for (var i = 0; i < categoryA.length; i++) {
-			categoryA[i].style.color = "#666666";
-		}
-		e.target.style.color = "#c4001d";
-
-		for (var i = 0; i < pagerA.length; i++) {
-			pagerA[i].style.color = "#666666";
-		}
-		pagerA[0].style.color = "#c4001d";
-
-		var link = e.target.getAttribute("href");
-		var xhr = new XMLHttpRequest();
-		xhr.open('get', link, true);
-		xhr.send();
-		xhr.onload = function () {
-			var list = JSON.parse(xhr.responseText);
-			listImgDiv.innerHTML = "";
-
-			for (var i in list) {
-
-				if (list[i].name.includes("(")) {
-					var index = list[i].name.indexOf("(");
-					list[i].name = list[i].name.substring(0, index);
-				}
-
-				if (list[i].name.includes(" ")) {
-					var temp = list[i].name.split(" ");
-					list[i].name = `${temp[0]}<br/>${temp[1]}`;
-				}
-
-				var itemDiv = document.createElement("div");
-				listImgDiv.append(itemDiv);
-				itemDiv.classList.add("item");
-				itemDiv.innerHTML = `<div class="item-img">
-										<img class="rm-img" src="${list[i].img}" value="${list[i].id}">
-										</div>
-										<div class="item-name">
-											<span>${list[i].name}</span>
-										</div>
-										<div class="review-link">
-											<div>
-												<a href="">
-													<i class="far fa-comment-dots"></i>
-													<span>9999</span>
-												</a>
-											</div>
-											<div>
-												<a href="">
-													<i class="far fa-heart"></i>
-													<span>9999</span>
-												</a>
-											</div>
-										</div>`;
-			}
-
-		}
-
-	}
-
-	pagerUl.onclick = function (e) {
+	pageLink.onclick = function (e) {
 
 		e.preventDefault();
-		if (e.target.nodeName != "A") return;
+		if (e.target.nodeName != 'A') return;
 
-		var link = e.target.getAttribute("href");
-
+		pageShare = e.target.innerText;
+		currentPage.innerText = pageShare;
 
 		for (var i = 0; i < pagerA.length; i++) {
 			pagerA[i].style.color = "#000000";
@@ -183,51 +82,13 @@ addEventListener("load", function () {
 		e.target.style.color = "#c4001d";
 
 		var xhr = new XMLHttpRequest();
-		xhr.open('get', link, true);
+		xhr.open('get', `list-data?m=${mfrShare}&p=${pageShare}&s=${searchShare}&c=${cupShare}`, true);
 		xhr.send();
 		xhr.onload = function () {
 			var list = JSON.parse(xhr.responseText);
 			listImgDiv.innerHTML = "";
-
-			for (var i in list) {
-
-				if (list[i].name.includes("(")) {
-					var index = list[i].name.indexOf("(");
-					list[i].name = list[i].name.substring(0, index);
-				}
-
-				if (list[i].name.includes(" ")) {
-					var temp = list[i].name.split(" ");
-					list[i].name = `${temp[0]}<br/>${temp[1]}`;
-				}
-
-				var itemDiv = document.createElement("div");
-				listImgDiv.append(itemDiv);
-				itemDiv.classList.add("item");
-				itemDiv.innerHTML = `<div class="item-img">
-										<img class="rm-img" src="${list[i].img}" value="${list[i].id}">
-										</div>
-										<div class="item-name">
-											<span>${list[i].name}</span>
-										</div>
-										<div class="review-link">
-											<div>
-												<a href="">
-													<i class="far fa-comment-dots"></i>
-													<span>9999</span>
-												</a>
-											</div>
-											<div>
-												<a href="">
-													<i class="far fa-heart"></i>
-													<span>9999</span>
-												</a>
-											</div>
-										</div>`;
-			}
-
+			printList(list);
 		}
-
 	}
 
 	container.onclick = function (e) {
@@ -371,18 +232,108 @@ addEventListener("load", function () {
 
 	}
 
-	function editName(object) {
+	// categoryUl.onclick = function (e) {
 
-		if (object.includes("(")) {
-			var index = object.indexOf("(");
-			object = object.substring(0, index);
+	// 	e.preventDefault();
+	// 	if (e.target.nodeName != "A") return;
+
+	// 	for (var i = 0; i < categoryA.length; i++) {
+	// 		categoryA[i].style.color = "#666666";
+	// 	}
+	// 	e.target.style.color = "#c4001d";
+
+	// 	for (var i = 0; i < pagerA.length; i++) {
+	// 		pagerA[i].style.color = "#666666";
+	// 	}
+	// 	pagerA[0].style.color = "#c4001d";
+
+	// 	var link = e.target.getAttribute("href");
+	// 	var xhr = new XMLHttpRequest();
+	// 	xhr.open('get', link, true);
+	// 	xhr.send();
+	// 	xhr.onload = function () {
+	// 		var list = JSON.parse(xhr.responseText);
+	// 		listImgDiv.innerHTML = "";
+
+	// 		for (var i in list) {
+
+	// 			if (list[i].name.includes("(")) {
+	// 				var index = list[i].name.indexOf("(");
+	// 				list[i].name = list[i].name.substring(0, index);
+	// 			}
+
+	// 			if (list[i].name.includes(" ")) {
+	// 				var temp = list[i].name.split(" ");
+	// 				list[i].name = `${temp[0]}<br/>${temp[1]}`;
+	// 			}
+
+	// 			var itemDiv = document.createElement("div");
+	// 			listImgDiv.append(itemDiv);
+	// 			itemDiv.classList.add("item");
+	// 			itemDiv.innerHTML = `<div class="item-img">
+	// 									<img class="rm-img" src="${list[i].img}" value="${list[i].id}">
+	// 									</div>
+	// 									<div class="item-name">
+	// 										<span>${list[i].name}</span>
+	// 									</div>
+	// 									<div class="review-link">
+	// 										<div>
+	// 											<a href="">
+	// 												<i class="far fa-comment-dots"></i>
+	// 												<span>${9999}</span>
+	// 											</a>
+	// 										</div>
+	// 										<div>
+	// 											<a href="">
+	// 												<i class="far fa-heart"></i>
+	// 												<span>${9999}</span>
+	// 											</a>
+	// 										</div>
+	// 									</div>`;
+	// 		}
+
+	// 	}
+
+	// }
+
+	function printList(list) {
+
+		for (var i in list) {
+
+			if (list[i].name.includes("(")) {
+				var index = list[i].name.indexOf("(");
+				list[i].name = list[i].name.substring(0, index);
+			}
+
+			if (list[i].name.includes(" ")) {
+				var temp = list[i].name.split(" ");
+				list[i].name = `${temp[0]}<br/>${temp[1]}`;
+			}
+
+			var itemDiv = document.createElement("div");
+			listImgDiv.append(itemDiv);
+			itemDiv.classList.add("item");
+			itemDiv.innerHTML = `<div class="item-img">
+								<img class="rm-img" src="${list[i].img}" value="${list[i].id}">
+								</div>
+								<div class="item-name">
+									<span>${list[i].name}</span>
+								</div>
+								<div class="review-link">
+									<div>
+										<a href="">
+											<i class="far fa-comment-dots"></i>
+											<span>${9999}</span>
+										</a>
+									</div>
+									<div>
+										<a href="">
+											<i class="far fa-heart"></i>
+											<span>${9999}</span>
+										</a>
+									</div>
+								</div>`;
 		}
-
-		if (object.includes(" ")) {
-			var temp = object.split(" ");
-			object = `${temp[0]}<br/>${temp[1]}`;
-		}
-
 	}
 
 })

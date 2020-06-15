@@ -70,6 +70,7 @@
 						<button class="btn-bold"><i class="fas fa-bold"></i></button>
 						<button class="btn-italic"><i class="fas fa-italic"></i></button>
 						<button class="btn-underline"><i class="fas fa-underline"></i></button>
+						<!-- <button class="btn-fontSize">size</i></button> -->
 						<button class="btn-img"><i class="far fa-image"></i></button>
 						<input multiple="multiple" type="file" class="d-none btn-file">
 					</div>

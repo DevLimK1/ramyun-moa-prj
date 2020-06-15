@@ -27,7 +27,7 @@
 				</tr>
 
 				<tr class="content border-bottom-1px-solid-gray">
-					<td class="padding-top-5px" colspan="6">${n.content }</td>
+					<td class="w700 padding-top-5px" colspan="6">${n.content }</td>
 				</tr>
 			</tbody>
 		</table>
@@ -72,8 +72,8 @@
 			<c:forEach var="cmt" items="${comments }" varStatus="st">
 				<div class="comment">
 					<div>
-						<div class="icon">등급</div>
-						<div class="writer">${cmt.writerId }</div>
+						<div class="icon"></div>
+						<div class="writer"><b>${cmt.writerId }</b></div>
 					</div>
 					<p class="content">${cmt.content }</p>
 					<div>
@@ -87,6 +87,7 @@
 		</form>
 		<form action="detail" method="post">
 			<div class="comment-post">
+				<input type="hidden" name="uid" value="${sessionScope.uid }">
 				<textarea class="comment-textarea" name="content" placeholder="400자까지 입력 가능합니다."></textarea>
 				<!-- <input class="comment-textarea" type="text" > -->
 				<input type="submit" value="등록" class="comment-button">

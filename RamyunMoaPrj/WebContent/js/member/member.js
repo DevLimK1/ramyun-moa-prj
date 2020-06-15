@@ -41,7 +41,7 @@ function inputCheck() {
 
 	if (!(check1 || check2 || check3)) {
 
-		alert("비밀번호는 6~18자의 영문 대소문자, 숫자, 특수문자만 가능합니다");
+		alert("비밀번호는 영문 대소문자, 숫자, 특수문자 중 최소 2개 조합으로  6~18자리까지 가능합니다");
 		frm.repwd.focus();
 		return false;
 
@@ -113,12 +113,6 @@ function admit() {
 		alert("서비스 이용약관에 동의하셔야 합니다.");
 	}
 }
-
-function regist() {
-	location.href = "/member/member-term";
-	// window.open(url,"","width=500, height=500,left=900,top=200");
-	// window.location.replace("index.jsp");
-};
 
 function uidCheck(uid) {
 
@@ -202,11 +196,11 @@ function loginCheck() {
 	loginForm.submit();
 
 }
-
-function login() {
-	location.href = "login";
-}
-
+function regist() {
+	location.href = "/member/member-term";
+	// window.open(url,"","width=500, height=500,left=900,top=200");
+	// window.location.replace("index.jsp");
+};
 function logout() {
 
 	var result = confirm("정말 로그아웃 하시겠습니까?");
@@ -214,30 +208,32 @@ function logout() {
 	if (result) {
 		alert("로그아웃 되었습니다");
 		location.href = "/member/logout";
-	} else 	{
-		return;
 	}
 }
 
 /** ----------------마이 페이지------------- */
-function myPage() {
-	location.href = "/member/mypage";
-}
-function myWrite() {
-	location.href = "/member/myWrite";
-}
-function myWrite() {
 
+function changePwdProc(){
+		var changePwd = document.changePwdFrm;
+
+		if (changePwd.pwd.value == "") {
+		alert("비밀번호를 입력해 주세요.");
+		changePwd.pwd.focus();
+		return;
+	}
+	changePwd.submit();
 }
 
-function myCmt() {
+function checkPwdProc(){
 
-}
-function myScrap() {
+		var checkPwd = document.checkPwdFrm;
 
-}
-function changePwd() {
-
+		if (checkPwd.pwd.value == "") {
+		alert("비밀번호를 입력해 주세요.");
+		checkPwd.pwd.focus();
+		return;
+	}
+	checkPwd.submit();
 }
 
 function quitProc() {

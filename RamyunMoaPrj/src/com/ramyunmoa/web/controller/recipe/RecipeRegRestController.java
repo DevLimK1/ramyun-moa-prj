@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ramyunmoa.web.entity.member.Member;
+import com.ramyunmoa.web.entity.recipe.Recipe;
 import com.ramyunmoa.web.entity.review.Grade;
-import com.ramyunmoa.web.entity.review.Review;
+import com.ramyunmoa.web.service.RecipeService;
 import com.ramyunmoa.web.service.ReviewService;
 import com.ramyunmoa.web.view.review.MfcProductView;
 
@@ -68,7 +69,7 @@ public class RecipeRegRestController extends HttpServlet {
 		String mfcProduct = request.getParameter("mfc-product");
 //		String mpvId_=request.getParameter("mpvId");
 		String writerId_=request.getParameter("writerId");
-		String gradeId_ = request.getParameter("grade");
+//		String gradeId_ = request.getParameter("grade");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String writerName=request.getParameter("writerName");
@@ -78,13 +79,13 @@ public class RecipeRegRestController extends HttpServlet {
 		System.out.println("writerName:"+writerName);
 		System.out.println("mfcProduct:"+mfcProduct);
 		System.out.println("writerId:"+writerId_);
-		System.out.println("gradeId:"+gradeId_);
+//		System.out.println("gradeId:"+gradeId_);
 		System.out.println("title:"+title);
 		System.out.println("content:"+content);
 		
 		int writerId=Integer.parseInt(writerId_);
 //		int mpvId=Integer.parseInt(mpvId_);
-		int gradeId = Integer.parseInt(gradeId_);
+//		int gradeId = Integer.parseInt(gradeId_);
 		
 		System.out.println("mfcProduct:"+mfcProduct);
 		System.out.println("writerId:"+writerId);
@@ -92,8 +93,8 @@ public class RecipeRegRestController extends HttpServlet {
 
 		// MfcProductView와 Grade에 데이터 set
 
-		ReviewService service = new ReviewService();
-		Review review= new Review();
+		RecipeService service = new RecipeService();
+		Recipe recipe= new Recipe();
 
 		try {
 			mpvId=service.getMfcProductViewId(mfcProduct);
@@ -105,17 +106,17 @@ public class RecipeRegRestController extends HttpServlet {
 			e1.printStackTrace();
 		}
 		
-		review.setTitle(title);
-		review.setContent(content);
-		review.setProductId(mpvId);
-		review.setGradeId(gradeId);
-		review.setWriterId(writerId);
+		recipe.setTitle(title);
+		recipe.setContent(content);
+		recipe.setProductId(mpvId);
+//		recipe.setGradeId(gradeId);
+		recipe.setWriterId(writerId);
 		
-		System.out.println("review:"+review);
+		System.out.println("recipe:"+recipe);
 
 		try {
 			// service객체에서 추가메소드실행
-			service.insertReview(review);
+			service.insertRecipe(recipe);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

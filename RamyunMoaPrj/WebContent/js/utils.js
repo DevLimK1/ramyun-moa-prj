@@ -2,6 +2,44 @@
  * 저작자 : 라면모아 생성이 : 라면모아 저작권 : 라면모아 설명: 참고 url:
  */
 
+window.addEventListener("load",function(){
+	var detail=document.querySelector(".detail");
+	var loveBtn=detail.querySelector(".love-btn");
+	
+	var reviewDetailId=document.querySelector(".review-detail-id");
+	
+	reviewDetailId=reviewDetailId.value; //게시판 id
+	
+	loveBtn.onclick=function(e){
+		console.log(e.target.nodeName);
+		if(e.target.nodeName!=='I')
+			return;
+		
+		if(e.target.classList.contains('far')){ // 색없는 하트->색있는 하트
+			e.target.classList.add('d-none');
+			e.target.nextElementSibling.classList.remove('d-none');
+			
+			var xhr= new XMLHttpRequest();
+			
+			xhr.open("GET","add-like?id="+reviewDetailId,true)
+			
+			xhr.onload=function(){
+				console.log(xhr.responseText);
+				
+			}
+			
+			xhr.send(null);
+			
+		}else if(e.target.classList.contains('fas')){ // 색있는 하트 -> 색없는 하트
+			e.target.classList.add('d-none');
+			e.target.previousElementSibling.classList.remove('d-none');
+		}
+		
+		
+	}
+});
+	
+
 
 function reviewImportCSS(url){
 	var head=document.querySelector("head");

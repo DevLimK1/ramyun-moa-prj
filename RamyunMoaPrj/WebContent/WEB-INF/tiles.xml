@@ -8,7 +8,20 @@
 
 <!-- 공지사항, 피드백  -->
 	
-	<definition name="admin.board.notice.*" template="/WEB-INF/view/notice/inc/layout.jsp">
+	<definition name="admin.board.notice.*" template="/WEB-INF/view/notice/inc/layout2.jsp">
+      <put-attribute name="header" value="/WEB-INF/view/admin/inc/header.jsp" />
+      <put-attribute name="aside" value="/WEB-INF/view/admin/board/inc/aside.jsp" />
+      <put-attribute name="main" value="/WEB-INF/view/admin/board/notice/{1}.jsp" />
+      <put-attribute name="footer" value="/WEB-INF/view/admin/inc/footer.jsp" />
+   </definition>
+   
+   <definition name="admin.board.feedback.*" template="/WEB-INF/view/notice/inc/layout2.jsp">
+      <put-attribute name="header" value="/WEB-INF/view/admin/inc/header.jsp" />
+      <put-attribute name="aside" value="/WEB-INF/view/admin/board/inc/aside.jsp" />
+      <put-attribute name="main" value="/WEB-INF/view/admin/board/feedback/{1}.jsp" />
+      <put-attribute name="footer" value="/WEB-INF/view/admin/inc/footer.jsp" />
+   </definition>
+	<!-- <definition name="admin.board.notice.*" template="/WEB-INF/view/notice/inc/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/view/admin/inc/header.jsp" />
 		<put-attribute name="aside" value="/WEB-INF/view/admin/board/inc/aside.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/admin/board/notice/{1}.jsp" />
@@ -20,7 +33,7 @@
 		<put-attribute name="aside" value="/WEB-INF/view/admin/board/inc/aside.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/admin/board/feedback/{1}.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/admin/inc/footer.jsp" />
-	</definition>
+	</definition> -->
 
 <!-- admin -->
 <definition name="admin.*.*.*" template="/WEB-INF/view/admin/inc/layout.jsp">
@@ -65,6 +78,7 @@
 		<put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/view/main.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+		 <put-attribute name="css" value="" />
 	</definition>
 
 <!-- 상품  -->

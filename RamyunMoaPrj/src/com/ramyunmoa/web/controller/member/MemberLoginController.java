@@ -14,7 +14,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
+import com.ramyunmoa.web.entity.member.Member;
+import com.ramyunmoa.web.entity.member.Role;
 import com.ramyunmoa.web.service.MemberService;
+import com.ramyunmoa.web.view.member.MemberView;
 
 @WebServlet("/member/login")
 public class MemberLoginController extends HttpServlet {
@@ -37,7 +40,7 @@ public class MemberLoginController extends HttpServlet {
 		
 		String uid = request.getParameter("uid");
 		String pwd = request.getParameter("pwd");
-		String nickname="";
+		  String nickname="";
 	
 		MemberService service = new MemberService();
 		
@@ -52,8 +55,8 @@ public class MemberLoginController extends HttpServlet {
 			try { 
 				result = service.loginCheck(uid,pwd);
 				nickname=service.getMemberNicknameByUid(uid);
-				
-				session.setAttribute("nickname", nickname);
+				Member member = service.getMember(uid);
+				MemberView role = service.getRoleByUserId(uid);
 				
 				if(result == true) {
 				System.out.println("로그인 성공!");
@@ -62,23 +65,22 @@ public class MemberLoginController extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				
 				out.println("<script>alert('라면모아에 오신것을 환영합니다!'); location.href='/main'; </script>");
-				out.flush();
 				session.setAttribute("uid",uid);
+				session.setAttribute("nickname", nickname);
+				session.setAttribute("id", member.getId());
+				/*--------------역할자  코드 -------------------------------*/
+				session.setAttribute("roleId", role.getRoleId()); //로그인할 때 한번 사용, 역할도 세션에 추가해서 계속 사용한다. 필요할 때마다 불러오는게 아니라.
+				System.out.printf("role.id = \n" ,role.getRoleId());
 				
-				//////////////역할자 미완성 코드 ////////////////////////////
-				
-//				String role = service.getRoleByUserId(uid);
-//				session.setAttribute("role", role); //로그인할 때 한번 사용, 역할도 세션에 추가해서 계속 사용한다. 필요할 때마다 불러오는게 아니라.
-//				
-//				String returnURL = request.getParameter("returnURL");
-//				System.out.println("returnURL:"+returnURL);
-//				//만약에 returnURL이 있다면
-//				if(returnURL!=null && !returnURL.equals(""))
-//					response.sendRedirect(returnURL); 
+				String returnURL = request.getParameter("returnURL");
+				System.out.println("returnURL:"+returnURL);
+				out.flush();
+				//만약에 returnURL이 있다면
+				if(returnURL!=null && !returnURL.equals(""))
+					response.sendRedirect(returnURL); 
 //				else
 //					response.sendRedirect("../index");
-//
-//				}
+
 				///////////////////////////////////////////
 				}
 				else {

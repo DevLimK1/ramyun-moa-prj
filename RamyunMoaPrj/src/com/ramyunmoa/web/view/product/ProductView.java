@@ -27,6 +27,13 @@ public class ProductView {
 		this.img = img;
 	}
 
+	public ProductView(int id, String name, int kcal, String mfr) {
+		this.id=id;
+		this.name=name;
+		this.kcal=kcal;
+		this.mfr=mfr;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -14,11 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
+import com.ramyunmoa.web.entity.discussion.Discussion;
+import com.ramyunmoa.web.entity.discussion.Topic;
 import com.ramyunmoa.web.entity.review.Grade;
 import com.ramyunmoa.web.entity.review.Review;
-import com.ramyunmoa.web.service.ReviewService;
-import com.ramyunmoa.web.view.review.MfcProductView;
-import com.ramyunmoa.web.view.review.ReviewDetailView;
+import com.ramyunmoa.web.service.DiscussionService;
+import com.ramyunmoa.web.view.review.DiscussionListView;
 
 @WebServlet("/discussion/edit")
 public class DiscussionEditController extends HttpServlet {
@@ -31,15 +32,13 @@ public class DiscussionEditController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 
 		// 2.데이터베이스에서 쿼리
-		ReviewService service = new ReviewService();
-		ReviewDetailView rdv = null;
-		List<MfcProductView> mpv = new ArrayList<MfcProductView>();
-		List<Review> list = new ArrayList();
-		List<Grade> grade = new ArrayList<Grade>();
+		DiscussionService service = new DiscussionService();
+		DiscussionListView dis = null;
+		List<Topic> topic = new ArrayList<Topic>();
+		List<Discussion> list = new ArrayList();
 		try {
-			rdv = service.getReviewDetailView(id);
-			mpv=service.getMfcProductViewList();
-			grade = service.getGrade();
+			dis = service.getDiscussionDetailView(id);
+			topic=service.getTopicList();
 //			list = service.getReviewList();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -51,9 +50,8 @@ public class DiscussionEditController extends HttpServlet {
 //		System.out.println(rdv.getStarGrade());
 
 		// 3.View에게 전달
-		request.setAttribute("r", rdv);
-		request.setAttribute("mpv", mpv);
-		request.setAttribute("grade", grade);
+		request.setAttribute("dis", dis);
+		request.setAttribute("topic", topic);
 //		request.setAttribute("list", list);
 
 //		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/review/edit.jsp");
@@ -67,27 +65,25 @@ public class DiscussionEditController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		int id = Integer.parseInt(request.getParameter("id"));
-		String mfcProduct = request.getParameter("mfc-product");
+		String topic = request.getParameter("topic");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int gradeId=Integer.parseInt(request.getParameter("grade"));
-		int mvpId=0; 
+		int topicId=0; 
 		
-		Review review=new Review();
+		Discussion dis=new Discussion();
 		
 		
 
-		ReviewService service = new ReviewService();
+		DiscussionService service = new DiscussionService();
 		try {
-			mvpId=service.getMfcProductViewId(mfcProduct); //상품 아이디 가지고오기
+			topicId=service.getTopicId(topic); //토픽 아이디 가지고오기
 			
-			review.setId(id);
-			review.setTitle(title);
-			review.setContent(content);
-			review.setGradeId(gradeId);
-			review.setProductId(mvpId);
+			dis.setId(id);
+			dis.setTitle(title);
+			dis.setContent(content);
+			dis.setTopicId(topicId);
 			
-			service.updateReview(review);
+			service.updateDiscussion(dis);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

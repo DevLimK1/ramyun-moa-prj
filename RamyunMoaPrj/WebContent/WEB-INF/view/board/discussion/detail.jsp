@@ -13,17 +13,16 @@
 		<h1 class="d-none">디테일</h1>
 
 		<div class="mini-title-box">
-			<a href="list" class="mini-title">후기게시판 전체목록</a>
+			<a href="list" class="mini-title">토론게시판 전체목록</a>
 		</div>
 		<div class="title-box">
 			<div class="title fnt_jua">${r.title }</div>
 
 		</div>
 
-		<div class="perface-box detail-margin-top">제조사-품명 :
-			${r.mfcProduct}</div>
+		<div class="perface-box detail-margin-top">제조사-품명 : ${r.topic}</div>
 
-		<div class="star-grade detail-margin-top">
+	<%-- 	<div class="star-grade detail-margin-top">
 			평점 : ${r.gdContent } <span class="star"><c:choose>
 					<c:when test="${r.gradeId==1}">★☆☆☆☆</c:when>
 					<c:when test="${r.gradeId==2}">★★☆☆☆</c:when>
@@ -31,7 +30,7 @@
 					<c:when test="${r.gradeId==4}">★★★★☆</c:when>
 					<c:when test="${r.gradeId==5}">★★★★★</c:when>
 				</c:choose> </span> [${r.gradeId}점]
-		</div>
+		</div> --%>
 
 		<div class="meta-box detail-margin-top">
 			<div class="meta-info">
@@ -40,7 +39,7 @@
 						pattern="yyyy-MM-dd HH:mm" /> --%>
 					<fmt:formatDate value="${r.regdate}" pattern="yyyy-MM-dd HH:mm" />
 				</div>
-				<div class="writer-name">${r.writerName }</div>
+				<div class="writer-name">${r.nickname }</div>
 			</div>
 			<div class="meta-info">
 				<div class="hit">조회수 ${r.hit }</div>
@@ -60,8 +59,8 @@
 				<!--<input type="button" class="btn-text love-btn" value="공감♡"></input>-->
 				<button type="button" class="love-btn ">
 					<span class="love-btn-txt">공감</span><i
-						class="love-img far fa-heart"></i>
-					<!--<i class="likes fas fa-heart"></i>-->
+						class="likes love-img far fa-heart"></i>
+					<i class="likes fas fa-heart d-none"></i>
 				</button>
 			</div>
 		</form>
@@ -112,7 +111,7 @@
 			<div class="comment-likes">
 				<button type="button" class="likes-btn">
 					<i class="likes far fa-heart"></i>
-					<!--<i class="likes fas fa-heart"></i>-->
+					<i class="likes d-none fas fa-heart"></i>
 				</button>
 				<div class="likes-cnt">0</div>
 			</div>
@@ -202,7 +201,7 @@
 
 				<div class="comment-box_box">
 					<div class="comment-meta-info">
-						<a href="" class="comment-writer-name">${sessionScope.uid }</a>
+						<a href="" class="comment-writer-name">${sessionScope.nickname }</a>
 						<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 					</div>
 
@@ -281,7 +280,7 @@
 
 					<div class="comment-box_box">
 						<div class="comment-meta-info">
-							<a href="" class="comment-writer-name">${sessionScope.uid }</a>
+							<a href="" class="comment-writer-name">${sessionScope.nickname }</a>
 							<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 						</div>
 

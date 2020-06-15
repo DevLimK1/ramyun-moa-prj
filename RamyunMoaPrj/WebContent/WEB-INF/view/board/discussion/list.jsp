@@ -66,14 +66,14 @@
 				<div class="review-list-box">
 
 					<div class="review-list-box_group">
-						<a class="fnt_sunflower" href="#">라면 vs 라면</a>
+						<a class="fnt_sunflower" href="#">${list.topic }</a>
 					</div>
 
 					<div class="review-list-box_vote">
 						<!-- <i class="far fa-thumbs-up"></i> -->
 						<div class="star">
 							<img class="fire-img" alt="" src="/images/board/fire.png">
-							<div class="vote-cnt">203</div>
+							<div class="vote-cnt">${list.likes}</div>
 						</div>
 					</div>
 
@@ -157,6 +157,6 @@
 	</div>
 	<!-- --------------js--------------- -->
 	<script type="text/javascript" src="../js/utils.js"></script>
-	<script type="text/javascript" src="../js/board/review/list.js"></script>
+	<script type="text/javascript" src="../js/board/discussion/list.js"></script>
 </main>
 

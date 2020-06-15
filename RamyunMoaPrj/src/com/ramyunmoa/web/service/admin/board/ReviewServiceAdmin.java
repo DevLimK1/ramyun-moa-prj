@@ -22,7 +22,7 @@ public class ReviewServiceAdmin {
 		List<BoardAdmin> list = new ArrayList<BoardAdmin>();
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-		String sql = "SELECT * FROM ReviewBoardNoticeView WHERE regdate > ? AND regdate < ? AND " + field
+		String sql = "SELECT * FROM ReviewBoardNotice WHERE regdate > ? AND regdate < ? AND " + field
 				+ " LIKE ? ORDER BY regdate DESC LIMIT ?, 10";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -36,7 +36,7 @@ public class ReviewServiceAdmin {
 		while (rs.next()) {
 			BoardAdmin board = new BoardAdmin(rs.getInt("id"), rs.getString("title"), rs.getString("content"),
 					rs.getInt("likes"), rs.getInt("hit"), rs.getDate("regdate"), rs.getInt("pub"),
-					rs.getString("nickname"));
+					rs.getString("writerId"));
 
 			list.add(board);
 		}
@@ -73,6 +73,7 @@ public class ReviewServiceAdmin {
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "SELECT * FROM ReviewBoardNoticeView WHERE id = ?";
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, id);
@@ -98,7 +99,7 @@ public class ReviewServiceAdmin {
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "DELETE FROM ReviewBoardNotice WHERE id IN ( " + param + " )";
-
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
 		st.executeUpdate();
@@ -117,7 +118,7 @@ public class ReviewServiceAdmin {
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "UPDATE ReviewBoardNoticeView SET PUB = 1 WHERE ID IN ( " + param + " )";
-
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
 		st.executeUpdate();
@@ -129,7 +130,7 @@ public class ReviewServiceAdmin {
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "INSERT INTO ReviewBoardNotice(writerId, title, content) VALUES(?, ?, ?)";
-
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, writerId);
@@ -198,6 +199,7 @@ public class ReviewServiceAdmin {
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "SELECT * FROM ReviewDetailView WHERE id = ?";
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, id);
@@ -220,10 +222,9 @@ public class ReviewServiceAdmin {
 				param += ", ";
 			}
 		}
-
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "DELETE FROM Review WHERE id IN ( " + param + " )";
-
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
 		st.executeUpdate();
@@ -291,6 +292,7 @@ public class ReviewServiceAdmin {
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "SELECT * FROM ReviewReportView WHERE reportId = ?";
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, id);
@@ -318,10 +320,96 @@ public class ReviewServiceAdmin {
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "DELETE FROM ReviewReportView WHERE reportId IN ( " + param + " )";
-
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
 		st.executeUpdate();
+
+	}
+
+//	---------------------------------------------------------------------------------------------------
+
+	public int countReview(String startDate, String endDate) throws ClassNotFoundException, SQLException {
+
+		int cr = 0;
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String sql = "SELECT count(id) count FROM Review WHERE regdate BETWEEN ? AND ?";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, startDate);
+		ps.setString(2, endDate);
+		ResultSet rs = ps.executeQuery();
+
+		if (rs.next()) {
+			cr = rs.getInt("count");
+
+		}
+		return cr;
+	}
+
+	public int countReviewCmt(String startDate, String endDate) throws ClassNotFoundException, SQLException {
+
+		int crc = 0;
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String sql = "SELECT count(id) count FROM ReviewCmt WHERE regdate BETWEEN ? AND ?";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, startDate);
+		ps.setString(2, endDate);
+		ResultSet rs = ps.executeQuery();
+
+		if (rs.next()) {
+			crc = rs.getInt("count");
+
+		}
+		return crc;
+	}
+
+	public int countReviewReport(String startDate, String endDate) throws ClassNotFoundException, SQLException {
+
+		int crr = 0;
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String sql = "SELECT count(id) count FROM ReviewReport WHERE regdate BETWEEN ? AND ?";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, startDate);
+		ps.setString(2, endDate);
+		ResultSet rs = ps.executeQuery();
+
+		if (rs.next()) {
+			crr = rs.getInt("count");
+
+		}
+		return crr;
+	}
+
+	public List<BoardAdmin> rankingReview(String startDate, String endDate)
+			throws ClassNotFoundException, SQLException {
+
+		List<BoardAdmin> list = new ArrayList<BoardAdmin>();
+
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String sql = "SELECT * FROM ReviewDetailView WHERE regdate > ? AND regdate < ? order by hit DESC LIMIT 3";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, startDate);
+		ps.setString(2, endDate);
+		ResultSet rs = ps.executeQuery();
+
+		while (rs.next()) {
+			BoardAdmin board = new BoardAdmin(rs.getInt("id"), rs.getString("title"), rs.getString("content"),
+					rs.getInt("likes"), rs.getInt("hit"), rs.getDate("regdate"), rs.getString("writerName"));
+
+			list.add(board);
+		}
+		return list;
 
 	}
 

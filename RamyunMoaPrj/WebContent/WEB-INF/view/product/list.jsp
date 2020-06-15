@@ -18,24 +18,24 @@
 			<nav class="noodle-list-category">
 				<h1 class="hidden">notice-list-category</h1>
 				<ul>
-					<li><a href="list-data?m=&p=1&s=${param.s}">전체</a></li>
-					<li><a href="list-data?m=농심&p=1&s=${param.s}">농심</a></li>
-					<li><a href="list-data?m=삼양&p=1&s=${param.s}">삼양</a></li>
-					<li><a href="list-data?m=오뚜기&p=1&s=${param.s}">오뚜기</a></li>
-					<li><a href="list-data?m=팔도&p=1&s=${param.s}">팔도</a></li>
-					<li><a href="list-data?m=PB&p=1&s=${param.s}">PB</a></li>
+					<li><a class="${param.m==''?'current':''}" href="list?m=&p=1&s=${param.s}">전체</a></li>
+					<li><a class="${param.m=='농심'?'current':''}" href="list?m=농심&p=1&s=${param.s}">농심</a></li>
+					<li><a class="${param.m=='삼양'?'current':''}" href="list?m=삼양&p=1&s=${param.s}">삼양</a></li>
+					<li><a class="${param.m=='오뚜기'?'current':''}" href="list?m=오뚜기&p=1&s=${param.s}">오뚜기</a></li>
+					<li><a class="${param.m=='팔도'?'current':''}" href="list?m=팔도&p=1&s=${param.s}">팔도</a></li>
+					<li><a class="${param.m=='PB'?'current':''}" href="list?m=PB&p=1&s=${param.s}">PB</a></li>
 					<li>
 						<form action="list" method="get">
-							<input class="search" type="text" name="s" value="${param.s}"
-								placeholder="검색"> <input type="submit" value="&#xf002">
+							<input class="search" type="text" name="s" value="${param.s}" placeholder="검색"> <input
+								type="submit" value="&#xf002">
 						</form>
 					</li>
-					<li><label>컵라면</label> <input type="checkbox"></li>
+					<li><label>컵라면</label> <input type="checkbox" name="c" value="컵"></li>
 				</ul>
 			</nav>
 
 			<c:set var="page" value="${(empty param.p)?1:param.p}" />
-			<c:set var="lastNum" value="${fn: substringBefore(count/20+1,'.')}" />
+			<c:set var="lastNum" value="${fn: substringBefore(count/16+1,'.')}" />
 
 			<section class="noodle-img">
 				<h1 class="hidden">noodle-image</h1>
@@ -66,18 +66,55 @@
 				</div>
 			</section>
 
-			<section class="pager">
-				<h1 class="hidden">pager</h1>
+			<div class="pager">
 
-				<ul>
-					<c:forEach begin="1" end="${lastNum}" var="i">
-						<li><a href="list-data?m=${param.m}&p=${i}&s=${param.s}">${i}</a>
-						</li>
-					</c:forEach>
-				</ul>
+				<c:set var="page" value="${(empty param.p)?1:param.p}" />
+				<c:set var="startNum" value="${page-(page-1)%5}" />
+				<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/16),'.')}" />
 
+				<div class="list">
+					<div class="current">${page}</div>
+					<div>/</div>
+					<div>${lastNum}</div>
+					<div>pages</div>
+				</div>
 
-			</section>
+				<div class="pageLink">
+					<c:choose>
+						<c:when test="${startNum>1}">
+
+							<a href="list?m=${param.m}&p=${startNum-5}&s=${param.s}">
+								<i class="fas fa-arrow-left fa-2x"></i>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<i class="fas fa-arrow-left fa-2x" onclick="alert('이전 페이지가 없습니다.');"></i>
+						</c:otherwise>
+					</c:choose>
+
+					<ul class="flex">
+						<c:forEach begin="0" end="4" var="i">
+							<c:if test="${startNum+i<=lastNum}">
+								<li><a class="${(page==startNum+i)?'current':''}"
+										href="list-data?m=${param.m}&p=${startNum+i}&s=${param.s}">${startNum+i}</a>
+								</li>
+							</c:if>
+						</c:forEach>
+					</ul>
+
+					<c:choose>
+						<c:when test="${startNum+4<lastNum}">
+							<a href="list?m=${param.m}&p=${startNum+5}&s=${param.s}">
+								<i class="fas fa-arrow-right fa-2x"></i>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<i class="fas fa-arrow-right fa-2x" onclick="alert('다음 페이지가 없습니다.');"></i>
+						</c:otherwise>
+					</c:choose>
+				</div>
+
+			</div>
 		</section>
 
 		<section class="noodle-ranking">
@@ -91,17 +128,16 @@
 					</div>
 				</div>
 
-				<div class="radio">
+				<!-- <div class="radio">
 					<div>
-						<label for="">판매량</label> <input type="radio" name="ranking"
-							value="sales">
+						<label for="">판매량</label> <input type="radio" name="ranking" value="sales" checked="checked">
 					</div>
 					<div>
-						<label for="">좋아요</label> <input type="radio" name="ranking"
-							value="likes">
+						<label for="">좋아요</label> <input type="radio" name="ranking" value="likes">
 					</div>
-				</div>
+				</div> -->
 			</div>
+
 
 			<table class="noodle-ranking-table">
 
@@ -109,12 +145,12 @@
 					<tr>
 						<td class="cell-rank">${rankingList.index+1}</td>
 						<td class="cell-rank">(-)</td>
-						<td class="cell-img"><img class="rm-img ranking"
-							src="${r.img}" value="${r.id}"></td>
-						<td><fmt:formatNumber value="${r.sales}" type="number" /></td>
+						<td class="cell-img"><img class="rm-img ranking" src="${r.img}" value="${r.id}"></td>
+						<td>
+							<fmt:formatNumber value="${r.sales}" type="number" />
+						</td>
 						<td class="value"><a href="">★★★☆☆</td>
-						<td><a href=""><i class="fas fa-heart"
-								style="color: #ff3575"></i><br /></a>${999}</a></td>
+						<td><a href=""><i class="fas fa-heart" style="color: #ff3575"></i><br /></a>${999}</a></td>
 						<td><img class="logo-img" src="${r.logo}" alt=""></td>
 					</tr>
 				</c:forEach>

@@ -14,7 +14,9 @@ import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
 import com.ramyunmoa.web.entity.member.Member;
+import com.ramyunmoa.web.entity.member.Role;
 import com.ramyunmoa.web.service.MemberService;
+import com.ramyunmoa.web.view.member.MemberView;
 
 @WebServlet("/member/my-info")
 public class MyInfoController extends HttpServlet {
@@ -23,13 +25,17 @@ public class MyInfoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		int uid = (int) session.getAttribute("uid");		
+		int id = (int) session.getAttribute("id");
+		String uid = (String) session.getAttribute("uid");
 		
 		MemberService service = new MemberService();
 		Member m = null;
+		MemberView mv = null;
 		
 		try {
-			m = service.getMember(uid);
+			m = service.getMember(id);
+			mv = service.getRoleByUserId(uid);
+					
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,6 +45,7 @@ public class MyInfoController extends HttpServlet {
 		}
 		
 		request.setAttribute("m", m);
+		request.setAttribute("role", mv);
 		
 		
 		TilesContainer container = TilesAccess.getContainer(

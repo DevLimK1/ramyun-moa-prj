@@ -11,12 +11,14 @@ import java.util.Date;
 import java.util.List;
 
 import com.ramyunmoa.web.entity.member.Member;
+import com.ramyunmoa.web.entity.recipe.Recipe;
+import com.ramyunmoa.web.entity.recipe.RecipeCmt;
 import com.ramyunmoa.web.entity.review.Grade;
 import com.ramyunmoa.web.entity.review.Review;
 import com.ramyunmoa.web.entity.review.ReviewCmt;
+import com.ramyunmoa.web.view.recipe.RecipeDetailView;
 import com.ramyunmoa.web.view.recipe.RecipeListView;
 import com.ramyunmoa.web.view.review.MfcProductView;
-import com.ramyunmoa.web.view.review.ReviewDetailView;
 
 public class RecipeService {
 
@@ -44,10 +46,10 @@ public class RecipeService {
 	 */
 
 	// 자세한 페이지 조회
-	public ReviewDetailView getReviewDetailView(int id) throws ClassNotFoundException, SQLException {
-		ReviewDetailView rdv = null;
+	public RecipeDetailView getRecipeDetailView(int id) throws ClassNotFoundException, SQLException {
+		RecipeDetailView rdv = null;
 
-		String sql = "SELECT * FROM ReviewDetailView WHERE id=?";
+		String sql = "SELECT * FROM RecipeDetailView WHERE id=?";
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -66,12 +68,10 @@ public class RecipeService {
 			int hit = rs.getInt("hit");
 			int likes = rs.getInt("likes");
 			String content = rs.getString("content");
-			int gradeId = rs.getInt("gradeId");
-			String gdContent = rs.getString("gdContent");
 			int cmtCount = rs.getInt("cmtCount");
 
-			rdv = new ReviewDetailView(id, title, mfcProduct, regdate, writerName, hit, likes, content, gradeId,
-					gdContent, cmtCount);
+			rdv = new RecipeDetailView(id, title, mfcProduct, regdate, writerName, hit, likes, content,
+					cmtCount);
 
 		}
 
@@ -83,20 +83,19 @@ public class RecipeService {
 	}
 
 	// 리뷰게시판 글 등록
-	public int insertReview(Review review) throws ClassNotFoundException, SQLException {
+	public int insertRecipe(Recipe recipe) throws ClassNotFoundException, SQLException {
 		int result = 0;
 
-		String sql = "INSERT INTO Review(title,content,productId,writerId,gradeId) VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO Recipe(title,content,productId,writerId) VALUES(?,?,?,?)";
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는 드라이버 클래스가 달라져야함
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
 
-		st.setString(1, review.getTitle());
-		st.setString(2, review.getContent());
-		st.setInt(3, review.getProductId());
-		st.setInt(4, review.getWriterId());
-		st.setInt(5, review.getGradeId());
+		st.setString(1, recipe.getTitle());
+		st.setString(2, recipe.getContent());
+		st.setInt(3, recipe.getProductId());
+		st.setInt(4, recipe.getWriterId());
 
 		result = st.executeUpdate();
 
@@ -108,10 +107,10 @@ public class RecipeService {
 	}
 
 	// 자세한 페이지 수정
-	public int updateReview(Review review) throws ClassNotFoundException, SQLException {
+	public int updateRecipe(Recipe review) throws ClassNotFoundException, SQLException {
 		int result = 0;
 
-		String sql = "UPDATE Review SET title=?,content=?,productId=?,gradeId=? WHERE id=?";
+		String sql = "UPDATE Recipe SET title=?,content=?,productId=? WHERE id=?";
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
@@ -122,8 +121,8 @@ public class RecipeService {
 		st.setString(1, review.getTitle());
 		st.setString(2, review.getContent());
 		st.setInt(3, review.getProductId());
-		st.setInt(4, review.getGradeId());
-		st.setInt(5, review.getId());
+		/* st.setInt(4, review.getGradeId()); */
+		st.setInt(4, review.getId());
 
 		result = st.executeUpdate();
 
@@ -218,21 +217,21 @@ public class RecipeService {
 	}
 
 	// 자세한 페이지 댓글등록
-	public ReviewCmt insertCmt(ReviewCmt cmt) throws SQLException, ClassNotFoundException {
+	public RecipeCmt insertCmt(RecipeCmt cmt) throws SQLException, ClassNotFoundException {
 
 		int result = 0;
-		ReviewCmt cmt2 = null;
+		RecipeCmt cmt2 = null;
 		String sql = "";
 		boolean flag = false;
 
 		if (cmt.getBossId() == -1) { // 대댓글이 아니라면
-			sql = "INSERT INTO ReviewCmt(writerName, content,reviewId) VALUES(?,?,?)";
+			sql = "INSERT INTO RecipeCmt(writerName, content,recipeId) VALUES(?,?,?)";
 		} else { // 대댓글이면
-			sql = "INSERT INTO ReviewCmt(writerName, content,reviewId,bossId) VALUES(?,?,?,?)";
+			sql = "INSERT INTO RecipeCmt(writerName, content,recipeId,bossId) VALUES(?,?,?,?)";
 			flag = true;
 		}
 
-		String sql2 = "SELECT * FROM ReviewCmt WHERE writerName=? ORDER BY REGDATE DESC LIMIT 1"; // 최근 데이터 하나만 추출
+		String sql2 = "SELECT * FROM RecipeCmt WHERE writerName=? ORDER BY REGDATE DESC LIMIT 1"; // 최근 데이터 하나만 추출
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
@@ -256,7 +255,7 @@ public class RecipeService {
 			}
 			st.setString(1, cmt.getWriterName());
 			st.setString(2, cmt.getContent());
-			st.setInt(3, cmt.getReviewId());
+			st.setInt(3, cmt.getRecipeId());
 
 			System.out.println("rs2222222222222:");
 			result = st.executeUpdate();
@@ -271,7 +270,7 @@ public class RecipeService {
 			System.out.println("rs2:");
 			System.out.println(rs2);
 			if (rs2.next()) {
-				cmt2 = new ReviewCmt();
+				cmt2 = new RecipeCmt();
 				cmt2.setId(rs2.getInt("id"));
 				cmt2.setWriterName(rs2.getString("writerName"));
 				cmt2.setRegdate(rs2.getDate("regDate"));
@@ -430,10 +429,10 @@ public class RecipeService {
 	}
 
 	// 부모id를 참조하는 자식 정보들
-	public List<ReviewCmt> getCmtByParent(int id) throws ClassNotFoundException, SQLException {
-		List<ReviewCmt> list = new ArrayList<ReviewCmt>();
+	public List<RecipeCmt> getCmtByParent(int id) throws ClassNotFoundException, SQLException {
+		List<RecipeCmt> list = new ArrayList<RecipeCmt>();
 
-		String sql = "SELECT * FROM ReviewCmt WHERE bossId=?";
+		String sql = "SELECT * FROM RecipeCmt WHERE bossId=?";
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -445,8 +444,8 @@ public class RecipeService {
 
 		// 쿼리 실행 된 결과값 가져오기
 		while (rs.next()) {
-			ReviewCmt view = new ReviewCmt(rs.getInt("id"), rs.getString("content"), rs.getString("writerName"),
-					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("reviewId"), rs.getInt("bossId"));
+			RecipeCmt view = new RecipeCmt(rs.getInt("id"), rs.getString("content"), rs.getString("writerName"),
+					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("recipeId"), rs.getInt("bossId"));
 
 			list.add(view);
 		}
@@ -460,10 +459,10 @@ public class RecipeService {
 	}
 
 	// 자세한페이지 댓글 목록
-	public List<ReviewCmt> getReviewCmt(int id) throws SQLException, ClassNotFoundException {
-		List<ReviewCmt> list = new ArrayList<ReviewCmt>();
+	public List<RecipeCmt> getRecipeCmt(int id) throws SQLException, ClassNotFoundException {
+		List<RecipeCmt> list = new ArrayList<RecipeCmt>();
 
-		String sql = "SELECT * FROM ReviewCmt WHERE reviewId=? and bossId IS NULL";
+		String sql = "SELECT * FROM RecipeCmt WHERE recipeId=? and bossId IS NULL";
 
 		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -475,8 +474,8 @@ public class RecipeService {
 
 		// 쿼리 실행 된 결과값 가져오기
 		while (rs.next()) {
-			ReviewCmt view = new ReviewCmt(rs.getInt("id"), rs.getString("content"), rs.getString("writerName"),
-					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("reviewId"), rs.getInt("bossId"));
+			RecipeCmt view = new RecipeCmt(rs.getInt("id"), rs.getString("content"), rs.getString("writerName"),
+					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("recipeId"), rs.getInt("bossId"));
 
 			list.add(view);
 		}
@@ -486,9 +485,8 @@ public class RecipeService {
 		con.close();
 
 		for (int i = 0; i < list.size(); i++) {
-			ReviewCmt cmt = list.get(i);
+			RecipeCmt cmt = list.get(i);
 			cmt.setChildren(getCmtByParent(cmt.getId()));
-			;
 		}
 
 		return list;

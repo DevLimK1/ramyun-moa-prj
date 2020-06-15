@@ -3,7 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="admin-html">
 
 <head>
 <meta charset="UTF-8">
@@ -17,7 +17,7 @@
 <title>AdminPage</title>
 </head>
 
-<body>
+<body class="admin-body">
 	<tiles:insertAttribute name="header" />
 
 	<div id="body">

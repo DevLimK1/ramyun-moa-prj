@@ -20,8 +20,7 @@
 							<option value="title">제목</option>
 							<option value="content">내용</option>
 							<option value="nickname">작성자</option>
-						</select> <input type="text" name="s" placeholder=""> <input
-							type="submit" value="검색">
+						</select> <input type="text" name="s" placeholder=""> <input type="submit" value="검색">
 					</div>
 				</div>
 			</form>
@@ -57,8 +56,7 @@
 
 			<c:set var="page" value="${(empty param.p)?1:param.p}" />
 			<c:set var="startNum" value="${page-(page-1)%5}" />
-			<c:set var="lastNum"
-				value="${fn:substringBefore(Math.ceil(count/10),'.')}" />
+			<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10),'.')}" />
 
 			<div class="bottom-btn">
 				<div class="list">
@@ -81,8 +79,7 @@
 					</a>
 				</c:when>
 				<c:otherwise>
-					<i class="fas fa-arrow-circle-left fa-2x"
-						onclick="alert('이전 페이지가 없습니다.');"></i>
+					<i class="fas fa-arrow-circle-left fa-2x" onclick="alert('이전 페이지가 없습니다.');"></i>
 				</c:otherwise>
 			</c:choose>
 
@@ -90,7 +87,7 @@
 				<c:forEach begin="0" end="4" var="i">
 					<c:if test="${startNum+i<=lastNum}">
 						<li><a class="${(page==startNum+i)?'current':''}"
-							href="management?m=${param.m}&p=${startNum+i}&s=${param.s}">${startNum+i}</a>
+								href="management?m=${param.m}&p=${startNum+i}&s=${param.s}">${startNum+i}</a>
 						</li>
 					</c:if>
 				</c:forEach>
@@ -103,10 +100,27 @@
 					</a>
 				</c:when>
 				<c:otherwise>
-					<i class="fas fa-arrow-circle-right fa-2x"
-						onclick="alert('다음 페이지가 없습니다.');"></i>
+					<i class="fas fa-arrow-circle-right fa-2x" onclick="alert('다음 페이지가 없습니다.');"></i>
 				</c:otherwise>
 			</c:choose>
 		</div>
 	</div>
 </section>
+
+<script>
+	window.addEventListener("load", function () {
+
+		var delBtn = document.querySelector("input[value='삭제']");
+
+		delBtn.onclick = function (e) {
+
+			if (confirm("삭제하시겠습니까?") == false) {
+				e.preventDefault();
+			}
+			else {
+				alert("삭제하였습니다.");
+			}
+		}
+
+	})
+</script>

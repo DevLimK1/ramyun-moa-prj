@@ -33,12 +33,14 @@ var contentBox = document.querySelector(".content-box");
 var boldButton = contentBox.querySelector(".btn-bold");
 var italicButton = contentBox.querySelector(".btn-italic");
 var imgButton = contentBox.querySelector(".btn-img");// 트리거 위한 버튼
+var sizeButton = contentBox.querySelector(".btn-fontSize");
 var fileButton = contentBox.querySelector(".btn-file");
 var contentArea = contentBox.querySelector(".content-area");
 var underlineButton= contentBox.querySelector(".btn-underline");
 var btnBox=document.querySelector(".btn-box");
 var submitButton=btnBox.querySelector(".btn-submit");
 var subLinkForm=document.querySelector(".sub-link-search-form");
+
 
 var writerName=subLinkForm.querySelector(".writerName-txt");
 var writerId=subLinkForm.querySelector("input[name=writerId]");
@@ -222,4 +224,9 @@ italicButton.onclick = function(e) {
 underlineButton.onclick=function(e){
 	e.preventDefault();
 	document.execCommand("underline");
+}
+
+sizeButton.onclick=function(e){
+	e.preventDefault();
+	document.execCommand("fontSize");
 }

@@ -12,14 +12,13 @@ public class Member {
 	private String nickname;
 	private String gender;
 	private Date regdate;
-	private String grade;
 	
 	public Member() {
 
 	}
 
 	public Member(int id, String uid, String email, String email1, String email2, String pwd, String nickname,
-			String gender, Date regdate, String grade) {
+			String gender, Date regdate) {
 		this.id = id;
 		this.uid = uid;
 		this.email = email;
@@ -29,7 +28,6 @@ public class Member {
 		this.nickname = nickname;
 		this.gender = gender;
 		this.regdate = regdate;
-		this.grade = grade;
 	}
 
 	
@@ -57,13 +55,6 @@ public class Member {
 		this.nickname = nickname;
 		this.gender = gender;
 		this.regdate = regdate;
-	}
-
-	public String getGrade() {
-		return grade;
-	}
-	public void setGrade(String grade) {
-		this.grade = grade;
 	}
 	public String getUid() {
 		return uid;
@@ -124,7 +115,7 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", uid=" + uid + ", email=" + email + ", email1=" + email1 + ", email2=" + email2
-				+ ", pwd=" + pwd + ", nickname=" + nickname + ", gender=" + gender + ", regdate=" + regdate + ", grade=" + grade +"]";
+				+ ", pwd=" + pwd + ", nickname=" + nickname + ", gender=" + gender + ", regdate=" + regdate +"]";
 	}
 
 	

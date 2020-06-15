@@ -40,11 +40,67 @@ var btnBox=document.querySelector(".btn-box");
 var submitButton=btnBox.querySelector(".btn-submit");
 var subLinkForm=document.querySelector(".sub-link-search-form");
 
-var writerName=subLinkForm.querySelector(".writerName-txt");
+var writerName=subLinkForm.querySelector(".writerName-txt"); //reg.jsp
+
 var writerId=subLinkForm.querySelector("input[name=writerId]");
 var mfcProduct=subLinkForm.querySelector("input[name=mfc-product]");
-var gradeId=subLinkForm.querySelector("select[name=grade]");
+//var gradeId=subLinkForm.querySelector("select[name=grade]");
 var title=subLinkForm.querySelector("input[name=title]");
+
+
+//var subLinkEditForm=document.querySelector(".sub-link-edit-search-form");
+//var detailId_=subLinkEditForm.querySelector("input[name=id]");
+//var editTitle=subLinkEditForm.querySelector("input[name=title]");
+//var writerEditName=subLinkEditForm.querySelector(".writer-name");//edit.jsp
+//var editMfcProduct=subLinkEditForm.querySelector("input[name=mfc-product]");
+/*
+subLinkEditForm.onsubmit=function(e){ //수정 버튼 클릭시
+	
+	e.preventDefault();
+	console.log("onsubmit");
+	
+	var content=contentArea.innerHTML;
+	title=title.value;
+	writerEditName=writerEditName.innerText;
+	console.log(writerId);
+	if(writerId!==null){
+		writerId=writerId.value;	
+	}
+	
+	detailId=detailId_.value;
+	
+	
+	
+	editMfcProduct=editMfcProduct.value;
+//	gradeId=gradeId.value;
+	
+//	console.log(gradeId.value); //평점값
+	console.log(editMfcProduct.value);//제조사-라면값
+	console.log(writerName);//작성자이름
+	console.log(writerId); //작성자 id
+	console.log(detailId);
+	
+	var data=`content=${content}&writerId=${writerId}&title=${editTitle}&writerName=${writerEditName}&mfc-product=${editMfcProduct}&id=${detailId}`;
+	
+	
+	var xhr=new XMLHttpRequest();
+	
+	
+	xhr.open('POST','edit',true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.onload=function(){
+		console.log(xhr.responseText);
+//		comments=JSON.parse(xhr.responseText);
+//		location.replace('detail')
+		location.href='list';
+//		console.log(comments);
+//		bind();
+	}
+	
+
+	xhr.send(data);
+}
+*/
 
 subLinkForm.onsubmit=function(e){
 	
@@ -54,16 +110,20 @@ subLinkForm.onsubmit=function(e){
 	var content=contentArea.innerHTML;
 	title=title.value;
 	writerName=writerName.innerText;
-	writerId=writerId.value;
-	mfcProduct=mfcProduct.value;
-	gradeId=gradeId.value;
+	console.log(writerId);
+	if(writerId!==null){
+		writerId=writerId.value;	
+	}
 	
-	console.log(gradeId.value); //평점값
+	mfcProduct=mfcProduct.value;
+//	gradeId=gradeId.value;
+	
+//	console.log(gradeId.value); //평점값
 	console.log(mfcProduct.value);//제조사-라면값
 	console.log(writerName);//작성자이름
 	console.log(writerId); //작성자 id
 	
-	var data=`content=${content}&writerId=${writerId}&title=${title}&writerName=${writerName}&mfc-product=${mfcProduct}&grade=${gradeId}`;
+	var data=`content=${content}&writerId=${writerId}&title=${title}&writerName=${writerName}&mfc-product=${mfcProduct}`;
 	
 	
 	var xhr=new XMLHttpRequest();

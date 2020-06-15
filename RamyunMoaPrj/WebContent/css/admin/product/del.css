@@ -17,6 +17,13 @@ table {
     width: 85%;
 }
 
+.item-table .space {
+    border-top: solid;
+    border-left: white solid;
+    border-right: white solid;
+    background-color: white;
+}
+
 .search {
     display: flex;
     justify-content: space-around;
@@ -99,7 +106,7 @@ table {
 }
 
 
-tbody>tr:nth-child(5n-4) {
+tbody>tr:nth-child(6n-5) {
     border-top: solid;
 }
 

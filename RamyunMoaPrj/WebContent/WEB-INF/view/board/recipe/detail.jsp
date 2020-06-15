@@ -23,7 +23,7 @@
 		<div class="perface-box detail-margin-top">제조사-품명 :
 			${r.mfcProduct}</div>
 
-		<div class="star-grade detail-margin-top">
+		<%-- <div class="star-grade detail-margin-top">
 			평점 : ${r.gdContent } <span class="star"><c:choose>
 					<c:when test="${r.gradeId==1}">★☆☆☆☆</c:when>
 					<c:when test="${r.gradeId==2}">★★☆☆☆</c:when>
@@ -31,7 +31,7 @@
 					<c:when test="${r.gradeId==4}">★★★★☆</c:when>
 					<c:when test="${r.gradeId==5}">★★★★★</c:when>
 				</c:choose> </span> [${r.gradeId}점]
-		</div>
+		</div> --%>
 
 		<div class="meta-box detail-margin-top">
 			<div class="meta-info">
@@ -59,9 +59,9 @@
 			<div class="btn-box">
 				<!--<input type="button" class="btn-text love-btn" value="공감♡"></input>-->
 				<button type="button" class="love-btn ">
-					<span class="love-btn-txt">공감</span><i
-						class="love-img far fa-heart"></i>
-					<!--<i class="likes fas fa-heart"></i>-->
+					<span class="love-btn-txt">공감</span>
+					<i class="likes love-img far fa-heart"></i>
+					<i class="likes fas fa-heart d-none"></i>
 				</button>
 			</div>
 		</form>
@@ -202,7 +202,7 @@
 
 				<div class="comment-box_box">
 					<div class="comment-meta-info">
-						<a href="" class="comment-writer-name">${sessionScope.uid }</a>
+						<a href="" class="comment-writer-name">${sessionScope.nickname }</a>
 						<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 					</div>
 
@@ -281,7 +281,7 @@
 
 					<div class="comment-box_box">
 						<div class="comment-meta-info">
-							<a href="" class="comment-writer-name">${sessionScope.uid }</a>
+							<a href="" class="comment-writer-name">${sessionScope.nickname }</a>
 							<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 						</div>
 

@@ -103,7 +103,7 @@ window.addEventListener("load",function(){
 
 					<div class="comment-box_box">
 						<div class="comment-meta-info">
-							<a href="" class="comment-writer-name">${sessionScope.uid }</a>
+							<a href="" class="comment-writer-name">${sessionScope.nickname }</a>
 							<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 						</div>
 
@@ -190,7 +190,7 @@ window.addEventListener("load",function(){
 
 				<div class="comment-box_box">
 					<div class="comment-meta-info">
-						<a href="" class="comment-writer-name">${sessionScope.uid }</a>
+						<a href="" class="comment-writer-name">${sessionScope.nickname }</a>
 						<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 					</div>
 
@@ -546,10 +546,10 @@ window.addEventListener("load",function(){
 		}
 		
 		if(bossId!==undefined)
-			var json={"reviewId":reviewDetailId,"writerName":writerName,
+			var json={"recipeId":reviewDetailId,"writerName":writerName,
 				"content":content,"bossId":bossId};
 		else
-			var json={"reviewId":reviewDetailId,"writerName":writerName,
+			var json={"recipeId":reviewDetailId,"writerName":writerName,
 				"content":content,"bossId":-1};
 		
 		console.log(json);

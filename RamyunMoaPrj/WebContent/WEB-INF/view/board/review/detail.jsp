@@ -60,8 +60,8 @@
 				<!--<input type="button" class="btn-text love-btn" value="공감♡"></input>-->
 				<button type="button" class="love-btn ">
 					<span class="love-btn-txt">공감</span><i
-						class="love-img far fa-heart"></i>
-					<!--<i class="likes fas fa-heart"></i>-->
+						class="likes love-img far fa-heart"></i>
+					<i class="likes fas fa-heart d-none"></i>
 				</button>
 			</div>
 		</form>

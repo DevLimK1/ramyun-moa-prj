@@ -13,7 +13,8 @@
 <link rel="stylesheet" href="/css/main/main.css">
 <link rel="stylesheet" href="/css/member/regist.css" type="text/css">
 <link rel="stylesheet" href="/css/member/myPage.css" type="text/css">
-<link rel="shortcut icon" href="../images/main/favicon.png" type="image/png">
+<link rel="shortcut icon" href="../images/main/favicon.png"
+	type="image/png">
 <!-- <script src="https://kit.fontawesome.com/096073a2a8.js"crossorigin="anonymous"></script> -->
 
 <script type="text/javascript" src="/js/member/member.js"></script>
@@ -25,15 +26,14 @@
 	<tiles:insertAttribute name="header" />
 
 	<!-- --------------------------- <body> --------------------------------------- -->
-
-			<!-- --------------------------- aside --------------------------------------- -->
-			<tiles:insertAttribute name="aside" />
-
-
-			<!-- --------------------------- main --------------------------------------- -->
-			<tiles:insertAttribute name="main" />
+	<!-- --------------------------- aside --------------------------------------- -->
+	<section class="section-layout">
+		<tiles:insertAttribute name="aside" />
 
 
+		<!-- --------------------------- main --------------------------------------- -->
+		<tiles:insertAttribute name="main" />
+	</section>
 	<!-- ------------------- <footer> --------------------------------------- -->
 	<tiles:insertAttribute name="footer" />
 

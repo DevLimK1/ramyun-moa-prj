@@ -17,6 +17,7 @@ import com.ramyunmoa.web.entity.notice.Feedback;
 import com.ramyunmoa.web.entity.notice.FeedbackComment;
 import com.ramyunmoa.web.service.FeedbackCommentService;
 import com.ramyunmoa.web.service.FeedbackService;
+import com.ramyunmoa.web.service.MemberService;
 import com.ramyunmoa.web.view.notice.FeedbackCommentView;
 
 @WebServlet("/feedback/detail")
@@ -98,9 +99,24 @@ public class FeedbackDetailController extends HttpServlet{
 		String boardId_ = request.getParameter("boardId");
 		int boardId = Integer.parseInt(boardId_);
 		
+		String uid = request.getParameter("uid");
+		String nickname="";
+		
+		MemberService mService = new MemberService();
+		
+		try {
+			nickname=mService.getMemberNicknameByUid(uid);
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		FeedbackComment comment = new FeedbackComment();
 		comment.setContent(content);
-		comment.setWriterId("주정태");
+		comment.setWriterId(nickname);
 		comment.setBoardId(boardId);
 		
 		FeedbackCommentService cService = new FeedbackCommentService();

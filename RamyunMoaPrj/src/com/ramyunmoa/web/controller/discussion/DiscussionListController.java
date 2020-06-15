@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 
-import com.ramyunmoa.web.service.ReviewService;
-import com.ramyunmoa.web.view.review.ReviewListView;
+import com.ramyunmoa.web.service.DiscussionService;
+import com.ramyunmoa.web.view.review.DiscussionListView;
 
 /**
  * Servlet implementation class listController
@@ -28,7 +28,7 @@ public class DiscussionListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<ReviewListView> list = new ArrayList();
+		List<DiscussionListView> list = new ArrayList();
 
 		String field_ = request.getParameter("f");
 		String query_ = request.getParameter("q");
@@ -46,13 +46,13 @@ public class DiscussionListController extends HttpServlet {
 		if (page_ != null && !page_.equals(""))
 			page = Integer.parseInt(page_);
 
-		ReviewService service = new ReviewService();
+		DiscussionService service = new DiscussionService();
 		
 		int count =0 ;
 		
 		try {
-			list = service.getReviewListView(field, query, page);
-			count= service.getReviewCount(field, query);
+			list = service.getDiscussionListView(field, query, page);
+			count= service.getDiscussionCount(field, query);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

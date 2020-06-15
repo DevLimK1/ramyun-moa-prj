@@ -17,9 +17,11 @@ import org.apache.tiles.access.TilesAccess;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.ramyunmoa.web.entity.recipe.RecipeCmt;
 import com.ramyunmoa.web.entity.review.ReviewCmt;
+import com.ramyunmoa.web.service.RecipeService;
 import com.ramyunmoa.web.service.ReviewService;
-import com.ramyunmoa.web.view.review.ReviewDetailView;
+import com.ramyunmoa.web.view.recipe.RecipeDetailView;
 
 /**
  * Servlet implementation class ReviewDetailController
@@ -31,16 +33,16 @@ public class RecipeDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id=Integer.parseInt(request.getParameter("id"));
 		System.out.println("id:"+id);
-		ReviewService service=new ReviewService();
-		ReviewDetailView rdv=null;
+		RecipeService service=new RecipeService();
+		RecipeDetailView rdv=null;
 		
-		List<ReviewCmt> cmt= null;
+		List<RecipeCmt> cmt= null;
 		
 //		List<ReviewCmt> children=null;
 		
 		try {
-			rdv=service.getReviewDetailView(id);
-			cmt=service.getReviewCmt(id);
+			rdv=service.getRecipeDetailView(id);
+			cmt=service.getRecipeCmt(id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,11 +84,11 @@ public class RecipeDetailController extends HttpServlet {
                 .setDateFormat("yyyy-MM-dd")
                 .create();
 //		Gson gson = new Gson();
-		ReviewCmt cmt =gson.fromJson(lineString, ReviewCmt.class);
+		RecipeCmt cmt =gson.fromJson(lineString, RecipeCmt.class);
 		
 		System.out.println(cmt);
-		ReviewService service=new ReviewService();
-		ReviewCmt result=null;
+		RecipeService service=new RecipeService();
+		RecipeCmt result=null;
 		
 		try {
 			result=service.insertCmt(cmt);
