@@ -15,8 +15,8 @@
 			<h1 class="d-none">서브링크</h1>
 
 
-<!-- 			<form action="reg" method="POST" class="sub-link-search-form"> -->
-<form action=""  class="sub-link-search-form">
+			<!-- 			<form action="reg" method="POST" class="sub-link-search-form"> -->
+			<form action="" class="sub-link-search-form">
 				<input type="hidden" name="writerId" value="${member.id}">
 				<div class="reg-writerName">
 					작성자: <span class="writerName-txt">${member.nickname}</span>
@@ -66,21 +66,39 @@
 
 				<div class="content-box">
 					<div class="toolbar">
-						<button class="btn-bold"><i class="fas fa-bold"></i></button>
-						<button class="btn-italic"><i class="fas fa-italic"></i></button>
-						<button class="btn-underline"><i class="fas fa-underline"></i></button>
-						<button class="btn-img"><i class="far fa-image"></i></button>
-						<input multiple="multiple" type="file" class="d-none btn-file">
+						<button class="btn-bold">
+							<i class="fas fa-bold"></i>
+						</button>
+						<button class="btn-italic">
+							<i class="fas fa-italic"></i>
+						</button>
+						<button class="btn-underline">
+							<i class="fas fa-underline"></i>
+						</button>
+						<select name="set_headingSize">
+							<option value="1">제목1</option>
+							<option value="2">제목2</option>
+							<option value="3">제목3</option>
+							<option value="4">본문1</option>
+							<option value="5">본문2</option>
+							<option value="6">본문3</option>
+						</select>
+						<button class="btn-img">
+							<i class="far fa-image"></i>
+						</button>
+						 <input multiple="multiple" type="file" class="d-none btn-file">
 					</div>
-					<div class="content-area" data-placeholder="내용을 입력해주세요." contenteditable="true"></div>
+					<div class="content-area" data-placeholder="내용을 입력해주세요."
+						contenteditable="true"></div>
 					<!-- <textarea class="content" placeholder="내용을 입력하세요." name="content"
 						required></textarea> -->
 				</div>
 
 				<div class="btn-box">
 					<div class="btn-box_box">
-						<input class="btn-text btn-default btn-submit" type="submit" value="등록" /> <a
-							class="btn-text btn-cancel" href="list">취소 </a>
+						<input class="btn-text btn-default btn-submit" type="submit"
+							value="등록" /> <a class="btn-text btn-cancel" href="list">취소
+						</a>
 					</div>
 				</div>
 

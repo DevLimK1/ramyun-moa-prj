@@ -496,6 +496,27 @@ public class ReviewService {
 
 	}
 
+	public int addLike(int reviewId) throws ClassNotFoundException, SQLException {
+		int result = 0;
+
+		String sql = "UPDATE SET Review likes=likes+1 WHERE id=?";
+		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는 드라이버 클래스가 달라져야함
+		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+		PreparedStatement st = con.prepareStatement(sql);
+
+		st.setInt(1, reviewId);
+
+		result = st.executeUpdate();
+
+//		rs.close();
+		st.close();
+		con.close();
+
+		return result;
+		
+	}
+
 
 //	public List<ReviewCmt> getChildren(int id) throws ClassNotFoundException, SQLException {
 //		List<ReviewCmt> list=null;

@@ -29,6 +29,8 @@ function cancelBtnClick(e) { //취소버튼 비동기
 }
 */
 
+
+
 var contentBox = document.querySelector(".content-box");
 var boldButton = contentBox.querySelector(".btn-bold");
 var italicButton = contentBox.querySelector(".btn-italic");
@@ -47,6 +49,67 @@ var writerId=subLinkForm.querySelector("input[name=writerId]");
 var mfcProduct=subLinkForm.querySelector("input[name=mfc-product]");
 var gradeId=subLinkForm.querySelector("select[name=grade]");
 var title=subLinkForm.querySelector("input[name=title]");
+
+var setHeadingSize=subLinkForm.querySelector("select[name=set_headingSize]");
+
+console.log(setHeadingSize);
+console.log(heading_size);
+/*setHeadingSize.onclick=function(e){
+	console.log(setHeadingSize.value);
+}*/
+
+
+
+contentArea.addEventListener('mousedown',function(e){
+	
+	if(e.target.nodeName!=='DIV')
+		return;
+	var targetContent=e.target;
+	console.log(targetContent);
+	setHeadingSize.onchange=function(e){
+		if(e.target.value==1){
+			targetContent.style.fontSize='40px';
+		}
+		else if(e.target.value==2){
+			targetContent.style.fontSize='35px';
+		}
+		else if(e.target.value==3){
+			targetContent.style.fontSize='30px';
+		}
+		else if(e.target.value==4){
+			targetContent.style.fontSize='25px';
+		}
+		else if(e.target.value==5){
+			targetContent.style.fontSize='20px';
+		}
+		else if(e.target.value==6){
+			targetContent.style.fontSize='16px';
+		}
+	}
+})
+
+
+setHeadingSize.onclick=function(e){
+	e.preventDefault();
+	console.log(e.target);
+	console.log("heading_size");	
+	console.log(e.target.value);
+	var headingSize=e.target.value;
+//	`${e.target.value}`
+	if(headingSize===1){
+		document.execCommand('formatBlock', false,'<h1>' );	
+	}
+		
+}
+
+//window.addEventListener("load",function(){
+	function heading_size(setfont,fsize)
+	{
+		console.log("heading_size");	
+	  document.execCommand(setfont, false, fsize);
+	}	
+//});
+
 
 subLinkForm.onsubmit=function(e){
 	
@@ -194,6 +257,8 @@ contentArea.onclick = function(e) {
 	var resize = prompt("변경하고 싶은 사이즈를 숫자로 입력해주세요.\n(기본:300->300px*300px)",
 			"300");
 	e.target.style.width = `${resize}px`;
+	
+	
 
 }
 
@@ -225,6 +290,8 @@ underlineButton.onclick=function(e){
 	e.preventDefault();
 	document.execCommand("underline");
 }
+
+
 
 sizeButton.onclick=function(e){
 	e.preventDefault();
