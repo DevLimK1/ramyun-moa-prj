@@ -117,6 +117,14 @@
 						<button class="btn-bold"><i class="fas fa-bold"></i></button>
 						<button class="btn-italic"><i class="fas fa-italic"></i></button>
 						<button class="btn-underline"><i class="fas fa-underline"></i></button>
+						<select name="set_headingSize">
+							<option value="1">제목1</option>
+							<option value="2">제목2</option>
+							<option value="3">제목3</option>
+							<option value="4">본문1</option>
+							<option value="5">본문2</option>
+							<option value="6">본문3</option>
+						</select>
 						<button class="btn-img"><i class="far fa-image"></i></button>
 						<input multiple="multiple" type="file" class="d-none btn-file">
 					</div>

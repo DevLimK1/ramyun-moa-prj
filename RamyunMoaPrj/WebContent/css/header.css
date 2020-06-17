@@ -22,28 +22,23 @@
     position: relative; /* 수정부분 06.10 */ 
 }
 
-.navbar-logo {
-    font-size: 25px;
-    width: 65px;
-    height: 65px;
-    background: red;
-    text-align: center;
-}
-
-.navbar-logo a{
-    color: whitesmoke;
+.navbar-logo img{
+   width: 200px;
+   margin-top: 5px;
 }
 
 .navbar-bottom {
     display: flex;
     line-height: 50px;
     justify-content: space-between;
-    margin-right: 15px;
     font-size: 20px;
 }
 
 .navbar-menu {
     display: flex;
+    width: 1080px;
+    text-align: center;
+    line-height: 80px;
 }
 
 .navbar-menu span {
@@ -58,13 +53,8 @@
     top: 15px; 
 }
 
-.navbar-menu li:first-child {
-    margin-left: 0px;
-}
-
 .navbar-menu li{
-    margin-left: 20px;
-    padding-right: 20px;
+    width: 270px;
 }
 
 .navbar-menu a:hover{
@@ -73,19 +63,10 @@
     opacity: 0.8;
 }
 
-/* ---------메뉴 리스트----------- */
-/* navbar-menu li:hover 삭제  06.10 */
-.navbar-menu li{
-    margin: 0px 20px;
-}
-
-.navbar-menu li:first-child {
-    margin-left: 100px;
-}
 /* ---------멤버 영역----------- */
 .navbar-member a {
-    font-weight: bold;
     font-size: 13px;
+    color: #979797;
 }
 
 .navbar-member span {

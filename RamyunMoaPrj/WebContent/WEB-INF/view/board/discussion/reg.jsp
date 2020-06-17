@@ -24,7 +24,7 @@
 
 				<fieldset class="perface-field">
 					<legend class="d-none">서브링크 검색필드</legend>
-					<label class="" for="">제조사-라면:</label> <input style="width: 350px;"
+					<label class="" for="">토론 주제:</label> <input style="width: 350px;"
 						placeholder="입력하시면 더 빨리 찾을 수 있어요 :)" type="text"
 						name="topic" list="topic" required="required">
 					<datalist id="topic">

@@ -2,6 +2,8 @@ package com.ramyunmoa.web.controller.admin.board.feedback;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +23,13 @@ public class AdminFeedbackRegController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
+	      Date regdate_ = new Date();
+	      
+	      String regdate = format.format(regdate_);
+
+	      request.setAttribute("regdate", regdate);
+		
 		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
 		container.render("admin.board.feedback.reg", request, response);
 	}

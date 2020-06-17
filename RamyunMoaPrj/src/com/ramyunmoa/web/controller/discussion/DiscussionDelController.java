@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ramyunmoa.web.service.DiscussionService;
 import com.ramyunmoa.web.service.ReviewService;
 
 @WebServlet("/discussion/del")
@@ -23,9 +24,9 @@ public class DiscussionDelController extends HttpServlet {
 
 		// 2.데이터베이스에서 쿼리
 
-		ReviewService service = new ReviewService();
+		DiscussionService service = new DiscussionService();
 		try {
-			service.deleteReview(id);
+			service.deleteDiscussion(id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

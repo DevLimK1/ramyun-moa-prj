@@ -133,11 +133,11 @@ public class RecipeService {
 
 	
 	  // 자세한페이지 삭제 
-	public int deleteReview(int id) throws ClassNotFoundException, SQLException {
+	public int deleteRecipe(int id) throws ClassNotFoundException, SQLException {
 	  
 	  int result = 0;
 	  
-	  String sql = "DELETE FROM Review WHERE id=?"; 
+	  String sql = "DELETE FROM Recipe WHERE id=?"; 
 	  String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 	  
 	  Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는

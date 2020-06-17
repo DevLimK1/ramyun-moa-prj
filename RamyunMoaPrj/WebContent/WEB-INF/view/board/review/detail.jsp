@@ -202,7 +202,7 @@
 
 				<div class="comment-box_box">
 					<div class="comment-meta-info">
-						<a href="" class="comment-writer-name">${sessionScope.uid }</a>
+						<a href="" class="comment-writer-name">${sessionScope.nickname }</a>
 						<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 					</div>
 
@@ -281,7 +281,7 @@
 
 					<div class="comment-box_box">
 						<div class="comment-meta-info">
-							<a href="" class="comment-writer-name">${sessionScope.uid }</a>
+							<a href="" class="comment-writer-name">${sessionScope.nickname }</a>
 							<!-- <div class="regdate">2020-06-03 15:23:43</div> -->
 						</div>
 

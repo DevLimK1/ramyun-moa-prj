@@ -22,6 +22,39 @@ window.addEventListener("load",function(){
 	var detailId_=subLinkForm.querySelector("input[name=id]");
 	
 	
+	var setHeadingSize=subLinkForm.querySelector("select[name=set_headingSize]");
+
+
+
+	contentArea.addEventListener('mousedown',function(e){
+		
+		if(e.target.nodeName!=='DIV')
+			return;
+		var targetContent=e.target;
+		console.log(targetContent);
+		setHeadingSize.onchange=function(e){
+			if(e.target.value==1){
+				targetContent.style.fontSize='40px';
+			}
+			else if(e.target.value==2){
+				targetContent.style.fontSize='35px';
+			}
+			else if(e.target.value==3){
+				targetContent.style.fontSize='30px';
+			}
+			else if(e.target.value==4){
+				targetContent.style.fontSize='25px';
+			}
+			else if(e.target.value==5){
+				targetContent.style.fontSize='20px';
+			}
+			else if(e.target.value==6){
+				targetContent.style.fontSize='16px';
+			}
+		}
+	})
+
+	
 	subLinkForm.onsubmit=function(e){ //수정 버튼 클릭시
 		
 		e.preventDefault();

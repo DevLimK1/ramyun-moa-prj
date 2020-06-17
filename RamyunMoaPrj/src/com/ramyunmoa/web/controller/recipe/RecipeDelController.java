@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ramyunmoa.web.service.ReviewService;
+import com.ramyunmoa.web.service.RecipeService;
 
 @WebServlet("/recipe/del")
 public class RecipeDelController extends HttpServlet {
@@ -23,9 +23,9 @@ public class RecipeDelController extends HttpServlet {
 
 		// 2.데이터베이스에서 쿼리
 
-		ReviewService service = new ReviewService();
+		RecipeService service = new RecipeService();
 		try {
-			service.deleteReview(id);
+			service.deleteRecipe(id);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -26,7 +26,7 @@
 
 			<fieldset class="perface-field">
 				<legend class="d-none">서브링크 검색필드</legend>
-				<label class="" for="">제조사-라면:</label> <input style="width: 350px;"
+				<label class="" for="">토론 주제:</label> <input style="width: 350px;"
 					placeholder="입력하시면 더 빨리 찾을 수 있어요 :)" type="text" name="topic"
 					list="topic" required="required" value="${dis.topic}">
 				<datalist id="topic">
@@ -117,6 +117,14 @@
 						<button class="btn-bold"><i class="fas fa-bold"></i></button>
 						<button class="btn-italic"><i class="fas fa-italic"></i></button>
 						<button class="btn-underline"><i class="fas fa-underline"></i></button>
+						<select name="set_headingSize">
+							<option value="1">제목1</option>
+							<option value="2">제목2</option>
+							<option value="3">제목3</option>
+							<option value="4">본문1</option>
+							<option value="5">본문2</option>
+							<option value="6">본문3</option>
+						</select>
 						<button class="btn-img"><i class="far fa-image"></i></button>
 						<input multiple="multiple" type="file" class="d-none btn-file">
 					</div>
