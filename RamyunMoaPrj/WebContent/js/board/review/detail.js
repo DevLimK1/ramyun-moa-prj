@@ -219,11 +219,6 @@ window.addEventListener("load",function(){
 	}
 	
 	
-	// comment data values
-// var writerName=comment.querySelector(".comment-writer-name");
-// var textarea=comment.querySelector("textarea");
-	
-	
 
 	var navbar=document.querySelector(".navbar");
 	var member=navbar.querySelector(".member");
@@ -279,17 +274,9 @@ window.addEventListener("load",function(){
 			});
 		}
 		
-// console.log(textarea);
-// textarea.addEventListener('input',function(e){
-// textarea=e.target.value;
-// console.log(e.target.value);
-// console.log(textarea.length);
-// });
 		
 			
 	}
-// console.log(commentForm);
-// console.log(commentRegBtn);
 	var likesFlag=false;
 	function likesBtnClick(e){
 		if(e.target.classList.contains('far')){ // 색없는 하트

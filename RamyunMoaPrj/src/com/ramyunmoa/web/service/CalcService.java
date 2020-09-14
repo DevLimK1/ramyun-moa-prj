@@ -18,7 +18,7 @@ public class CalcService {
 
 		List<ProductView> prodList = new ArrayList<ProductView>();
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "SELECT * FROM rmteam.ProductView ORDER BY mfr";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");

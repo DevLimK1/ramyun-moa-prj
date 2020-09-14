@@ -50,7 +50,7 @@ public class RecipeService {
 		RecipeDetailView rdv = null;
 
 		String sql = "SELECT * FROM RecipeDetailView WHERE id=?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -87,7 +87,7 @@ public class RecipeService {
 		int result = 0;
 
 		String sql = "INSERT INTO Recipe(title,content,productId,writerId) VALUES(?,?,?,?)";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는 드라이버 클래스가 달라져야함
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -111,7 +111,7 @@ public class RecipeService {
 		int result = 0;
 
 		String sql = "UPDATE Recipe SET title=?,content=?,productId=? WHERE id=?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
 //	  드라이버 클래스가 달라져야함
@@ -138,7 +138,7 @@ public class RecipeService {
 	  int result = 0;
 	  
 	  String sql = "DELETE FROM Recipe WHERE id=?"; 
-	  String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+	  String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 	  
 	  Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
 	  //드라이버 클래스가 달라져야함 
@@ -162,7 +162,7 @@ public class RecipeService {
 		String sql = "SELECT * FROM RecipeListView " + " WHERE " + field
 				+ " LIKE ? ORDER BY regdate DESC LIMIT 10 OFFSET ?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -197,7 +197,7 @@ public class RecipeService {
 		String sql = "SELECT COUNT(ID) COUNT FROM RecipeListView " + " WHERE " + field
 				+ " LIKE ? ORDER BY regdate DESC";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -233,7 +233,7 @@ public class RecipeService {
 
 		String sql2 = "SELECT * FROM RecipeCmt WHERE writerName=? ORDER BY REGDATE DESC LIMIT 1"; // 최근 데이터 하나만 추출
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Connection con = null;
 		PreparedStatement st = null;
@@ -321,7 +321,7 @@ public class RecipeService {
 
 		String sql = "SELECT * FROM MfcProductView ORDER BY id";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		Statement st = con.createStatement();
@@ -350,7 +350,7 @@ public class RecipeService {
 
 		String sql = "SELECT * FROM Grade";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		Statement st = con.createStatement();
@@ -376,7 +376,7 @@ public class RecipeService {
 
 		String sql = "SELECT * FROM Member WHERE uid=?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -405,7 +405,7 @@ public class RecipeService {
 
 		String sql = "SELECT id FROM MfcProductView WHERE `mfc-product`=?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -434,7 +434,7 @@ public class RecipeService {
 
 		String sql = "SELECT * FROM RecipeCmt WHERE bossId=?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -464,7 +464,7 @@ public class RecipeService {
 
 		String sql = "SELECT * FROM RecipeCmt WHERE recipeId=? and bossId IS NULL";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);

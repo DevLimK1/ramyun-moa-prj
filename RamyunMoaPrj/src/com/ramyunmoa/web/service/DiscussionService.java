@@ -92,7 +92,7 @@ public class DiscussionService {
 		int result = 0;
 
 		String sql = "INSERT INTO Discussion(title,content,writerId,topicId) VALUES(?,?,?,?)";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는 드라이버 클래스가 달라져야함
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -116,7 +116,7 @@ public class DiscussionService {
 		int result = 0;
 
 		String sql = "UPDATE Discussion SET title=?,content=?,topicId=? WHERE id=?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
 //	  드라이버 클래스가 달라져야함
@@ -142,7 +142,7 @@ public class DiscussionService {
 	  int result = 0;
 	  
 	  String sql = "DELETE FROM Discussion WHERE id=?"; 
-	  String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+	  String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 	  
 	  Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
 	  //드라이버 클래스가 달라져야함 
@@ -166,7 +166,7 @@ public class DiscussionService {
 		String sql = "SELECT * FROM DiscussionListView " + " WHERE " + field
 				+ " LIKE ? ORDER BY regdate DESC LIMIT 10 OFFSET ?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -201,7 +201,7 @@ public class DiscussionService {
 		String sql = "SELECT COUNT(ID) COUNT FROM DiscussionListView " + " WHERE " + field
 				+ " LIKE ? ORDER BY regdate DESC";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -237,8 +237,8 @@ public class DiscussionService {
 
 		String sql2 = "SELECT * FROM DiscussionCmt WHERE writerName=? ORDER BY REGDATE DESC LIMIT 1"; // 최근 데이터 하나만 추출
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		
 		Connection con = null;
 		PreparedStatement st = null;
 		PreparedStatement st2 = null;
@@ -325,7 +325,8 @@ public class DiscussionService {
 
 		String sql = "SELECT * FROM MfcProductView ORDER BY id";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		Statement st = con.createStatement();
@@ -354,7 +355,7 @@ public class DiscussionService {
 
 		String sql = "SELECT * FROM Grade";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		Statement st = con.createStatement();
@@ -380,7 +381,7 @@ public class DiscussionService {
 
 		String sql = "SELECT * FROM Member WHERE uid=?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -409,7 +410,7 @@ public class DiscussionService {
 
 		String sql = "SELECT id FROM MfcProductView WHERE `mfc-product`=?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -438,7 +439,7 @@ public class DiscussionService {
 
 		String sql = "SELECT * FROM DiscussionCmt WHERE bossId=?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -463,47 +464,47 @@ public class DiscussionService {
 	}
 
 	// 자세한페이지 댓글 목록
-	public List<ReviewCmt> getReviewCmt(int id) throws SQLException, ClassNotFoundException {
-		List<ReviewCmt> list = new ArrayList<ReviewCmt>();
-
-		String sql = "SELECT * FROM ReviewCmt WHERE reviewId=? and bossId IS NULL";
-
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setInt(1, id);
-
-		ResultSet rs = st.executeQuery();
-
-		// 쿼리 실행 된 결과값 가져오기
-		while (rs.next()) {
-			ReviewCmt view = new ReviewCmt(rs.getInt("id"), rs.getString("content"), rs.getString("writerName"),
-					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("reviewId"), rs.getInt("bossId"));
-
-			list.add(view);
-		}
-
-		rs.close();
-		st.close();
-		con.close();
-
-		for (int i = 0; i < list.size(); i++) {
-			ReviewCmt cmt = list.get(i);
-			cmt.setChildren(getCmtByParent(cmt.getId()));
-			;
-		}
-
-		return list;
-
-	}
+//	public List<ReviewCmt> getReviewCmt(int id) throws SQLException, ClassNotFoundException {
+//		List<ReviewCmt> list = new ArrayList<ReviewCmt>();
+//
+//		String sql = "SELECT * FROM ReviewCmt WHERE reviewId=? and bossId IS NULL";
+//
+//		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+//		Class.forName("com.mysql.cj.jdbc.Driver");
+//		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
+//		PreparedStatement st = con.prepareStatement(sql);
+//		st.setInt(1, id);
+//
+//		ResultSet rs = st.executeQuery();
+//
+//		// 쿼리 실행 된 결과값 가져오기
+//		while (rs.next()) {
+//			ReviewCmt view = new ReviewCmt(rs.getInt("id"), rs.getString("content"), rs.getString("writerName"),
+//					rs.getDate("regdate"), rs.getInt("likes"), rs.getInt("reviewId"), rs.getInt("bossId"));
+//
+//			list.add(view);
+//		}
+//
+//		rs.close();
+//		st.close();
+//		con.close();
+//
+//		for (int i = 0; i < list.size(); i++) {
+//			ReviewCmt cmt = list.get(i);
+//			cmt.setChildren(getCmtByParent(cmt.getId()));
+//			
+//		}
+//
+//		return list;
+//
+//	}
 
 	public List<Topic> getTopicList() throws ClassNotFoundException, SQLException {
 		List<Topic> list = new ArrayList<Topic>();
 
 		String sql = "SELECT * FROM Topic";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -530,7 +531,7 @@ public class DiscussionService {
 
 		String sql = "SELECT id FROM Topic WHERE title=?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -559,7 +560,7 @@ public class DiscussionService {
 
 			String sql = "SELECT * FROM DiscussionListView WHERE id=?";
 			
-			String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+			String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -598,7 +599,7 @@ public class DiscussionService {
 
 			String sql = "SELECT * FROM DiscussionCmt WHERE discussionId=? and bossId IS NULL";
 
-			String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+			String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 			PreparedStatement st = con.prepareStatement(sql);

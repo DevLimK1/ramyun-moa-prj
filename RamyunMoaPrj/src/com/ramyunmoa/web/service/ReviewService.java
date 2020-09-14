@@ -49,7 +49,7 @@ public class ReviewService {
 		ReviewDetailView rdv = null;
 
 		String sql = "SELECT * FROM ReviewDetailView WHERE id=?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -88,7 +88,7 @@ public class ReviewService {
 		int result = 0;
 
 		String sql = "INSERT INTO Review(title,content,productId,writerId,gradeId) VALUES(?,?,?,?,?)";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는 드라이버 클래스가 달라져야함
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -113,7 +113,7 @@ public class ReviewService {
 		int result = 0;
 
 		String sql = "UPDATE Review SET title=?,content=?,productId=?,gradeId=? WHERE id=?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
 //	  드라이버 클래스가 달라져야함
@@ -140,7 +140,7 @@ public class ReviewService {
 	  int result = 0;
 	  
 	  String sql = "DELETE FROM Review WHERE id=?"; 
-	  String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+	  String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 	  
 	  Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는
 	  //드라이버 클래스가 달라져야함 
@@ -164,7 +164,7 @@ public class ReviewService {
 		String sql = "SELECT * FROM ReviewListView " + " WHERE " + field
 				+ " LIKE ? ORDER BY regdate DESC LIMIT 10 OFFSET ?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -199,7 +199,7 @@ public class ReviewService {
 		String sql = "SELECT COUNT(ID) COUNT FROM ReviewListView " + " WHERE " + field
 				+ " LIKE ? ORDER BY regdate DESC";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -235,7 +235,7 @@ public class ReviewService {
 
 		String sql2 = "SELECT * FROM ReviewCmt WHERE writerName=? ORDER BY REGDATE DESC LIMIT 1"; // 최근 데이터 하나만 추출
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Connection con = null;
 		PreparedStatement st = null;
@@ -247,7 +247,10 @@ public class ReviewService {
 			con = DriverManager.getConnection(url, "rmteam", "rm0322");
 
 			con.setAutoCommit(false);
-
+ 
+			//primary key인 id가 DB에서 자동 증가하기 때문에 지금 insert 하는 key id를 얻기가 쉽지 않다. 그래서 고립성을 해준다.
+			con.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+			
 			st = con.prepareStatement(sql); // INSERT sql
 
 			System.out.println(cmt.getBossId());
@@ -323,7 +326,7 @@ public class ReviewService {
 
 		String sql = "SELECT * FROM MfcProductView ORDER BY id";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		Statement st = con.createStatement();
@@ -352,7 +355,7 @@ public class ReviewService {
 
 		String sql = "SELECT * FROM Grade";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		Statement st = con.createStatement();
@@ -378,11 +381,10 @@ public class ReviewService {
 
 		String sql = "SELECT * FROM Member WHERE uid=?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
-//		Statement st = con.createStatement();
 
 		st.setString(1, uid);
 
@@ -407,7 +409,7 @@ public class ReviewService {
 
 		String sql = "SELECT id FROM MfcProductView WHERE `mfc-product`=?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -436,7 +438,7 @@ public class ReviewService {
 
 		String sql = "SELECT * FROM ReviewCmt WHERE bossId=?";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -466,7 +468,7 @@ public class ReviewService {
 
 		String sql = "SELECT * FROM ReviewCmt WHERE reviewId=? and bossId IS NULL";
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -500,7 +502,7 @@ public class ReviewService {
 		int result = 0;
 
 		String sql = "UPDATE SET Review likes=likes+1 WHERE id=?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver"); // 최신버전의 드라이버명이다. 하위버전의 mysql에서는 드라이버 클래스가 달라져야함
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);

@@ -21,7 +21,7 @@ public class ProdService {
 
 		List<ProductView> list = new ArrayList<ProductView>();
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "SELECT * FROM ProductView WHERE mfr LIKE ? AND name LIKE ? AND name LIKE ? ORDER BY name LIMIT ?, 16";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -45,7 +45,7 @@ public class ProdService {
 
 		List<RankingView> rankingList = new ArrayList<RankingView>();
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "SELECT * FROM RankingView WHERE mfr LIKE ? ORDER BY amount DESC LIMIT 10";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -67,7 +67,7 @@ public class ProdService {
 
 		int count = 0;
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "SELECT COUNT(id) count FROM ProductView WHERE mfr LIKE ? AND name LIKE ? AND name LIKE ?";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -87,7 +87,7 @@ public class ProdService {
 
 		NutritionView nutrition = null;
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "SELECT * FROM NutritionView WHERE id = ?";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -109,7 +109,7 @@ public class ProdService {
 
 		List<AdminProdView> adminProdList = new ArrayList<AdminProdView>();
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "SELECT * FROM AdminProdView WHERE mfr LIKE ? AND name LIKE ? AND name LIKE ? ORDER BY id LIMIT ?, 5";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -135,7 +135,7 @@ public class ProdService {
 
 		NutritionView nutriStd = null;
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "SELECT * FROM NutritionStd";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -152,7 +152,7 @@ public class ProdService {
 
 	public void insertData(AdminProdView data) throws SQLException, ClassNotFoundException {
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 
@@ -228,7 +228,7 @@ public class ProdService {
 
 	public void updateData1(AdminProdView product) throws SQLException, ClassNotFoundException {
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql1 = "UPDATE Product SET name = ?, capacity = ?, kcal = ?, manufacturerId = ?, img = ? WHERE id = ?";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -247,7 +247,7 @@ public class ProdService {
 	
 	public void updateData2(AdminProdView product) throws SQLException, ClassNotFoundException {
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql2 = "UPDATE Sales SET amount = ?, year = ?, quarter = ? WHERE productId = ?";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -264,7 +264,7 @@ public class ProdService {
 	
 	public void updateData3(AdminProdView product) throws SQLException, ClassNotFoundException {
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql3 = "UPDATE Nutrition SET title = ?, content = ? WHERE productId = ?";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -317,7 +317,7 @@ public class ProdService {
 
 		int result = 0;
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		String sql = "DELETE FROM Product WHERE id = ?";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");

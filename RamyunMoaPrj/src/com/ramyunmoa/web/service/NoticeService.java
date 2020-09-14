@@ -19,7 +19,7 @@ public class NoticeService {
 		List<NoticeView> list = new ArrayList<>();
 		
 		String sql = "SELECT * FROM NoticeView WHERE " + field +" LIKE ? ORDER BY regdate DESC LIMIT 10 OFFSET ?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -55,7 +55,7 @@ public class NoticeService {
 		List<NoticeView> list = new ArrayList<>();
 		
 		String sql = "SELECT * FROM NoticeView WHERE " + field +" LIKE ? AND pub = 1 ORDER BY regdate DESC LIMIT 10 OFFSET ?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -91,7 +91,7 @@ public class NoticeService {
 		
 		String sql2 = "UPDATE Notice SET hit=hit+1 WHERE id=?";
 		String sql = "SELECT * FROM Notice WHERE id=?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		
@@ -130,7 +130,7 @@ public class NoticeService {
 		int result = 0;
 		
 		String sql = "INSERT INTO Notice(title, content, writerId, pub) VALUES(?, ?, ?, ?)";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -153,7 +153,7 @@ public class NoticeService {
 		
 		String sql = "DELETE FROM Notice WHERE id=?";
 		String sql2 = "DELETE FROM NoticeComment WHERE boardId=?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		
@@ -180,7 +180,7 @@ public class NoticeService {
 		int result = 0;
 		
 		String sql = "UPDATE Notice SET title=?, content=? WHERE id=?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -204,7 +204,7 @@ public class NoticeService {
 		String sql = "SELECT * FROM Notice WHERE id = "
 				+ "(SELECT id FROM Notice "
 				+ "WHERE regdate > (SELECT regdate FROM Notice WHERE id = ?) LIMIT 1)";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -238,7 +238,7 @@ public class NoticeService {
 		String sql = "SELECT * FROM (SELECT * FROM Notice ORDER BY regdate DESC) C "
 				+ "WHERE regdate < (SELECT regdate FROM Notice WHERE id = ?) LIMIT 1";
 		
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -271,7 +271,7 @@ public class NoticeService {
 		String sql = "SELECT * FROM Notice WHERE id = "
 				+ "(SELECT id FROM Notice "
 				+ "WHERE regdate > (SELECT regdate FROM Notice WHERE id = ? ) AND pub = 1 LIMIT 1)";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -305,7 +305,7 @@ public class NoticeService {
 		String sql = "SELECT * FROM (SELECT * FROM Notice ORDER BY regdate DESC) C "
 				+ "WHERE regdate < (SELECT regdate FROM Notice WHERE id = ?) AND pub = 1 LIMIT 1";
 		
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -343,7 +343,7 @@ public class NoticeService {
 		String sql = "SELECT COUNT(id) count FROM "
 				+ "(SELECT N.* FROM"
 				+ "(SELECT *FROM Notice WHERE " + field + " LIKE ? ORDER BY regdate DESC) N) N2";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -406,7 +406,7 @@ public class NoticeService {
 
 		String sqlOpen = String.format("UPDATE Notice SET pub=1 WHERE id IN (%s)", oidsCSV);
 		String sqlClose = String.format("UPDATE Notice SET pub=0 WHERE id IN (%s)", cidsCSV);
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -447,7 +447,7 @@ public class NoticeService {
 		String sql2 = "DELETE FROM NoticeComment WHERE boardId IN ("+params+")";
 		String sql = "DELETE FROM Notice WHERE id IN ("+params+")";
 		
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);

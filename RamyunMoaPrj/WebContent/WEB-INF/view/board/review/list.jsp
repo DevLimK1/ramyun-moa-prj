@@ -96,10 +96,6 @@
 						<div class="review-list-box-meta darkcyan">
 							<div class="review-list-box-meta_regdate">
 								${list.regdate}
-								<%-- 	<fmt:parseDate var="date" value="${list.regdate}"
-										pattern="yyyy-MM-dd HH:mm" />
-									<fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm" /> --%>
-								<%-- <fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd HH:mm" /> --%>
 							</div>
 							<div class="review-list-box-meta_author">${list.nickname }</div>
 						</div>

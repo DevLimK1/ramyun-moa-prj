@@ -55,8 +55,6 @@ public class ReviewRegController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/board/review/reg.jsp");
 		dispatcher.forward(request, response);
 
-//		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
-//		container.render("review.reg", request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -66,7 +64,6 @@ public class ReviewRegController extends HttpServlet {
 
 		// reg.jsp에서 값 받아온다
 		String mfcProduct = request.getParameter("mfc-product");
-//		String mpvId_=request.getParameter("mpvId");
 		String writerId_=request.getParameter("writerId");
 		String gradeId_ = request.getParameter("grade");
 		String title = request.getParameter("title");
@@ -76,7 +73,6 @@ public class ReviewRegController extends HttpServlet {
 		System.out.println("content:"+content);
 		
 		int writerId=Integer.parseInt(writerId_);
-//		int mpvId=Integer.parseInt(mpvId_);
 		int gradeId = Integer.parseInt(gradeId_);
 		
 		System.out.println("mfcProduct:"+mfcProduct);
@@ -91,10 +87,8 @@ public class ReviewRegController extends HttpServlet {
 		try {
 			mpvId=service.getMfcProductViewId(mfcProduct);
 		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		

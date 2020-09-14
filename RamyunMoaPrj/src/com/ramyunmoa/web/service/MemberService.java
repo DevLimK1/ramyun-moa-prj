@@ -22,7 +22,7 @@ public class MemberService {
 		String sql = "SELECT * FROM Member WHERE ID=?";
 
 		// String url = "jdbc:oracle:thin:@112.223.37.243:1521/xepdb1";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		// Class.forName("oracle.jdbc.driver.OracleDriver");
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -50,7 +50,7 @@ public class MemberService {
 		String sql = "SELECT * FROM Member WHERE UID=?";
 
 		// String url = "jdbc:oracle:thin:@112.223.37.243:1521/xepdb1";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		// Class.forName("oracle.jdbc.driver.OracleDriver");
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -82,7 +82,7 @@ public class MemberService {
 		String sql = "SELECT * FROM Member ORDER BY regdate DESC";// WHERE NUM BETWEEN 1 AND 10";
 
 		// String url = "jdbc:oracle:thin:@112.223.37.243:1521/xepdb1";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		// Class.forName("oracle.jdbc.driver.OracleDriver");
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -113,7 +113,7 @@ public class MemberService {
 		String sql = null;
 		boolean flag = false;
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		try {
@@ -136,7 +136,7 @@ public class MemberService {
 
 		String sql = null;
 		boolean flag = false;
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		try {
@@ -159,7 +159,7 @@ public class MemberService {
 		String sql = null;
 		boolean flag = false;
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		try {
@@ -182,7 +182,7 @@ public class MemberService {
 		String sql = "INSERT INTO Member(uid,pwd,email,nickname,gender) values(?,?,?,?,?)";
 		String sql2 = "INSERT INTO GivenRole (RoleId,RoleName,MemberId,MemberUid) SELECT '1','후레이크',id,uid FROM `Member` ORDER BY id DESC limit 1";
 		
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -244,7 +244,7 @@ public class MemberService {
 		String sql = null;
 		boolean flag = false;
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		try {
@@ -268,7 +268,7 @@ public class MemberService {
 		String sql = null;
 		boolean flag = false;
 
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		try {
@@ -289,7 +289,7 @@ public class MemberService {
 	  
 	  int result=0; 
 	  String sql = "DELETE FROM Member WHERE uid=? AND pwd=?";
-	  String url =  "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+	  String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 	  
 	  Class.forName("com.mysql.cj.jdbc.Driver");
 	  Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -307,7 +307,7 @@ public class MemberService {
 		  
 	  int result=0; 
 	  String sql = "UPDATE Member SET pwd = ? WHERE id = ?";
-	  String url =  "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+	  String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 	  
 	  Class.forName("com.mysql.cj.jdbc.Driver");
 	  Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
@@ -325,7 +325,7 @@ public class MemberService {
 	public MemberView getRoleByUserId(String uid) throws ClassNotFoundException, SQLException {
 		MemberView mv = null;
 		String sql = "SELECT * From MemberView WHERE uid = ?";
-		String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+		String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");
 		PreparedStatement st = con.prepareStatement(sql);
@@ -347,7 +347,7 @@ public class MemberService {
 	      String nickname= "";
 
 	      String sql = "SELECT nickname FROM Member WHERE uid=?";
-	      String url = "jdbc:mysql://dev.notepubs.com:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+	      String url = "jdbc:mysql://db.moagroup.co.kr:9898/rmteam?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 
 	      Class.forName("com.mysql.cj.jdbc.Driver");
 	      Connection con = DriverManager.getConnection(url, "rmteam", "rm0322");

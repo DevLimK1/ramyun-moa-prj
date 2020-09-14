@@ -1,18 +1,5 @@
-//Ajax-> 비동기로 자바스크립트를 이용해서 원격의 xml(데이터)를 요청해서 화면을 갱신하는 기술
-
-
-
 window.addEventListener("load", function() {
 
-// var reviews = [ {
-// id : 1,
-// title : "hello",
-// writerId : "newlec"
-// }, {
-// id : 2,
-// title : "hi~",
-// writerId : "newlec"
-// }, ];
 	
 	var reviews="";
 
@@ -59,9 +46,6 @@ window.addEventListener("load", function() {
 		// 비동기옵션 true : 비동기요청 false:동기형
 		
 		xhr.onload = function() {
-//			 alert(xhr.responseText.trim());
-		
-//			var oldMain=document.querySelector("#main");
 			  reviewImportCSS("reg.css");
 	    	  var header=main.previousElementSibling;
 	    	  var div=document.createElement("div");
@@ -71,7 +55,6 @@ window.addEventListener("load", function() {
 	    	  
 	    	  main.remove();
 	    	  header.insertAdjacentElement("afterend",newMain);
-//	    	  header.insertAdjacentHTML("afterend",xhr.responseText.trim());
 	    	  shield.hide();
 	    	 
 	    	  //reg.js 코드 불러오는 방법1)
@@ -82,88 +65,13 @@ window.addEventListener("load", function() {
 	    	  xhr2.onload=function(){
 	    		  console.log(xhr2.responseText);
 	    		  
-//	    		  eval(xhr2.responseText); 
 	    		  new Function(xhr2.responseText)();//eval대신 사용!
 	    		  
-//	    		  var regBox = document.querySelector(".reg-box");
-
-//	    		  console.log(regBox);
-
-//	    		  var btnCancel = regBox.querySelector(".btn-cancel");
-//	    		  console.log(cancelBtnClick);
-//	    		  btnCancel.onclick = cancelBtnClick;
 	    	  }
 	    	  
 
 	    	  xhr2.send(null);
 	    	  
-	    	  
-	    	  //방법2) onload되면 script 코드를 직접 추가
-//	    	  var head = document.getElementByTagName('head')[0],
-//	    	    script = document.createElement('script');
-//	    	script.src = 'myscript.js';
-//	    	head.appendChild(script);
-	    	  
-	    	
-			
-			
-			/*
-			var oldHTML = document.querySelector("html");
-			var oldHead=document.querySelector("head");
-			var oldBody=document.querySelector("body");
-			var oldMain=oldBody.children[1];
-			var oldHeader=oldBody.children[0];
-			
-
-			var html=document.createElement("html");
-			html.innerHTML=xhr.responseText.trim();
-			var newHead=html.firstElementChild;
-			var newBody=html.lastElementChild;
-			var newMain=newBody.children[1];
-			console.log(newMain);
-			
-//			html.onload= function(){
-//			
-//				alert(document.querySelector(".btn-cancel"));
-//			}
-
-			oldMain.remove();
-// oldBody.insertAdjacentElement("beforebegin",newHead);
-			oldHeader.insertAdjacentElement("afterend",newMain);
-			
-			shield.hide();
-			*/
-			
-			
-			//-----------------------------------------------
-			// 취소버튼 클릭시 -> shield 부분 어떻게 해야할까?
-			
-//			var regBox=document.querySelector(".reg-box");
-//			
-//			console.log(regBox);
-//			
-//			var btnCancel=regBox.querySelector(".btn-cancel");
-//			
-//			btnCancel.onclick=cancelBtnClick;
-//			
-//			// TODO : cancel button
-//			function cancelBtnClick(e){
-//				shield.show();
-//				e.preventDefault();
-//				 
-//				if (e.target.nodeName != "A"){
-//					 console.log(e.target.nodeName);
-//						return;
-//				}
-//				newMain.remove();
-//				console.log(newMain);
-//				// oldBody.insertAdjacentElement("beforebegin",newHead);
-//				header.insertAdjacentElement("afterend",main);
-//
-//				shield.hide();
-//				
-//			}
-			
 			
 		};
 		xhr.send(null);
@@ -271,8 +179,6 @@ window.addEventListener("load", function() {
 
 			console.log(template);
 			reviewContent +=template;
-			// tbodyContent = tbodyContent.concat(template); //concat 쓰지말 것
-			// console.log(tbodyContent);
 		}
 		
 		reviewBoardBox.innerHTML = reviewContent;

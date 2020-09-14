@@ -15,7 +15,6 @@
 			<h1 class="d-none">서브링크</h1>
 
 
-			<!-- 			<form action="reg" method="POST" class="sub-link-search-form"> -->
 			<form action="" class="sub-link-search-form">
 				<input type="hidden" name="writerId" value="${member.id}">
 				<div class="reg-writerName">
@@ -30,7 +29,6 @@
 					<datalist id="product">
 						<c:forEach var="mpv" items="${mpv}">
 							<option value="${mpv.mfcProduct}"></option>
-							<%-- <input type="hidden" name="mpvId" value="${mpv.id}"> --%>
 						</c:forEach>
 					</datalist>
 				</fieldset>
@@ -50,11 +48,6 @@
 								</c:choose>
 							</option>
 						</c:forEach>
-						<!-- <option value="1">집에 있어도 안먹음 ★☆☆☆☆</option>
-						<option value="2">내 돈주고 먹지는 않음 ★★☆☆☆</option>
-						<option value="3" selected>내 돈주고 사먹을만 함 ★★★☆☆</option>
-						<option value="4">맛있어서 가끔 생각남 ★★★★☆</option>
-						<option value="5">집에 쌓아놓고 먹고싶음 ★★★★★</option> -->
 					</select>
 
 				</fieldset>
@@ -76,7 +69,7 @@
 						<button class="btn-underline">
 							<i class="fas fa-underline"></i>
 						</button>
-						<!-- <button class="btn-fontSize">size</i></button> -->
+						
 						<select name="set_headingSize">
 							<option value="1">제목1</option>
 							<option value="2">제목2</option>
@@ -94,8 +87,7 @@
 						contenteditable="true">
 					
 					</div>
-					<!-- <textarea class="content" placeholder="내용을 입력하세요." name="content"
-						required></textarea> -->
+					
 				</div>
 
 				<div class="btn-box">

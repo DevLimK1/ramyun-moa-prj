@@ -68,8 +68,6 @@ public class ReviewListController extends HttpServlet {
 		
 		TilesContainer container = TilesAccess.getContainer(request.getSession().getServletContext());
 		container.render("board.review.list", request, response);
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/review/list.jsp");
-//		dispatcher.forward(request, response);
 
 	}
 
